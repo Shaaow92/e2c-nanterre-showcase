@@ -667,7 +667,7 @@ document.querySelectorAll('.tab-btn, .bento-card').forEach(el => {
   drawer.className = 'mobile-nav-drawer';
   drawer.setAttribute('role', 'navigation');
 
-  navLinks.querySelectorAll(':scope > a, :scope > .nav-dropdown').forEach(item => {
+  Array.from(navLinks.children).forEach(item => {
     if (item.matches('a')) {
       const a = document.createElement('a');
       a.className = 'mobile-nav-link';
@@ -675,7 +675,7 @@ document.querySelectorAll('.tab-btn, .bento-card').forEach(el => {
       a.textContent = item.textContent.trim();
       drawer.appendChild(a);
     } else if (item.classList.contains('nav-dropdown')) {
-      const topLink = item.querySelector(':scope > a.nav-item');
+      const topLink = item.querySelector('a.nav-item');
       const subLinks = item.querySelectorAll('.nav-dropdown-menu a');
       if (topLink) {
         const head = document.createElement('a');
