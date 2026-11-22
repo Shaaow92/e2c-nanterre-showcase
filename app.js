@@ -21,16 +21,30 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// 2. Bouton Mode Clair / Mode Sombre
+// 2. Bouton Mode Clair / Mode Sombre (mémorisé entre les pages)
+const THEME_STORAGE_KEY = 'e2c_night_mode';
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const themeLabel = document.getElementById('theme-label');
 
+function applyThemeState(isDark) {
+  document.body.classList.toggle('dark-mode', Boolean(isDark));
+  if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
+  if (themeLabel) themeLabel.textContent = isDark ? 'Mode Clair' : 'Mode Sombre';
+}
+
+const savedNightMode = localStorage.getItem(THEME_STORAGE_KEY) === '1';
+if (savedNightMode) {
+  applyThemeState(true);
+}
+
 if (themeToggleBtn) {
   themeToggleBtn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
-    if (themeLabel) themeLabel.textContent = isDark ? 'Mode Clair' : 'Mode Sombre';
+    const nextDark = !document.body.classList.contains('dark-mode');
+    applyThemeState(nextDark);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, nextDark ? '1' : '0');
+    } catch (_) {}
   });
 }
 
