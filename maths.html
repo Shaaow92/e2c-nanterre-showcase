@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier Maths [e2c_Nanterre] — Pourcentages, Mesures & Mètres Cubes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="maths.css">
+</head>
+<body class="maths-body">
+  <!-- Fond papier millimétré & symboles mathématiques -->
+  <div class="millimeter-bg"></div>
+  <div class="math-symbols-layer" aria-hidden="true">
+    <span class="m-sym ms-1">%</span>
+    <span class="m-sym ms-2">m³ = L × l × h</span>
+    <span class="m-sym ms-3">1 m = 100 cm</span>
+    <span class="m-sym ms-4">π ≈ 3,14</span>
+    <span class="m-sym ms-5">1 m³ = 1 000 L</span>
+  </div>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Barre de navigation style Tableau Mathématique -->
+  <header class="maths-navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="btn-back-home">← Accueil e2c Nanterre</a>
+        <div class="math-breadcrumb">
+          <span>📐</span>
+          <code>e2c-nanterre / atelier-maths / %, mesures, m³</code>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#notions" class="nav-item">01. Notions vues</a>
+        <a href="#labo" class="nav-item">02. Calculateurs</a>
+        <a href="numerique.html" class="btn-nav-alt">Atelier Numérique →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Mathématique + Ardoise de Formules -->
+  <section id="intro" class="maths-hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="math-chip">📐 ATELIER MATHÉMATIQUES • SITE DE NANTERRE</div>
+        <h1 class="maths-title">
+          LES MATHS<br>
+          <span>APPLIQUÉES EN ATELIER</span>
+        </h1>
+        <p class="maths-desc">
+          À l'e2c de Nanterre, on travaille des mathématiques concrètes qui servent tous les jours et en entreprise : calculer des <strong>pourcentages (%)</strong>, maîtriser les <strong>unités de mesure</strong> et calculer des volumes en <strong>mètres cubes (m³)</strong>.
+        </p>
+        <div class="maths-actions">
+          <a href="#labo" class="btn-math-primary">f(x) Tester les calculateurs</a>
+          <a href="#notions" class="btn-math-secondary">Voir ce qu'on a fait en cours</a>
+        </div>
+      </div>
+
+      <!-- Ardoise des 3 Formules Clés de l'Atelier -->
+      <div class="chalkboard-panel">
+        <div class="chalk-header">
+          <span>TABLEAU_FORMULES.MATH — MÉMO ATELIER</span>
+          <span>e2c 92</span>
+        </div>
+        <div class="chalk-body">
+          <div class="formula-card">
+            <span class="formula-label">01 // CALCUL DE POURCENTAGE (%)</span>
+            <div class="formula-eq">Valeur × (Taux ÷ 100) = Part en %</div>
+          </div>
+          <div class="formula-card amber">
+            <span class="formula-label">02 // CONVERSION DES MESURES DE LONGUEUR</span>
+            <div class="formula-eq">1 km = 1 000 m  |  1 m = 100 cm = 1 000 mm</div>
+          </div>
+          <div class="formula-card orange">
+            <span class="formula-label">03 // VOLUME EN MÈTRES CUBES (m³)</span>
+            <div class="formula-eq">V (m³) = Longueur × Largeur × Hauteur</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ruban Mathématique -->
+  <div class="maths-marquee">
+    <div class="marquee-track">
+      <span>POURCENTAGES (%)</span><span class="sep">◆</span>
+      <span>MESURES & CONVERSIONS (mm, cm, m, km)</span><span class="sep">◆</span>
+      <span>VOLUMES EN MÈTRES CUBES (m³)</span><span class="sep">◆</span>
+      <span>1 m³ = 1 000 LITRES</span><span class="sep">◆</span>
+      <span>e2c NANTERRE — ATELIER MATHS</span><span class="sep">◆</span>
+      <span>POURCENTAGES (%)</span><span class="sep">◆</span>
+      <span>MESURES & CONVERSIONS (mm, cm, m, km)</span><span class="sep">◆</span>
+      <span>VOLUMES EN MÈTRES CUBES (m³)</span><span class="sep">◆</span>
+      <span>1 m³ = 1 000 LITRES</span><span class="sep">◆</span>
+      <span>e2c NANTERRE — ATELIER MATHS</span><span class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- Section des 3 Notions travaillées en atelier -->
+  <section id="notions" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="math-kicker">// CE QU'ON A FAIT EN ATELIER</span>
+        <h2 class="section-title">Les 3 chapitres travaillés ensemble</h2>
+        <p class="section-subtitle">Cliquez sur un module pour ouvrir directement l'outil de calcul interactif correspondant.</p>
+      </div>
+
+      <div class="notion-grid">
+        <!-- 1. POURCENTAGES -->
+        <article class="notion-card">
+          <div>
+            <div class="notion-top">
+              <div class="notion-symbol">%</div>
+              <span class="notion-tag">CHAPITRE_01</span>
+            </div>
+            <h3>Les Pourcentages (%)</h3>
+            <p>Apprendre à calculer rapidement une réduction en magasin, une augmentation, une TVA ou une proportion sur un budget.</p>
+            <ul class="notion-list">
+              <li>Calculer 10 %, 20 %, 25 % ou 50 % de tête</li>
+              <li>Appliquer une remise ou une hausse sur un prix</li>
+              <li>Trouver le pourcentage que représente une quantité</li>
+            </ul>
+          </div>
+          <button class="btn-try-tool" onclick="switchMathTab('pct')">Ouvrir le calculateur % →</button>
+        </article>
+
+        <!-- 2. LES MESURES -->
+        <article class="notion-card card-mesures">
+          <div>
+            <div class="notion-top">
+              <div class="notion-symbol">📏</div>
+              <span class="notion-tag">CHAPITRE_02</span>
+            </div>
+            <h3>Les Mesures & Conversions</h3>
+            <p>Savoir lire une règle ou un mètre ruban et convertir sans erreur les longueurs dans le tableau de conversion.</p>
+            <ul class="notion-list">
+              <li>Millimètres (mm), centimètres (cm), mètres (m), kilomètres (km)</li>
+              <li>Utiliser le tableau de conversion en déplaçant la virgule</li>
+              <li>Calculer un périmètre ou la longueur totale d'un chantier</li>
+            </ul>
+          </div>
+          <button class="btn-try-tool" onclick="switchMathTab('mesures')">Ouvrir le convertisseur →</button>
+        </article>
+
+        <!-- 3. LES MÈTRES CUBES -->
+        <article class="notion-card card-m3">
+          <div>
+            <div class="notion-top">
+              <div class="notion-symbol">m³</div>
+              <span class="notion-tag">CHAPITRE_03</span>
+            </div>
+            <h3>Les Mètres Cubes (m³)</h3>
+            <p>Comprendre la 3e dimension : calculer le volume d'un carton, d'un camion de déménagement, d'une pièce ou d'une piscine.</p>
+            <ul class="notion-list">
+              <li>Formule : Longueur × Largeur × Hauteur (en mètres)</li>
+              <li>Conversion entre cm³, dm³ et m³ (3 chiffres par colonne)</li>
+              <li>Équivalence essentielle : 1 m³ = 1 000 litres</li>
+            </ul>
+          </div>
+          <button class="btn-try-tool" onclick="switchMathTab('m3')">Ouvrir le calculateur m³ →</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Laboratoire Mathématique Interactif -->
+  <section id="labo" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="math-kicker">// LABO_PRATIQUE_INTERACTIF</span>
+        <h2 class="section-title">Outils de calcul de l'atelier</h2>
+        <p class="section-subtitle">Testez en direct les formules vues en cours sur les pourcentages, les mesures et les mètres cubes.</p>
+      </div>
+
+      <div class="math-lab">
+        <div class="lab-tabs">
+          <button class="lab-tab active" data-tab="pct" onclick="switchMathTab('pct')">01. Calculateur de Pourcentages (%)</button>
+          <button class="lab-tab" data-tab="mesures" onclick="switchMathTab('mesures')">02. Convertisseur de Mesures</button>
+          <button class="lab-tab" data-tab="m3" onclick="switchMathTab('m3')">03. Calculateur de Mètres Cubes (m³)</button>
+        </div>
+
+        <!-- ONGLET 1 : POURCENTAGES -->
+        <div id="panel-pct" class="lab-panel active">
+          <div>
+            <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; margin-bottom:0.6rem;">Calculer un pourcentage (%)</h3>
+            <p style="color:var(--text-body); font-size:0.94rem; margin-bottom:1.4rem;">Déplacez les curseurs pour calculer la part en pourcentage, le prix après réduction ou après augmentation.</p>
+            <div class="input-group">
+              <label><span>Montant de départ (€)</span><strong id="pct-base-label" style="color:#34d399;">200 €</strong></label>
+              <input type="range" id="pct-base" min="10" max="1000" step="10" value="200" oninput="computePct()">
+            </div>
+            <div class="input-group">
+              <label><span>Taux (%)</span><strong id="pct-rate-label" style="color:#fbbf24;">20 %</strong></label>
+              <input type="range" id="pct-rate" min="1" max="90" step="1" value="20" oninput="computePct()">
+            </div>
+          </div>
+          <div class="result-box">
+            <div class="result-row">
+              <span>Formule appliquée :</span>
+              <code id="pct-formula" style="color:#fbbf24;">200 × (20 ÷ 100)</code>
+            </div>
+            <div class="result-row">
+              <span>Montant du pourcentage :</span>
+              <span class="result-val" id="pct-part">40,00 €</span>
+            </div>
+            <div class="result-row">
+              <span>Prix après réduction (-%) :</span>
+              <span class="result-val" id="pct-minus" style="color:#38bdf8;">160,00 €</span>
+            </div>
+            <div class="result-row">
+              <span>Prix après hausse (+%) :</span>
+              <span class="result-val" id="pct-plus" style="color:#ff4800;">240,00 €</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ONGLET 2 : MESURES -->
+        <div id="panel-mesures" class="lab-panel">
+          <div>
+            <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; margin-bottom:0.6rem;">Convertir une mesure de longueur</h3>
+            <p style="color:var(--text-body); font-size:0.94rem; margin-bottom:1.4rem;">Entrez une mesure et choisissez son unité pour obtenir instantanément toutes ses équivalences.</p>
+            <div class="input-group">
+              <label><span>Valeur mesurée</span></label>
+              <input type="number" id="mes-val" value="2.5" step="0.1" oninput="computeMesures()">
+            </div>
+            <div class="input-group">
+              <label><span>Unité de départ</span></label>
+              <select id="mes-unit" onchange="computeMesures()">
+                <option value="m" selected>Mètres (m)</option>
+                <option value="cm">Centimètres (cm)</option>
+                <option value="mm">Millimètres (mm)</option>
+                <option value="km">Kilomètres (km)</option>
+              </select>
+            </div>
+          </div>
+          <div class="result-box">
+            <div class="result-row"><span>En Millimètres (mm) :</span><span class="result-val" id="res-mm">2 500 mm</span></div>
+            <div class="result-row"><span>En Centimètres (cm) :</span><span class="result-val" id="res-cm" style="color:#fbbf24;">250 cm</span></div>
+            <div class="result-row"><span>En Mètres (m) :</span><span class="result-val" id="res-m">2,5 m</span></div>
+            <div class="result-row"><span>En Kilomètres (km) :</span><span class="result-val" id="res-km" style="color:#38bdf8;">0,0025 km</span></div>
+          </div>
+        </div>
+
+        <!-- ONGLET 3 : MÈTRES CUBES -->
+        <div id="panel-m3" class="lab-panel">
+          <div>
+            <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.5rem; margin-bottom:0.6rem;">Calculer un volume en m³</h3>
+            <p style="color:var(--text-body); font-size:0.94rem; margin-bottom:1.2rem;">Renseignez les 3 dimensions en mètres (Longueur, Largeur, Hauteur) pour calculer le volume en m³ et en litres.</p>
+            <div class="input-group">
+              <label><span>Longueur L (en m)</span><strong id="m3-l-txt" style="color:#34d399;">3 m</strong></label>
+              <input type="range" id="m3-l" min="0.5" max="10" step="0.5" value="3" oninput="computeM3()">
+            </div>
+            <div class="input-group">
+              <label><span>Largeur l (en m)</span><strong id="m3-w-txt" style="color:#fbbf24;">2 m</strong></label>
+              <input type="range" id="m3-w" min="0.5" max="10" step="0.5" value="2" oninput="computeM3()">
+            </div>
+            <div class="input-group">
+              <label><span>Hauteur h (en m)</span><strong id="m3-h-txt" style="color:#ff4800;">2 m</strong></label>
+              <input type="range" id="m3-h" min="0.5" max="5" step="0.5" value="2" oninput="computeM3()">
+            </div>
+          </div>
+
+          <div class="cube-stage">
+            <!-- Schéma parallélépipède 3D -->
+            <svg class="cube-svg" viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="60,45 160,45 200,20 100,20" fill="rgba(52, 211, 153, 0.22)" stroke="#34d399" stroke-width="2"/>
+              <polygon points="60,45 160,45 160,155 60,155" fill="rgba(16, 185, 129, 0.14)" stroke="#34d399" stroke-width="2"/>
+              <polygon points="160,45 200,20 200,130 160,155" fill="rgba(255, 72, 0, 0.18)" stroke="#ff4800" stroke-width="2"/>
+              <text x="110" y="174" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono" font-size="12" font-weight="700" id="svg-dim-l">L = 3 m</text>
+              <text x="195" y="152" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="12" font-weight="700" id="svg-dim-w">l = 2 m</text>
+              <text x="32" y="105" text-anchor="middle" fill="#ff8c5a" font-family="JetBrains Mono" font-size="12" font-weight="700" id="svg-dim-h">h = 2 m</text>
+            </svg>
+            <div style="width:100%; border-top:1px solid rgba(255,255,255,0.1); padding-top:0.9rem; font-family:'JetBrains Mono',monospace;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                <span style="color:#94a3b8;">Calcul :</span>
+                <span id="m3-calc-str" style="color:#fff;">3 × 2 × 2</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                <span style="color:#94a3b8;">Volume total :</span>
+                <strong id="m3-result" style="color:#34d399; font-size:1.3rem;">12,00 m³</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color:#94a3b8;">Contenance :</span>
+                <strong id="m3-liters" style="color:#fbbf24;">12 000 Litres</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compagnon Interactif : Martine, Formatrice Maths au quotidien (100% visuel, sans son) -->
+  <aside id="martine-guide" class="martine-guide" aria-live="polite">
+    <div class="martine-bubble" id="martine-bubble">
+      <div class="martine-header">
+        <span class="martine-name">MARTINE</span>
+        <span class="martine-role">Formatrice Maths • e2c</span>
+        <button id="martine-toggle" class="martine-toggle" title="Réduire / Agrandir">−</button>
+      </div>
+      <p id="martine-text" class="martine-text"></p>
+      <div class="martine-footer">
+        <span id="martine-mood" class="martine-mood">● En atelier Maths</span>
+        <button id="martine-next" class="martine-next">Astuce suivante →</button>
+      </div>
+    </div>
+    <button id="martine-avatar-btn" class="martine-avatar-frame" title="Parler avec Martine">
+      <div id="martine-sprite" class="martine-sprite" data-expr="happy"></div>
+      <span class="martine-live-dot"></span>
+    </button>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <strong>e2c HAUTS-DE-SEINE • SOUS-PAGE ATELIER MATHÉMATIQUES</strong>
+        <span><a href="index.html" style="color:#34d399; text-decoration:none;">← Retourner à la page d'accueil de l'e2c Nanterre</a></span>
+      </div>
+      <div class="footer-meta" style="text-align:right;">
+        <span style="display:block;">Pourcentages (%) • Mesures • Mètres Cubes (m³)</span>
+        <strong style="color:#ff4800; font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Barre de progression au scroll
+    window.addEventListener('scroll', () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = progress + '%';
+    });
+
+    // Compagnon Martine — Formatrice Maths au quotidien (planche martine.jpg / martine.png)
+    const martineSpriteEl = document.getElementById('martine-sprite');
+    const martineTextEl = document.getElementById('martine-text');
+    const martineGuideEl = document.getElementById('martine-guide');
+    const martineMoodEl = document.getElementById('martine-mood');
+    const martineNextBtn = document.getElementById('martine-next');
+    const martineToggleBtn = document.getElementById('martine-toggle');
+    const martineAvatarBtn = document.getElementById('martine-avatar-btn');
+
+    let martineSheetUrl = 'martine.jpg';
+    ['martine.jpg', 'martine.png', 'martine.jpeg', 'martine.webp'].forEach(candidate => {
+      const probe = new Image();
+      probe.onload = () => {
+        martineSheetUrl = candidate;
+        if (martineSpriteEl) martineSpriteEl.style.backgroundImage = `url('${candidate}')`;
+      };
+      probe.src = candidate;
+    });
+
+    const martineFrames = {
+      neutral:   { col: 0, row: 0 },
+      happy:     { col: 1, row: 0 },
+      talk1:     { col: 2, row: 0 },
+      talk2:     { col: 3, row: 0 },
+      smileWide: { col: 4, row: 0 },
+      smirk:     { col: 5, row: 0 },
+      gentle:    { col: 0, row: 1 },
+      excited:   { col: 1, row: 1 },
+      wow:       { col: 2, row: 1 },
+      laugh:     { col: 3, row: 1 },
+      wink:      { col: 4, row: 1 },
+      focused:   { col: 5, row: 1 },
+      warm:      { col: 0, row: 2 },
+      joy:       { col: 1, row: 2 },
+      cute:      { col: 2, row: 2 },
+      lookLeft:  { col: 3, row: 2 },
+      lookRight: { col: 4, row: 2 },
+      surprised: { col: 5, row: 2 }
+    };
+
+    function renderMartineFace(expression = 'happy', mouthOpen = false) {
+      if (!martineSpriteEl) return;
+      const key = mouthOpen
+        ? (Math.random() > 0.5 ? 'talk1' : 'talk2')
+        : (martineFrames[expression] ? expression : 'happy');
+      const f = martineFrames[key];
+      martineSpriteEl.style.backgroundImage = `url('${martineSheetUrl}')`;
+      martineSpriteEl.style.backgroundPosition = `${(f.col / 5) * 100}% ${(f.row / 2) * 100}%`;
+    }
+
+    const martineScripts = {
+      intro: [
+        { text: "Bonjour ! Moi c'est Martine, formatrice Maths au quotidien à l'e2c de Nanterre. Ici, on pratique des maths concrètes et utiles !", expr: "excited", mood: "● Bienvenue en Maths" },
+        { text: "On a déjà travaillé ensemble les pourcentages (%), les conversions de mesures et les volumes en mètres cubes (m³) !", expr: "happy", mood: "● Programme de l'atelier" }
+      ],
+      notions: [
+        { text: "Voici les 3 chapitres qu'on a vus en atelier : les pourcentages (%), les conversions de mesures et les volumes en m³. Clique sur celui que tu veux réviser !", expr: "happy", mood: "● Les 3 chapitres" }
+      ],
+      labo: [
+        { text: "Te voilà dans notre laboratoire interactif ! Déplace les curseurs ou entre tes valeurs pour vérifier tes calculs en direct.", expr: "wink", mood: "● Calculateurs d'atelier" }
+      ],
+      pct: [
+        { text: "Astuce pour les % : pour calculer 10 % d'un prix, il suffit de diviser par 10 ! Pour 20 %, tu doubles ce résultat.", expr: "wink", mood: "● Mémo Pourcentages (%)" },
+        { text: "Teste les curseurs juste au-dessus pour voir la différence entre une réduction (-%) et une augmentation (+%).", expr: "happy", mood: "● Calculateur % actif" }
+      ],
+      mesures: [
+        { text: "Pour les mesures, pense toujours au tableau : 1 mètre = 100 centimètres = 1 000 millimètres. On décale la virgule selon la colonne !", expr: "focused", mood: "● Mémo Mesures" }
+      ],
+      m3: [
+        { text: "Pour les mètres cubes (m³), on multiplie les 3 dimensions en mètres : Longueur × Largeur × Hauteur. Et retiens bien : 1 m³ = 1 000 litres !", expr: "excited", mood: "● Mémo Volumes (m³)" }
+      ]
+    };
+
+    let mTyping = null;
+    let mMouth = null;
+    let mZone = 'intro';
+    let mIdx = 0;
+
+    function martineSpeak(zone, idx = 0) {
+      const list = martineScripts[zone] || martineScripts.intro;
+      mZone = zone;
+      mIdx = idx % list.length;
+      const entry = list[mIdx];
+      if (martineMoodEl) martineMoodEl.textContent = entry.mood;
+      clearInterval(mTyping);
+      clearInterval(mMouth);
+      if (martineGuideEl) martineGuideEl.classList.add('talking');
+      let i = 0;
+      let open = false;
+      martineTextEl.textContent = '';
+      mMouth = setInterval(() => {
+        open = !open;
+        renderMartineFace(entry.expr, open);
+      }, 130);
+      mTyping = setInterval(() => {
+        martineTextEl.textContent += entry.text.charAt(i);
+        i++;
+        if (i >= entry.text.length) {
+          clearInterval(mTyping);
+          clearInterval(mMouth);
+          renderMartineFace(entry.expr, false);
+          if (martineGuideEl) martineGuideEl.classList.remove('talking');
+        }
+      }, 22);
+    }
+
+    setTimeout(() => { renderMartineFace('excited', false); martineSpeak('intro', 0); }, 350);
+    if (martineNextBtn) martineNextBtn.addEventListener('click', () => martineSpeak(mZone, mIdx + 1));
+    if (martineToggleBtn) martineToggleBtn.addEventListener('click', () => martineGuideEl.classList.toggle('minimized'));
+    if (martineAvatarBtn) martineAvatarBtn.addEventListener('click', () => {
+      martineGuideEl.classList.remove('minimized');
+      martineSpeak(mZone, mIdx + 1);
+    });
+
+    // Déclenchement automatique au défilement des sections (comme Nadine)
+    const martineSectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.id && martineScripts[entry.target.id]) {
+          if (mZone !== entry.target.id) {
+            martineSpeak(entry.target.id, 0);
+          }
+        }
+      });
+    }, { threshold: 0.42 });
+
+    ['intro', 'notions', 'labo'].forEach(id => {
+      const sec = document.getElementById(id);
+      if (sec) martineSectionObserver.observe(sec);
+    });
+
+    // Changement d'onglet dans le laboratoire mathématique
+    function switchMathTab(key) {
+      document.querySelectorAll('.lab-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === key);
+      });
+      document.querySelectorAll('.lab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'panel-' + key);
+      });
+      if (martineScripts[key]) martineSpeak(key, 0);
+      const labEl = document.getElementById('labo');
+      if (labEl && typeof event !== 'undefined' && event && event.target && event.target.classList.contains('btn-try-tool')) {
+        labEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 1. Calculateur Pourcentages
+    function computePct() {
+      const base = parseFloat(document.getElementById('pct-base').value);
+      const rate = parseFloat(document.getElementById('pct-rate').value);
+      const part = (base * rate) / 100;
+      document.getElementById('pct-base-label').textContent = base + ' €';
+      document.getElementById('pct-rate-label').textContent = rate + ' %';
+      document.getElementById('pct-formula').textContent = `${base} × (${rate} ÷ 100)`;
+      document.getElementById('pct-part').textContent = part.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('pct-minus').textContent = (base - part).toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('pct-plus').textContent = (base + part).toFixed(2).replace('.', ',') + ' €';
+    }
+
+    // 2. Convertisseur Mesures
+    function computeMesures() {
+      const val = parseFloat(document.getElementById('mes-val').value) || 0;
+      const unit = document.getElementById('mes-unit').value;
+      const toMeters = { mm: 0.001, cm: 0.01, m: 1, km: 1000 };
+      const meters = val * toMeters[unit];
+      document.getElementById('res-mm').textContent = (meters * 1000).toLocaleString('fr-FR') + ' mm';
+      document.getElementById('res-cm').textContent = (meters * 100).toLocaleString('fr-FR') + ' cm';
+      document.getElementById('res-m').textContent = meters.toLocaleString('fr-FR') + ' m';
+      document.getElementById('res-km').textContent = (meters / 1000).toLocaleString('fr-FR', { maximumFractionDigits: 6 }) + ' km';
+    }
+
+    // 3. Calculateur Mètres Cubes
+    function computeM3() {
+      const l = parseFloat(document.getElementById('m3-l').value);
+      const w = parseFloat(document.getElementById('m3-w').value);
+      const h = parseFloat(document.getElementById('m3-h').value);
+      const vol = l * w * h;
+      const liters = vol * 1000;
+      document.getElementById('m3-l-txt').textContent = l + ' m';
+      document.getElementById('m3-w-txt').textContent = w + ' m';
+      document.getElementById('m3-h-txt').textContent = h + ' m';
+      document.getElementById('svg-dim-l').textContent = 'L = ' + l + ' m';
+      document.getElementById('svg-dim-w').textContent = 'l = ' + w + ' m';
+      document.getElementById('svg-dim-h').textContent = 'h = ' + h + ' m';
+      document.getElementById('m3-calc-str').textContent = `${l} × ${w} × ${h}`;
+      document.getElementById('m3-result').textContent = vol.toFixed(2).replace('.', ',') + ' m³';
+      document.getElementById('m3-liters').textContent = liters.toLocaleString('fr-FR') + ' Litres';
+    }
+  </script>
+</body>
+</html>

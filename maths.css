@@ -1,0 +1,660 @@
+:root {
+  --bg-chalk: #0b1310;
+  --bg-board: #101c17;
+  --bg-card: rgba(18, 32, 26, 0.9);
+  --border-grid: rgba(52, 211, 153, 0.14);
+  --border-accent: rgba(52, 211, 153, 0.35);
+  --emerald: #10b981;
+  --emerald-bright: #34d399;
+  --amber-chalk: #fbbf24;
+  --e2c-orange: #ff4800;
+  --text-main: #f1f5f9;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-chalk);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+body.maths-body {
+  position: relative;
+  line-height: 1.65;
+  background: radial-gradient(circle at 80% 15%, rgba(16, 185, 129, 0.12), transparent 45%),
+              radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.06), transparent 45%),
+              var(--bg-chalk);
+}
+
+/* Papier millimétré mathématique en arrière-plan */
+.millimeter-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(52, 211, 153, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 211, 153, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(52, 211, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 211, 153, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+}
+
+/* Symboles mathématiques flottants */
+.math-symbols-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.m-sym {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: rgba(52, 211, 153, 0.09);
+  user-select: none;
+  animation: floatMath 9s ease-in-out infinite;
+}
+
+.ms-1 { top: 14%; left: 6%; font-size: 3.4rem; }
+.ms-2 { top: 26%; right: 8%; font-size: 2.6rem; color: rgba(251, 191, 36, 0.09); animation-delay: 1.5s; }
+.ms-3 { top: 58%; left: 4%; font-size: 2.4rem; animation-delay: 3s; }
+.ms-4 { top: 74%; right: 6%; font-size: 3rem; color: rgba(255, 72, 0, 0.09); animation-delay: 2s; }
+.ms-5 { top: 42%; right: 42%; font-size: 2rem; animation-delay: 4s; }
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--emerald-bright), var(--amber-chalk), var(--e2c-orange));
+  z-index: 1001;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Navigation Style Tableau Mathématique */
+.maths-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 0.9rem 0;
+  background: rgba(11, 19, 16, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-accent);
+}
+
+.nav-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left { display: flex; align-items: center; gap: 1rem; }
+
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.95rem;
+  border-radius: 8px;
+  background: rgba(255, 72, 0, 0.16);
+  border: 1px solid rgba(255, 72, 0, 0.45);
+  color: #ff9466;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-back-home:hover {
+  background: var(--e2c-orange);
+  color: #ffffff;
+}
+
+.math-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.42rem 0.85rem;
+  background: var(--bg-board);
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--emerald-bright);
+}
+
+.nav-links { display: flex; align-items: center; gap: 1.6rem; }
+.nav-item { color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 0.82rem; transition: color 0.2s ease; }
+.nav-item:hover { color: var(--emerald-bright); }
+
+.btn-nav-alt {
+  padding: 0.48rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--emerald-bright);
+  color: var(--emerald-bright);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn-nav-alt:hover { background: rgba(52, 211, 153, 0.14); }
+
+/* Hero Mathématique + Tableau de Formules */
+.maths-hero {
+  padding: 8.5rem 0 4.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.math-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--emerald-bright);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid var(--border-accent);
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.3rem;
+}
+
+.maths-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 1.2rem;
+}
+
+.maths-title span {
+  background: linear-gradient(90deg, #34d399, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.maths-desc {
+  color: var(--text-body);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.maths-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-math-primary {
+  padding: 0.9rem 1.7rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(16, 185, 129, 0.3);
+}
+
+.btn-math-secondary {
+  padding: 0.9rem 1.7rem;
+  border-radius: 10px;
+  background: var(--bg-board);
+  border: 1px solid var(--border-accent);
+  color: var(--amber-chalk);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+/* Fenêtre Ardoise / Tableau de Formules d'Atelier */
+.chalkboard-panel {
+  background: #0d1914;
+  border: 1.5px solid rgba(52, 211, 153, 0.35);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+}
+
+.chalk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.1rem;
+  background: #14261f;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--emerald-bright);
+}
+
+.chalk-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.formula-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--emerald-bright);
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+}
+
+.formula-card.amber { border-left-color: var(--amber-chalk); }
+.formula-card.orange { border-left-color: var(--e2c-orange); }
+
+.formula-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.formula-eq {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Ruban Mathématique */
+.maths-marquee {
+  background: #101c17;
+  border-top: 1px solid var(--border-accent);
+  border-bottom: 1px solid var(--border-accent);
+  padding: 0.9rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 2.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--emerald-bright);
+  animation: marqueeScroll 24s linear infinite;
+}
+.marquee-track .sep { color: var(--amber-chalk); }
+
+/* Sections & Cartes des 3 Notions vues en atelier */
+.section { padding: 5.5rem 0; position: relative; z-index: 2; }
+.section-header { text-align: center; max-width: 740px; margin: 0 auto 3.5rem; }
+.math-kicker { font-family: var(--font-mono); color: var(--amber-chalk); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.6rem; }
+.section-title { font-family: var(--font-display); font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin-bottom: 0.8rem; }
+.section-subtitle { color: var(--text-muted); }
+
+.notion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.notion-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-accent);
+  border-top: 4px solid var(--emerald-bright);
+  border-radius: 18px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notion-card.card-mesures { border-top-color: var(--amber-chalk); }
+.notion-card.card-m3 { border-top-color: var(--e2c-orange); }
+
+.notion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.14);
+}
+
+.notion-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+.notion-symbol {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid var(--border-accent);
+  color: var(--emerald-bright);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-mesures .notion-symbol { background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.35); color: var(--amber-chalk); }
+.card-m3 .notion-symbol { background: rgba(255, 72, 0, 0.14); border-color: rgba(255, 72, 0, 0.4); color: #ff8c5a; }
+
+.notion-tag { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
+.notion-card h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.7rem; }
+.notion-card p { color: var(--text-body); font-size: 0.94rem; margin-bottom: 1.3rem; }
+.notion-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem; }
+.notion-list li { position: relative; padding-left: 1.35rem; font-size: 0.9rem; color: #e2e8f0; }
+.notion-list li::before { content: "∑"; position: absolute; left: 0; font-family: var(--font-mono); color: var(--emerald-bright); font-weight: 700; }
+.card-mesures .notion-list li::before { color: var(--amber-chalk); }
+.card-m3 .notion-list li::before { color: var(--e2c-orange); }
+
+.btn-try-tool {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-accent);
+  color: var(--emerald-bright);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-try-tool:hover { background: var(--emerald); color: #ffffff; }
+
+/* Laboratoire Interactif (3 Onglets : Pourcentages, Mesures, Mètres Cubes 3D) */
+.math-lab {
+  background: var(--bg-board);
+  border: 1.5px solid var(--border-accent);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lab-tabs {
+  display: flex;
+  background: #080e0c;
+  border-bottom: 1px solid var(--border-accent);
+  overflow-x: auto;
+}
+
+.lab-tab {
+  flex: 1;
+  padding: 1.2rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lab-tab.active {
+  color: var(--emerald-bright);
+  border-bottom-color: var(--emerald-bright);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.lab-panel {
+  display: none;
+  padding: 2.6rem;
+}
+.lab-panel.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.input-group { margin-bottom: 1.1rem; }
+.input-group label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: var(--text-body);
+  margin-bottom: 0.45rem;
+}
+.input-group input[type="range"] { width: 100%; accent-color: var(--emerald-bright); cursor: pointer; }
+.input-group input[type="number"], .input-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #080e0c;
+  border: 1px solid var(--border-accent);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.result-box {
+  background: #080e0c;
+  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  padding: 1.6rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+}
+.result-row:last-child { border-bottom: none; }
+.result-val { font-size: 1.25rem; font-weight: 800; color: var(--emerald-bright); }
+
+/* Visualisation Boîte 3D pour les Mètres Cubes */
+.cube-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #080e0c;
+  border: 1px solid rgba(255, 72, 0, 0.35);
+  border-radius: 16px;
+}
+
+.cube-svg {
+  width: 220px;
+  height: 190px;
+  margin-bottom: 1rem;
+}
+
+/* Compagnon Interactif : Martine, Formatrice Maths au quotidien (100% visuel, sans son) */
+.martine-guide {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 950;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.85rem;
+  max-width: calc(100vw - 2rem);
+}
+
+.martine-bubble {
+  width: 345px;
+  background: rgba(11, 19, 16, 0.96);
+  border: 1.5px solid var(--emerald-bright);
+  border-radius: 20px 20px 4px 20px;
+  padding: 1.05rem 1.2rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.78), 0 0 24px rgba(52, 211, 153, 0.14);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+.martine-guide.minimized .martine-bubble {
+  display: none;
+}
+
+.martine-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.martine-name {
+  background: var(--emerald);
+  color: #05110c;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+}
+
+.martine-role {
+  font-size: 0.74rem;
+  color: var(--emerald-bright);
+  font-weight: 600;
+  flex: 1;
+}
+
+.martine-toggle {
+  background: #14261f;
+  border: none;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.martine-text {
+  font-size: 0.88rem;
+  color: #f1f5f9;
+  min-height: 3.8rem;
+  line-height: 1.5;
+}
+
+.martine-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.7rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.martine-mood {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--amber-chalk);
+}
+
+.martine-next {
+  background: none;
+  border: none;
+  color: var(--emerald-bright);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.martine-next:hover {
+  text-decoration: underline;
+}
+
+.martine-avatar-frame {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  background: #14261f;
+  border: 2px solid var(--emerald-bright);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.3);
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.martine-avatar-frame:hover {
+  transform: scale(1.06) translateY(-3px);
+}
+
+.martine-sprite {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  background-color: #14261f;
+  background-image: url('martine.jpg');
+  background-repeat: no-repeat;
+  background-size: 600% 300%;
+  background-position: 20% 0%;
+}
+
+.martine-live-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #34d399;
+  border: 2px solid #0b1310;
+}
+
+.martine-guide.talking .martine-avatar-frame {
+  animation: martineBounce 0.38s ease infinite alternate;
+}
+
+@keyframes martineBounce {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-4px); }
+}
+
+/* Footer */
+.footer { border-top: 1px solid var(--border-accent); padding: 2.2rem 0; background: #070d0b; position: relative; z-index: 2; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { display: flex; flex-direction: column; }
+.footer-meta { font-size: 0.85rem; color: var(--text-muted); }
+
+@keyframes floatMath {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(5deg); }
+}
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (max-width: 900px) {
+  .hero-grid, .notion-grid, .lab-panel.active { grid-template-columns: 1fr; }
+  .nav-links, .math-breadcrumb { display: none; }
+}

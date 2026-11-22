@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier Numérique [e2c_Nanterre.exe] — Word, Excel, Canva, CapCut</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="numerique.css">
+</head>
+<body class="tech-body">
+  <!-- Fond grille informatique & matrice -->
+  <div class="tech-grid-bg"></div>
+  <canvas id="cinema-canvas"></canvas>
+  <div id="cursor-spotlight" class="cursor-spotlight"></div>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Barre de navigation style IDE / Console -->
+  <header class="tech-navbar" id="navbar">
+    <div class="nav-container">
+      <div class="tech-nav-left">
+        <a href="index.html" class="btn-back-home" title="Retour à l'accueil e2c Nanterre">
+          <span>← Accueil e2c</span>
+        </a>
+        <div class="tech-breadcrumb">
+          <span class="status-led"></span>
+          <code>~/e2c-nanterre/atelier-numerique</code>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#terminal-intro" class="nav-item">01. Système</a>
+        <a href="#modules" class="nav-item">02. Logiciels</a>
+        <a href="#showcase" class="nav-item">03. Sandbox Live</a>
+        <a href="index.html" class="btn-tech-outline">Portail Nanterre</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Style Informatique / Terminal -->
+  <section id="hero" class="tech-hero">
+    <div class="container">
+      <div class="tech-hero-grid">
+        <div class="tech-hero-left">
+          <div class="tech-chip">
+            <span class="blink-cursor">█</span> MODULE_NUMÉRIQUE :: NANTERRE (92)
+          </div>
+          <h1 class="tech-title">
+            L'ATELIER<br>
+            <span class="tech-accent">NUMÉRIQUE & IT</span>
+          </h1>
+          <p class="tech-desc">
+            Encadré par <strong>Nadine</strong>, formatrice numérique à l'e2c de Nanterre : on apprivoise l'ordinateur pas à pas, de la découverte des logiciels bureautiques jusqu'à la création de contenus en autonomie.
+          </p>
+          <div class="tech-actions">
+            <a href="#modules" class="btn-tech-primary">
+              <span>> Explorer les 4 modules</span>
+            </a>
+            <a href="#showcase" class="btn-tech-secondary">
+              <span>Ouvrir le Simulateur</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Fenêtre Terminal / Code Interactif -->
+        <div class="tech-terminal-window" id="terminal-intro">
+          <div class="terminal-bar">
+            <div class="term-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span class="term-title">nadine@e2c-nanterre: ~/competences</span>
+            <span class="term-tag">BASH</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt">$</span> cat programme_atelier.json</div>
+            <pre class="term-code">{
+  <span class="key">"centre"</span>: <span class="str">"e2c Hauts-de-Seine - Nanterre"</span>,
+  <span class="key">"formatrice"</span>: <span class="str">"Nadine (Numérique)"</span>,
+  <span class="key">"approche"</span>: <span class="str">"Bases, entraide & autonomie"</span>,
+  <span class="key">"stack_apprise"</span>: [
+    <span class="str">"Microsoft Word  -> Bases & CV"</span>,
+    <span class="str">"Microsoft Excel -> Bases & Tableurs"</span>,
+    <span class="str">"Canva           -> Présentations & CV"</span>,
+    <span class="str">"CapCut          -> Vidéo en autonomie"</span>
+  ],
+  <span class="key">"statut"</span>: <span class="bool">"OPERATIONAL_READY"</span>
+}</pre>
+            <div class="term-line"><span class="prompt">$</span> <span class="typing-cmd">./lancer_demonstration.sh --interactive</span><span class="blink-cursor">_</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ruban Binaire / Tech Marquee -->
+  <div class="tech-marquee">
+    <div class="marquee-track">
+      <span>[01] WORD.DOCX</span><span class="sep">//</span>
+      <span>[02] EXCEL.XLSX</span><span class="sep">//</span>
+      <span>[03] CANVA.DESIGN</span><span class="sep">//</span>
+      <span>[04] CAPCUT.MP4</span><span class="sep">//</span>
+      <span>e2c_NANTERRE_LAB</span><span class="sep">//</span>
+      <span>[01] WORD.DOCX</span><span class="sep">//</span>
+      <span>[02] EXCEL.XLSX</span><span class="sep">//</span>
+      <span>[03] CANVA.DESIGN</span><span class="sep">//</span>
+      <span>[04] CAPCUT.MP4</span><span class="sep">//</span>
+      <span>e2c_NANTERRE_LAB</span><span class="sep">//</span>
+    </div>
+  </div>
+
+  <!-- Grille des 4 Logiciels (Style Cartes Informatiques 3D) -->
+  <section id="modules" class="section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="tech-kicker">// MODULES_INSTALLÉS (4/4)</span>
+        <h2 class="section-title">Compétences logicielles acquises</h2>
+        <p class="section-subtitle">Survolez une carte ou cliquez sur « Inspecter » pour ouvrir la fiche technique du module.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- WORD -->
+        <article class="bento-card tilt-card card-word reveal-up" data-tool="word">
+          <div class="card-sheen"></div>
+          <div class="card-top">
+            <div class="official-app-badge float-icon">
+              <svg viewBox="0 0 96 96" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                <rect x="26" y="10" width="60" height="76" rx="6" fill="#41a5ee"/>
+                <path d="M26 29 H86 V48 H26 Z" fill="#2b7cd3"/>
+                <path d="M26 48 H86 V67 H26 Z" fill="#185abd"/>
+                <path d="M26 67 H86 V80 A6 6 0 0 1 80 86 H32 A6 6 0 0 1 26 80 Z" fill="#103f91"/>
+                <rect x="6" y="26" width="44" height="44" rx="6" fill="#185abd"/>
+                <path d="M15.5 36.5 H20.2 L23.5 52.2 L27.3 36.5 H31.2 L35 52.2 L38.3 36.5 H42.8 L37.2 59.5 H32.8 L29.2 44.5 L25.6 59.5 H21.2 Z" fill="#ffffff"/>
+              </svg>
+            </div>
+            <span class="tool-category">MOD_01 // .DOCX</span>
+          </div>
+          <h3 class="card-title">Microsoft Word</h3>
+          <p class="card-desc">Découverte complète du logiciel de traitement de texte : apprendre les bases de la mise en page pour rédiger et structurer son propre CV.</p>
+          <ul class="skill-list">
+            <li>Prise en main de l'interface, polices et paragraphes</li>
+            <li>Insertion de rubriques, tableaux et alignements propres</li>
+            <li>Création et export en PDF de son CV personnel</li>
+          </ul>
+          <div class="card-footer">
+            <span class="level-badge">Bases & CV</span>
+            <button class="btn-inspect" onclick="openModal('word')">[ Inspecter ] →</button>
+          </div>
+        </article>
+
+        <!-- EXCEL -->
+        <article class="bento-card tilt-card card-excel reveal-up" data-tool="excel">
+          <div class="card-sheen"></div>
+          <div class="card-top">
+            <div class="official-app-badge float-icon" style="animation-delay:0.6s">
+              <svg viewBox="0 0 96 96" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                <rect x="26" y="10" width="60" height="76" rx="6" fill="#21a366"/>
+                <path d="M56 10 H80 A6 6 0 0 1 86 16 V29 H56 Z" fill="#33c481"/>
+                <path d="M26 29 H56 V48 H26 Z" fill="#107c41"/>
+                <path d="M56 29 H86 V48 H56 Z" fill="#21a366"/>
+                <path d="M26 48 H86 V67 H26 Z" fill="#107c41"/>
+                <path d="M26 67 H86 V80 A6 6 0 0 1 80 86 H32 A6 6 0 0 1 26 80 Z" fill="#185c37"/>
+                <rect x="6" y="26" width="44" height="44" rx="6" fill="#107c41"/>
+                <path d="M18.5 36.5 H23.8 L28.2 44.5 L32.6 36.5 H37.6 L30.8 47.8 L38.2 59.5 H33 L28 51 L23 59.5 H18 L25.4 47.8 Z" fill="#ffffff"/>
+              </svg>
+            </div>
+            <span class="tool-category">MOD_02 // .XLSX</span>
+          </div>
+          <h3 class="card-title">Microsoft Excel</h3>
+          <p class="card-desc">Apprentissage des fondamentaux du tableur : comprendre les cellules, organiser des données et construire des tableaux clairs avec des calculs simples.</p>
+          <ul class="skill-list">
+            <li>Comprendre les lignes, colonnes, cellules et formats</li>
+            <li>Créer des tableurs structurés (budget, suivi, planning)</li>
+            <li>Utiliser les premières formules de calcul automatique</li>
+          </ul>
+          <div class="card-footer">
+            <span class="level-badge">Bases & Tableurs</span>
+            <button class="btn-inspect" onclick="openModal('excel')">[ Inspecter ] →</button>
+          </div>
+        </article>
+
+        <!-- CANVA -->
+        <article class="bento-card tilt-card card-canva reveal-up" data-tool="canva">
+          <div class="card-sheen"></div>
+          <div class="card-top">
+            <div class="official-app-badge float-icon" style="animation-delay:1.2s">
+              <svg viewBox="0 0 96 96" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="canva-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38f2af"/>
+                    <stop offset="45%" stop-color="#00c4cc"/>
+                    <stop offset="100%" stop-color="#4b32c3"/>
+                  </linearGradient>
+                </defs>
+                <rect x="6" y="6" width="84" height="84" rx="22" fill="url(#canva-grad)"/>
+                <text x="48" y="59" text-anchor="middle" font-family="'Brush Script MT', 'Segoe Script', Georgia, cursive" font-style="italic" font-weight="700" font-size="33" fill="#ffffff" letter-spacing="-0.5">Canva</text>
+              </svg>
+            </div>
+            <span class="tool-category">MOD_03 // .DESIGN</span>
+          </div>
+          <h3 class="card-title">Canva</h3>
+          <p class="card-desc">Conception graphique accessible à tous : réalisation de présentations soignées pour l'oral et création de CV modernes et personnalisés.</p>
+          <ul class="skill-list">
+            <li>Créer des diaporamas clairs pour présenter son projet</li>
+            <li>Concevoir un CV graphique harmonieux et lisible</li>
+            <li>Choisir les bonnes couleurs, polices et visuels</li>
+          </ul>
+          <div class="card-footer">
+            <span class="level-badge">Présentations & CV</span>
+            <button class="btn-inspect" onclick="openModal('canva')">[ Inspecter ] →</button>
+          </div>
+        </article>
+
+        <!-- CAPCUT -->
+        <article class="bento-card tilt-card card-capcut reveal-up" data-tool="capcut">
+          <div class="card-sheen"></div>
+          <div class="card-top">
+            <div class="official-app-badge float-icon" style="animation-delay:1.8s">
+              <svg viewBox="0 0 96 96" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="6" width="84" height="84" rx="20" fill="#ffffff"/>
+                <g fill="none" stroke="#09090b" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M62 38 V33 A4 4 0 0 0 58 29 H27 A4 4 0 0 0 23 33 V39 L73 63"/>
+                  <path d="M62 58 V63 A4 4 0 0 1 58 67 H27 A4 4 0 0 1 23 63 V57 L73 33"/>
+                </g>
+              </svg>
+            </div>
+            <span class="tool-category">MOD_04 // .MP4</span>
+          </div>
+          <h3 class="card-title">CapCut</h3>
+          <p class="card-desc">Après avoir vu les bases du montage, chaque stagiaire a pu réaliser sa propre vidéo en autonomie : découpage, texte, musique et rythme.</p>
+          <ul class="skill-list">
+            <li>Importer, découper et assembler ses séquences vidéo</li>
+            <li>Ajouter des titres, sous-titres et une bande-son</li>
+            <li>Réaliser et exporter une vidéo complète en autonomie</li>
+          </ul>
+          <div class="card-footer">
+            <span class="level-badge">Réalisation Autonome</span>
+            <button class="btn-inspect" onclick="openModal('capcut')">[ Inspecter ] →</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sandbox Interactive -->
+  <section id="showcase" class="section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="tech-kicker">// SANDBOX_INTERACTIVE</span>
+        <h2 class="section-title">Simulateur des réalisations d'atelier</h2>
+        <p class="section-subtitle">Sélectionnez un onglet pour tester un aperçu interactif des exercices réalisés à Nanterre.</p>
+      </div>
+
+      <div class="showcase-console reveal-scale">
+        <div class="console-tabs">
+          <button class="tab-btn active" data-tab="word">01. Word — Bases & CV</button>
+          <button class="tab-btn" data-tab="excel">02. Excel — Bases & Tableurs</button>
+          <button class="tab-btn" data-tab="canva">03. Canva — Présentations & CV</button>
+          <button class="tab-btn" data-tab="capcut">04. CapCut — Vidéo en Autonomie</button>
+        </div>
+        <div class="console-viewport" id="viewport-display"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <strong>e2c HAUTS-DE-SEINE • SOUS-PAGE ATELIER NUMÉRIQUE</strong>
+        <span><a href="index.html" style="color:#38bdf8; text-decoration:none;">← Retourner à la page d'accueil de l'e2c Nanterre</a></span>
+      </div>
+      <div class="footer-meta" style="text-align:right;">
+        <span style="display:block;">Word • Excel • Canva • CapCut</span>
+        <strong style="color:#ff4800; font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Compagnon Interactif Nadine (100% visuel, sans son) -->
+  <aside id="nadine-guide" class="nadine-guide" aria-live="polite">
+    <div class="nadine-bubble" id="nadine-bubble">
+      <div class="nadine-header">
+        <span class="nadine-name">NADINE</span>
+        <span class="nadine-role">Formatrice Numérique • e2c</span>
+        <button id="nadine-toggle" class="nadine-toggle" title="Réduire / Agrandir">−</button>
+      </div>
+      <p id="nadine-text" class="nadine-text"></p>
+      <div class="nadine-footer">
+        <span id="nadine-mood" class="nadine-mood">● Connectée à l'atelier</span>
+        <button id="nadine-next" class="nadine-next">Astuce suivante →</button>
+      </div>
+    </div>
+    <button id="nadine-avatar-btn" class="nadine-avatar-frame" title="Parler avec Nadine">
+      <div id="nadine-sprite" class="nadine-sprite" data-expr="happy"></div>
+      <span class="nadine-live-dot"></span>
+    </button>
+  </aside>
+
+  <!-- Modale détaillée -->
+  <div id="skill-modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
