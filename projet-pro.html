@@ -24,7 +24,7 @@
       --pp-border: rgba(167, 139, 250, 0.25); --pp-glow: rgba(139, 92, 246, 0.24);
       background: radial-gradient(circle at 12% 8%, rgba(109, 40, 217, 0.28), transparent 45%), radial-gradient(circle at 88% 18%, rgba(67, 56, 202, 0.24), transparent 48%), var(--pp-bg) !important;
     }
-    body.theme-projet > header.atelier-navbar { position: sticky !important; top: 0 !important; z-index: 100 !important; padding: 0.65rem 0 !important; background: var(--pp-surface) !important; backdrop-filter: blur(14px); border-bottom: 1px solid var(--pp-border) !important; }
+    body.theme-projet > header.atelier-navbar { position: sticky !important; top: 0 !important; z-index: 5000 !important; pointer-events: auto !important; padding: 0.65rem 0 !important; background: var(--pp-surface) !important; backdrop-filter: blur(14px); border-bottom: 1px solid var(--pp-border) !important; }
     .pp-hero { position: relative; padding: 2rem 0 2.4rem; overflow: hidden; }
     .pp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.95fr; gap: 2rem; align-items: center; }
     @media (max-width: 920px) { .pp-hero-grid { grid-template-columns: 1fr; } }
@@ -207,7 +207,14 @@ body.theme-projet > header.atelier-navbar { padding: 0.45rem 0 !important; }
       .eddy-guide-wrap { right: 10px; bottom: 10px; }
       .eddy-avatar-box { width: 72px; height: 72px; border-radius: 16px; }
     }
-  </style>
+  
+    body.theme-projet header.atelier-navbar .btn-back, body.theme-projet header.atelier-navbar a[href="index.html"] {
+      position: relative !important;
+      z-index: 5002 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+</style>
 </head>
 <body class="theme-projet">
 <div class="pattern-bg"></div>
@@ -472,7 +479,7 @@ body.theme-projet > header.atelier-navbar { padding: 0.45rem 0 !important; }
   <script>
     (function() {
       const lines = [
-        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "excited", text: "Salut ! Ici Eddy. On a nettoyé la page Projet Pro (zéro doublon, touches d'orange) pour présenter le parcours du Groupe 3 à Nanterre." },
+        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "excited", text: "Salut ! Moi c'est Eddy. Ici à l'e2c Nanterre, l'atelier Élaboration Projet Professionnel accompagne le Groupe 3 pour bâtir son avenir." },
         { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "happy", text: "Dans la page, on détaille l'élaboration du projet professionnel, les 3 savoirs et la conception d'un CV clair et ciblé." },
         { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "focused", text: "Tu retrouves aussi les techniques d'entretien, la recherche de domaine pro, les visites d'entreprises et la recherche de stages vers une sortie positive." },
         { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "wink", text: "En descendant dans le Studio interactif, clique sur les onglets pour explorer chaque méthode travaillée en atelier." }
@@ -565,6 +572,14 @@ body.theme-projet > header.atelier-navbar { padding: 0.45rem 0 !important; }
       }
 
       nextBtn.addEventListener('click', () => speakLine(activeIdx + 1));
+
+    document.querySelectorAll('header.atelier-navbar a[href="index.html"], .btn-back').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.stopImmediatePropagation();
+        window.location.href = 'index.html';
+      }, true);
+    });
+
       toggleBtn.addEventListener('click', () => {
         const collapsed = wrap.classList.toggle('is-collapsed');
         toggleBtn.textContent = collapsed ? '+' : '—';

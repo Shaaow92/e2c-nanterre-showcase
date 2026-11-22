@@ -218,7 +218,7 @@ body.is-loading {
   top: 0;
   width: 100%;
   z-index: 100;
-  padding: 0.92rem 0;
+  padding: 1.05rem 0;
   background: var(--nav-bg);
   backdrop-filter: blur(22px) saturate(140%);
   border-bottom: 1px solid var(--border-subtle);
@@ -244,12 +244,13 @@ body.is-loading {
 }
 
 .nav-container {
-  max-width: 1220px;
+  max-width: 1380px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .brand {
@@ -320,15 +321,17 @@ body.is-loading {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.7rem;
+  gap: 1.75rem;
 }
 
 .nav-item {
   position: relative;
   color: var(--text-body);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  padding: 0.48rem 0.8rem;
+  white-space: nowrap;
   transition: color 0.25s ease;
 }
 
