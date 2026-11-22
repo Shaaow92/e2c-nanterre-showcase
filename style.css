@@ -1626,3 +1626,20 @@ body.dark-mode .card-sheen {
     display: none !important;
   }
 }
+
+@media (max-width: 900px) {
+  header .nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+  }
+  header .nav-links {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: inline-flex !important;
+    margin-left: auto;
+  }
+}
