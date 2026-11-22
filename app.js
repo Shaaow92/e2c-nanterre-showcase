@@ -7,6 +7,18 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loaded');
     startCounters();
   }, 1000);
+
+  document.querySelectorAll('header a[href]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href') || '';
+      if (!href || href.startsWith('#') || link.target === '_blank') return;
+      const bar = document.getElementById('scroll-progress');
+      if (bar) {
+        bar.style.transition = 'width 0.25s ease';
+        bar.style.width = '75%';
+      }
+    });
+  });
 });
 
 // 2. Bouton Mode Clair / Mode Sombre
@@ -22,10 +34,22 @@ if (themeToggleBtn) {
   });
 }
 
-// 3. Toile de particules interactives
-const canvas = document.getElementById('cinema-canvas') || document.getElementById('stars-canvas');
+// 3. Toile d'étoiles et constellations interactives (hors numerique.html et maths.html)
+const currentPageName = (window.location.pathname.split('/').pop() || '').toLowerCase();
+const isExcludedAtelier = currentPageName === 'numerique.html' || currentPageName === 'maths.html' || currentPageName === 'projet-pro.html';
+
+let canvas = document.getElementById('cinema-canvas') || document.getElementById('stars-canvas');
+if (!canvas && !isExcludedAtelier) {
+  canvas = document.createElement('canvas');
+  canvas.id = 'e2c-constellation-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+}
+
 const ctx = canvas ? canvas.getContext('2d') : null;
-let width, height, particles = [];
+let width = window.innerWidth;
+let height = window.innerHeight;
+let particles = [];
 const mouse = { x: -9999, y: -9999 };
 
 function resizeCanvas() {
@@ -38,16 +62,18 @@ if (canvas && ctx) {
   resizeCanvas();
 }
 
-class Particle {
+class StarNode {
   constructor() {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.42;
-    this.vy = (Math.random() - 0.5) * 0.42;
-    this.size = Math.random() * 2.1 + 0.7;
-    this.isOrange = Math.random() > 0.65;
+    this.vx = (Math.random() - 0.5) * 0.48;
+    this.vy = (Math.random() - 0.5) * 0.48;
+    this.baseSize = Math.random() * 2.2 + 0.9;
+    this.size = this.baseSize;
+    this.twinklePhase = Math.random() * Math.PI * 2;
+    this.isOrange = Math.random() > 0.55;
   }
-  update() {
+  update(time) {
     this.x += this.vx;
     this.y += this.vy;
     if (this.x < 0 || this.x > width) this.vx *= -1;
@@ -56,40 +82,64 @@ class Particle {
     const dx = mouse.x - this.x;
     const dy = mouse.y - this.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 140) {
-      this.x -= dx * 0.014;
-      this.y -= dy * 0.014;
+    if (dist < 185 && dist > 1) {
+      const pull = (185 - dist) / 185;
+      this.x += (dx / dist) * pull * 1.15;
+      this.y += (dy / dist) * pull * 1.15;
+      this.size = this.baseSize + pull * 1.6;
+    } else {
+      this.size += (this.baseSize - this.size) * 0.08;
     }
+    this.currentAlpha = 0.45 + 0.45 * Math.sin(time * 0.003 + this.twinklePhase);
   }
   draw() {
     const isDark = document.body.classList.contains('dark-mode');
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = this.isOrange
-      ? 'rgba(255, 72, 0, 0.52)'
-      : (isDark ? 'rgba(255, 255, 255, 0.22)' : 'rgba(15, 23, 42, 0.13)');
+      ? `rgba(255, 72, 0, ${Math.min(0.9, this.currentAlpha + 0.15)})`
+      : (isDark ? `rgba(255, 255, 255, ${this.currentAlpha * 0.65})` : `rgba(15, 23, 42, ${this.currentAlpha * 0.35})`);
     ctx.fill();
   }
 }
 
-if (canvas && ctx) {
-  for (let i = 0; i < 60; i++) particles.push(new Particle());
+if (canvas && ctx && !isExcludedAtelier) {
+  const count = Math.min(95, Math.max(48, Math.floor((width * height) / 18000)));
+  for (let i = 0; i < count; i++) particles.push(new StarNode());
 }
 
-function animateParticles() {
-  if (!canvas || !ctx) return;
+function animateParticles(time = 0) {
+  if (!canvas || !ctx || isExcludedAtelier) return;
   ctx.clearRect(0, 0, width, height);
+  const isDark = document.body.classList.contains('dark-mode');
+
   for (let i = 0; i < particles.length; i++) {
-    particles[i].update();
+    particles[i].update(time);
     particles[i].draw();
+
+    const mdx = mouse.x - particles[i].x;
+    const mdy = mouse.y - particles[i].y;
+    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+    if (mdist < 165) {
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(255, 72, 0, ${0.36 * (1 - mdist / 165)})`;
+      ctx.lineWidth = 1.05;
+      ctx.moveTo(particles[i].x, particles[i].y);
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.stroke();
+    }
+
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
       const dy = particles[i].y - particles[j].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 115) {
+      if (dist < 130) {
+        const alpha = (1 - dist / 130) * (isDark ? 0.24 : 0.16);
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(255, 72, 0, ${0.11 * (1 - dist / 115)})`;
-        ctx.lineWidth = 0.7;
+        ctx.strokeStyle = (particles[i].isOrange || particles[j].isOrange)
+          ? `rgba(255, 72, 0, ${alpha * 1.25})`
+          : (isDark ? `rgba(255, 255, 255, ${alpha})` : `rgba(15, 23, 42, ${alpha})`);
+        ctx.lineWidth = 0.8;
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
         ctx.stroke();

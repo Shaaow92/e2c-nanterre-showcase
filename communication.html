@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Communication Orale et Écrite • e2c Nanterre</title>
+  <title>Atelier Communication [e2c_Nanterre] — Débats, Job Trottoir, Films & Mouvements Sociaux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ateliers.css">
-  <style>
-    /* Filet de sécurité global pour forcer l'affichage (désactive le blocage opacity:0) */
-    .reveal-up, .reveal-scale, .hero-stagger, .line-inner { opacity: 1 !important; transform: none !important; visibility: visible !important; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="communication.css">
 </head>
-<body class="theme-comm">
-  <div class="pattern-bg"></div>
+<body class="comm-body">
+  <div class="comm-grid-bg"></div>
+  <div class="comm-course-layer" aria-hidden="true">
+    <div class="c-float o cf-1"><span>💬</span><small>Débats</small></div>
+    <div class="c-float v cf-2"><span>🎙️</span><small>Job Trottoir</small></div>
+    <div class="c-float v cf-3"><span>🎬</span><small>Films</small></div>
+    <div class="c-float o cf-4"><span>✍️</span><small>Trace écrite</small></div>
+    <div class="c-float o cf-5"><span>🎗️</span><small>Octobre Rose</small></div>
+    <div class="c-float v cf-6"><span>✊</span><small>25 Novembre</small></div>
+    <div class="c-float v cf-7"><span>🗣️</span><small>Oral</small></div>
+    <div class="c-float o cf-8"><span>📝</span><small>Écrit</small></div>
+  </div>
   <div class="scroll-progress" id="scroll-progress"></div>
 
-  <header class="atelier-navbar">
+  <header class="comm-navbar">
     <div class="nav-container">
       <div class="nav-left">
-        <a href="index.html" class="btn-back">← Accueil e2c Nanterre</a>
-        <span class="nav-badge">ATELIER • COMMUNICATION ORALE & ÉCRITE</span>
+        <a href="index.html" class="btn-back-home">← Accueil e2c Nanterre</a>
       </div>
-            <nav class="nav-links" style="gap:1.35rem; white-space:nowrap;">
+      <nav class="nav-links" style="gap:1.35rem; white-space:nowrap;">
         <div class="nav-dropdown">
           <a href="qui-sommes-nous.html" class="nav-item">L’E2C92 ▾</a>
           <div class="nav-dropdown-menu">
@@ -37,7 +42,7 @@
           <a href="formation.html" class="nav-item">Parcours E2C ▾</a>
           <div class="nav-dropdown-menu">
             <a href="formation.html" class="dropdown-link">Se former à l’E2C 92</a>
-            <a href="handicap.html" class="dropdown-link">Handicap & Accessibilité</a>
+            <a href="handicap.html" class="dropdown-link">Handicap &amp; Accessibilité</a>
             <a href="paroles-de-stagiaires.html" class="dropdown-link">Paroles de stagiaires</a>
             <a href="numerique.html" class="dropdown-link">Atelier Numérique</a>
             <a href="maths.html" class="dropdown-link">Maths au quotidien</a>
@@ -55,119 +60,401 @@
           </div>
         </div>
         <a href="actualites.html" class="nav-item">Actualités</a>
-        <button id="theme-toggle" class="theme-toggle-btn" style="padding:0.45rem 0.65rem;" title="Basculer Mode Clair / Mode Sombre">
-          <span id="theme-icon">🌙</span>
-        </button>
-        <a href="index.html#candidature" class="btn-nav magnetic" style="white-space:nowrap;">S'inscrire →</a>
+        <a href="sinscrire.html" class="btn-nav" style="white-space:nowrap;">S'inscrire →</a>
       </nav>
     </div>
   </header>
 
-  <section class="atelier-hero">
-    <div class="container hero-split">
+  <section id="intro" class="comm-hero">
+    <div class="container hero-grid">
       <div>
-        <div class="kicker-pill">🗣️ EXPRESSION, ÉCRITURE & CONFIANCE EN SOI</div>
-        <h1 class="hero-title"><span>Communication</span> Orale et Écrite</h1>
-        <p class="hero-desc">
-          Savoir se présenter avec assurance, rédiger un mail professionnel clair et convaincre en entretien : cet atelier aide chaque stagiaire à trouver les mots justes à l'oral comme à l'écrit.
-        </p>
-        <div class="hero-btns">
-          <a href="#programme" class="btn-main">Voir les modules</a>
-          <a href="index.html" class="btn-ghost">Retour au portail</a>
+        <div class="group3-badge">🎓 Parcours du groupe 3 de Nanterre</div>
+        <div class="comm-chip">🎙️ ATELIER COMMUNICATION • SITE DE NANTERRE</div>
+        <h1 class="comm-title">COMMUNICATION<br><span>ORALE &amp; ÉCRITE</span></h1>
+        <p class="comm-desc">À l'e2c de Nanterre, on développe notre expression orale et écrite à travers des actions concrètes : <strong>débats</strong>, <strong>job trottoir</strong> auprès de professionnels sur leur vision générationnelle du travail, <strong>films avec trace écrite</strong> et sensibilisation sur des <strong>mouvements sociaux</strong> (Octobre Rose, 25 novembre).</p>
+        <div class="comm-actions">
+          <a href="#studio" class="btn-comm-primary">Ouvrir le Studio Terrain →</a>
+          <a href="#piliers" class="btn-comm-secondary">Voir les 4 axes d'atelier</a>
         </div>
       </div>
-
-      <!-- Widget Interactif : Modèle de Mail Pro / Pitch -->
-      <div class="widget-card">
-        <div class="widget-header">
-          <span class="widget-title">✉️ Structure d'un Mail de Candidature Pro</span>
-          <span style="font-size:0.75rem; font-weight:700; color:#185abd; background:#eff6ff; padding:3px 9px; border-radius:99px;">Exemple type</span>
+      <div class="comm-board-panel">
+        <div class="board-header">
+          <div class="board-dots"><span class="dot-orange"></span><span class="dot-purple"></span><span class="dot-light"></span></div>
+          <span>PROGRAMME_ATELIER.COMM — GROUPE 3</span>
+          <span>e2c 92</span>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.75rem; font-size:0.88rem;">
-          <div style="background:#f8fafc; padding:0.7rem 0.9rem; border-radius:10px; border-left:3px solid #185abd;">
-            <strong style="color:#185abd; display:block; font-size:0.75rem;">1. OBJET CLAIR & PRÉCIS</strong>
-            <span>Candidature pour un stage en [Secteur] — Stagiaire e2c Nanterre</span>
-          </div>
-          <div style="background:#f8fafc; padding:0.7rem 0.9rem; border-radius:10px; border-left:3px solid #ff4800;">
-            <strong style="color:#ff4800; display:block; font-size:0.75rem;">2. ACCROCHE & MOTIVATION</strong>
-            <span>« Actuellement en parcours à l'e2c des Hauts-de-Seine, je souhaite mettre mon sérieux et ma motivation au service de votre équipe... »</span>
-          </div>
-          <div style="background:#f8fafc; padding:0.7rem 0.9rem; border-radius:10px; border-left:3px solid #107c41;">
-            <strong style="color:#107c41; display:block; font-size:0.75rem;">3. FORMULE DE POLITESSE & SIGNATURE</strong>
-            <span>Pièce jointe : CV au format PDF + Coordonnées téléphoniques.</span>
-          </div>
+        <div class="board-body">
+          <div class="axis-mini-card"><span class="axis-mini-label">01 // DÉBATS &amp; ARGUMENTATION</span><div class="axis-mini-text">Prendre la parole, structurer ses idées et écouter</div></div>
+          <div class="axis-mini-card purple"><span class="axis-mini-label">02 // JOB TROTTOIR INTERGÉNÉRATIONNEL</span><div class="axis-mini-text">Interroger les pros sur leur vision du travail</div></div>
+          <div class="axis-mini-card"><span class="axis-mini-label">03 // FILMS &amp; TRACE ÉCRITE</span><div class="axis-mini-text">Analyser une œuvre et formaliser une synthèse écrite</div></div>
+          <div class="axis-mini-card purple"><span class="axis-mini-label">04 // MOUVEMENTS SOCIAUX</span><div class="axis-mini-text">Octobre Rose &amp; 25 novembre : sensibiliser ensemble</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="programme" class="section">
+  <div class="comm-marquee">
+    <div class="marquee-track">
+      <span>[01] DÉBATS &amp; ÉLOQUENCE</span><span class="sep">//</span>
+      <span>[02] JOB TROTTOIR INTERGÉNÉRATIONNEL</span><span class="sep">//</span>
+      <span>[03] FILMS &amp; TRACE ÉCRITE</span><span class="sep">//</span>
+      <span>[04] OCTOBRE ROSE &amp; 25 NOVEMBRE</span><span class="sep">//</span>
+      <span>e2c NANTERRE — GROUPE 3</span><span class="sep">//</span>
+      <span>[01] DÉBATS &amp; ÉLOQUENCE</span><span class="sep">//</span>
+      <span>[02] JOB TROTTOIR INTERGÉNÉRATIONNEL</span><span class="sep">//</span>
+      <span>[03] FILMS &amp; TRACE ÉCRITE</span><span class="sep">//</span>
+      <span>[04] OCTOBRE ROSE &amp; 25 NOVEMBRE</span><span class="sep">//</span>
+      <span>e2c NANTERRE — GROUPE 3</span><span class="sep">//</span>
+    </div>
+  </div>
+
+  <section id="piliers" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="sec-kicker">01 // SAVOIR-FAIRE RELATIONNELS</span>
-        <h2 class="sec-title">S'exprimer avec clarté et assurance</h2>
-        <p class="sec-sub">Des exercices pratiques en groupe et des mises en situation réelles pour progresser sans stress.</p>
+        <span class="comm-kicker">// CE QU'ON A PRATIQUÉ EN ATELIER (4/4)</span>
+        <h2 class="section-title">Les 4 axes de l'atelier Communication</h2>
+        <p class="section-subtitle">Cliquez sur un module pour ouvrir directement sa fiche interactive dans le studio ci-dessous.</p>
       </div>
-
-      <div class="cards-grid">
-        <article class="module-card">
-          <div class="mod-icon">🎤</div>
-          <h3>Prise de Parole & Pitch Personnel</h3>
-          <p>Apprendre à se présenter en 1 minute face à un recruteur ou devant un groupe avec une posture ouverte.</p>
-          <ul>
-            <li>Travailler sa voix, son regard et sa gestuelle</li>
-            <li>Structurer son parcours pour valoriser ses qualités</li>
-            <li>Gérer son trac avant un oral ou un rendez-vous</li>
-          </ul>
+      <div class="bento-grid">
+        <article class="bento-card">
+          <div>
+            <div class="card-top"><div class="icon-badge">💬</div><span class="axis-tag">AXE_01 // ORAL</span></div>
+            <h3 class="card-title">Débats &amp; Prise de parole</h3>
+            <p class="card-desc">Échanger autour de thèmes d'actualité et de société pour apprendre à défendre un point de vue avec clarté et respect.</p>
+            <ul class="skill-list">
+              <li>Préparer et ordonner ses arguments avant de parler</li>
+              <li>Écouter les autres stagiaires et rebondir avec calme</li>
+              <li>Gagner en aisance et en confiance devant un groupe</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="level-badge">Expression Orale</span><button type="button" class="btn-open-tab" onclick="switchCommTab('debats', true)">[ Explorer l'axe ] →</button></div>
         </article>
 
-        <article class="module-card">
-          <div class="mod-icon">✍️</div>
-          <h3>Rédaction Professionnelle & Mails</h3>
-          <p>Maîtriser les codes de l'écrit en entreprise pour envoyer des messages soignés et percutants.</p>
-          <ul>
-            <li>Rédiger un mail de candidature ou de relance</li>
-            <li>Écrire une lettre de motivation personnalisée</li>
-            <li>Éviter les fautes courantes et soigner la présentation</li>
-          </ul>
+        <article class="bento-card card-purple">
+          <div>
+            <div class="card-top"><div class="icon-badge">🎙️</div><span class="axis-tag">AXE_02 // TERRAIN</span></div>
+            <h3 class="card-title">Job Trottoir intergénérationnel</h3>
+            <p class="card-desc">Aller directement à la rencontre des professionnels sur le terrain pour recueillir leur regard générationnel sur le monde du travail.</p>
+            <ul class="skill-list">
+              <li>Préparer une grille de questions courtes et pertinentes</li>
+              <li>Aborder des professionnels de différentes générations</li>
+              <li>Comparer l'évolution des métiers, des valeurs et des parcours</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="level-badge">Enquête Terrain</span><button type="button" class="btn-open-tab" onclick="switchCommTab('trottoir', true)">[ Explorer l'axe ] →</button></div>
         </article>
 
-        <article class="module-card">
-          <div class="mod-icon">🤝</div>
-          <h3>Simulation d'Entretiens</h3>
-          <p>S'entraîner aux questions fréquentes des employeurs dans des conditions bienveillantes et constructives.</p>
-          <ul>
-            <li>Répondre aux questions sur ses motivations et objectifs</li>
-            <li>Apprendre à poser des questions pertinentes à l'entreprise</li>
-            <li>Débriefing positif avec les formateurs et le groupe</li>
-          </ul>
+        <article class="bento-card card-purple">
+          <div>
+            <div class="card-top"><div class="icon-badge">🎬</div><span class="axis-tag">AXE_03 // ÉCRIT</span></div>
+            <h3 class="card-title">Films &amp; Trace Écrite</h3>
+            <p class="card-desc">Visionner des films en atelier, en analyser les messages clés ensemble et rédiger une trace écrite structurée.</p>
+            <ul class="skill-list">
+              <li>Repérer les thèmes et les enjeux humains d'un film</li>
+              <li>Partager son ressenti à l'oral avec le groupe</li>
+              <li>Rédiger une trace écrite propre, claire et argumentée</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="level-badge">Analyse &amp; Rédaction</span><button type="button" class="btn-open-tab" onclick="switchCommTab('films', true)">[ Explorer l'axe ] →</button></div>
         </article>
 
-        <article class="module-card">
-          <div class="mod-icon">💬</div>
-          <h3>Débats, Écoute & Travail d'Équipe</h3>
-          <p>Développer l'écoute active, argumenter son point de vue avec respect et collaborer efficacement.</p>
-          <ul>
-            <li>Ateliers de débat autour de l'actualité et de la citoyenneté</li>
-            <li>Communication non violente et gestion des désaccords</li>
-            <li>Préparation d'exposés collectifs avec supports visuels</li>
-          </ul>
+        <article class="bento-card">
+          <div>
+            <div class="card-top"><div class="icon-badge">🎗️</div><span class="axis-tag">AXE_04 // ENGAGEMENT</span></div>
+            <h3 class="card-title">Mouvements Sociaux (Octobre Rose &amp; 25 Nov)</h3>
+            <p class="card-desc">Se mobiliser et communiquer autour de grandes causes citoyennes comme Octobre Rose et la journée du 25 novembre.</p>
+            <ul class="skill-list">
+              <li>Octobre Rose : prévention et soutien contre le cancer du sein</li>
+              <li>25 novembre : lutte contre les violences faites aux femmes</li>
+              <li>Concevoir des messages de sensibilisation clairs et respectueux</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="level-badge">Citoyenneté</span><button type="button" class="btn-open-tab" onclick="switchCommTab('social', true)">[ Explorer l'axe ] →</button></div>
         </article>
       </div>
     </div>
   </section>
+
+  <section id="studio" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="comm-kicker">// STUDIO_INTERACTIF_ATELIER</span>
+        <h2 class="section-title">Détail des activités réalisées</h2>
+        <p class="section-subtitle">Sélectionnez un onglet pour afficher la démarche, les compétences mobilisées et la synthèse d'atelier.</p>
+      </div>
+      <div class="comm-studio">
+        <div class="studio-tabs" role="tablist">
+          <button type="button" class="studio-tab active" data-tab="trottoir" onclick="switchCommTab('trottoir', false)">01. Job Trottoir</button>
+          <button type="button" class="studio-tab" data-tab="debats" onclick="switchCommTab('debats', false)">02. Débats</button>
+          <button type="button" class="studio-tab" data-tab="films" onclick="switchCommTab('films', false)">03. Films &amp; Trace Écrite</button>
+          <button type="button" class="studio-tab" data-tab="social" onclick="switchCommTab('social', false)">04. Octobre Rose &amp; 25 Nov</button>
+        </div>
+
+        <div id="panel-trottoir" class="studio-panel active">
+          <div class="sp-info">
+            <h3>Job Trottoir : vision générationnelle du travail</h3>
+            <p>Sortir de la salle d'atelier pour aller poser des questions aux professionnels sur leur parcours, ce qui a changé entre les générations et leurs conseils pour réussir son insertion.</p>
+            <div class="sp-cards">
+              <div class="sp-mini"><strong>Démarche terrain</strong><span>Aller vers des inconnus avec une présentation claire de l'e2c Nanterre.</span></div>
+              <div class="sp-mini v"><strong>Regard générationnel</strong><span>Comparer la vision du travail des jeunes actifs et des professionnels expérimentés.</span></div>
+            </div>
+          </div>
+          <div class="sp-sheet">
+            <div class="sp-sheet-head"><span>FICHE_TERRAIN // JOB_TROTTOIR</span><span>GROUPE 3</span></div>
+            <ul class="sp-sheet-list">
+              <li><span>Étape 1 :</span> Préparer un questionnaire court en équipe.</li>
+              <li><span>Étape 2 :</span> Se présenter poliment et recueillir les témoignages sur le terrain.</li>
+              <li><span>Étape 3 :</span> Restituer et comparer les réponses en groupe à l'e2c.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="panel-debats" class="studio-panel">
+          <div class="sp-info">
+            <h3>Débats &amp; Prise de parole argumentée</h3>
+            <p>Apprendre à poser sa voix, défendre une idée avec des exemples concrets et respecter le temps de parole de chacun.</p>
+            <div class="sp-cards">
+              <div class="sp-mini"><strong>Structuration</strong><span>Formuler une idée principale puis l'illustrer par un exemple précis.</span></div>
+              <div class="sp-mini v"><strong>Écoute active</strong><span>Reformuler l'avis d'un camarade avant de proposer son propre argument.</span></div>
+            </div>
+          </div>
+          <div class="sp-sheet">
+            <div class="sp-sheet-head"><span>FICHE_ORAL // DÉBATS_ATELIER</span><span>GROUPE 3</span></div>
+            <ul class="sp-sheet-list">
+              <li><span>Posture :</span> Regarder l'auditoire et parler distinctement.</li>
+              <li><span>Méthode :</span> Argument + Exemple + Conclusion courte.</li>
+              <li><span>Objectif :</span> Être prêt pour les entretiens et la soutenance de stage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="panel-films" class="studio-panel">
+          <div class="sp-info">
+            <h3>Films &amp; Production d'une Trace Écrite</h3>
+            <p>Chaque visionnage en atelier donne lieu à un temps d'échange collectif suivi de la rédaction d'une trace écrite structurée.</p>
+            <div class="sp-cards">
+              <div class="sp-mini"><strong>Compréhension</strong><span>Identifier le message du film, les personnages et les situations clés.</span></div>
+              <div class="sp-mini v"><strong>Trace écrite</strong><span>Synthétiser par écrit ce qu'on a retenu avec un vocabulaire précis.</span></div>
+            </div>
+          </div>
+          <div class="sp-sheet">
+            <div class="sp-sheet-head"><span>FICHE_ÉCRIT // TRACE_ÉCRITE</span><span>GROUPE 3</span></div>
+            <ul class="sp-sheet-list">
+              <li><span>Observation :</span> Prendre des notes pendant ou juste après le film.</li>
+              <li><span>Échange :</span> Confrontation des points de vue à l'oral.</li>
+              <li><span>Rédaction :</span> Écriture d'un compte-rendu clair et soigné.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="panel-social" class="studio-panel">
+          <div class="sp-info">
+            <h3>Engagement : Octobre Rose &amp; 25 Novembre</h3>
+            <p>Mettre les outils de la communication au service de causes solidaires et citoyennes au sein de l'e2c Nanterre.</p>
+            <div class="sp-cards">
+              <div class="sp-mini"><strong>Octobre Rose</strong><span>Sensibilisation au dépistage et soutien dans la lutte contre le cancer du sein.</span></div>
+              <div class="sp-mini v"><strong>25 Novembre</strong><span>Journée internationale contre les violences faites aux femmes : échange et prévention.</span></div>
+            </div>
+          </div>
+          <div class="sp-sheet">
+            <div class="sp-sheet-head"><span>FICHE_CITOYENNE // SENSIBILISATION</span><span>GROUPE 3</span></div>
+            <ul class="sp-sheet-list">
+              <li><span>Action 1 :</span> Temps d'information et de dialogue en atelier.</li>
+              <li><span>Action 2 :</span> Création de messages et supports de sensibilisation.</li>
+              <li><span>Valeur :</span> Solidarité, respect et expression citoyenne.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside id="lydia-guide" class="lydia-guide" aria-live="polite">
+    <div class="lydia-bubble" id="lydia-bubble">
+      <div class="lydia-header">
+        <span class="lydia-name">LYDIA</span>
+        <span class="lydia-role">Atelier Communication • e2c</span>
+        <button type="button" id="lydia-toggle" class="lydia-toggle" title="Réduire / Agrandir">−</button>
+      </div>
+      <p id="lydia-text" class="lydia-text"></p>
+      <div class="lydia-footer">
+        <span id="lydia-mood" class="lydia-mood">● En atelier Communication</span>
+        <button type="button" id="lydia-next" class="lydia-next">Astuce suivante →</button>
+      </div>
+    </div>
+    <button type="button" id="lydia-avatar-btn" class="lydia-avatar-frame" title="Parler avec Lydia">
+      <div id="lydia-sprite" class="lydia-sprite" data-expr="happy"></div>
+      <span class="lydia-live-dot"></span>
+    </button>
+  </aside>
 
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
-        <strong>e2c HAUTS-DE-SEINE • ATELIER COMMUNICATION ORALE ET ÉCRITE</strong>
-        <span><a href="index.html" style="color:#185abd; text-decoration:none; font-weight:700;">← Retour à l'accueil de l'e2c Nanterre</a></span>
+        <strong>e2c HAUTS-DE-SEINE • SOUS-PAGE ATELIER COMMUNICATION</strong>
+        <span><a href="index.html" style="color:#7e22ce; font-weight:700; text-decoration:none;">← Retourner à la page d'accueil de l'e2c Nanterre</a></span>
       </div>
       <div class="footer-meta" style="text-align:right;">
-        <span style="display:block;">Expression • Rédaction • Entretiens</span>
-        <strong style="color:#ff4800; font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
+        <span style="display:block;">Débats • Job Trottoir • Films &amp; Trace Écrite • Octobre Rose &amp; 25 Nov</span>
+        <strong style="color:#ea580c; font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
       </div>
     </div>
   </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      var bar = document.getElementById('scroll-progress');
+      if (bar) bar.style.width = progress + '%';
+    }, { passive: true });
+    var lydiaSpriteEl = document.getElementById('lydia-sprite');
+    var lydiaTextEl = document.getElementById('lydia-text');
+    var lydiaGuideEl = document.getElementById('lydia-guide');
+    var lydiaMoodEl = document.getElementById('lydia-mood');
+    var lydiaNextBtn = document.getElementById('lydia-next');
+    var lydiaToggleBtn = document.getElementById('lydia-toggle');
+    var lydiaAvatarBtn = document.getElementById('lydia-avatar-btn');
+
+    var lydiaSheetUrl = 'lydia.jpg';
+    ['lydia.jpg', 'lydia.jpeg', 'lydia.png', 'IMG_2981.jpeg', 'IMG_2981.jpg', 'assets/lydia.jpg', 'assets/IMG_2981.jpeg'].forEach(function(candidate) {
+      var probe = new Image();
+      probe.onload = function() {
+        lydiaSheetUrl = candidate;
+        if (lydiaSpriteEl) lydiaSpriteEl.style.backgroundImage = "url('" + candidate + "')";
+      };
+      probe.src = candidate;
+    });
+
+    var lydiaFrames = {
+      neutral:   { col: 0, row: 0 },
+      happy:     { col: 1, row: 0 },
+      talk1:     { col: 2, row: 0 },
+      talk2:     { col: 3, row: 0 },
+      smileWide: { col: 4, row: 0 },
+      smirk:     { col: 5, row: 0 },
+      gentle:    { col: 0, row: 1 },
+      excited:   { col: 1, row: 1 },
+      wow:       { col: 2, row: 1 },
+      laugh:     { col: 3, row: 1 },
+      wink:      { col: 4, row: 1 },
+      focused:   { col: 5, row: 1 },
+      warm:      { col: 0, row: 2 },
+      joy:       { col: 1, row: 2 },
+      cute:      { col: 2, row: 2 },
+      lookLeft:  { col: 3, row: 2 },
+      lookRight: { col: 4, row: 2 },
+      surprised: { col: 5, row: 2 }
+    };
+
+    function renderLydiaFace(expression, mouthOpen) {
+      if (!lydiaSpriteEl) return;
+      var key = mouthOpen
+        ? (Math.random() > 0.5 ? 'talk1' : 'talk2')
+        : (lydiaFrames[expression] ? expression : 'happy');
+      var f = lydiaFrames[key];
+      lydiaSpriteEl.style.backgroundImage = "url('" + lydiaSheetUrl + "')";
+      lydiaSpriteEl.style.backgroundPosition = ((f.col / 5) * 100) + '% ' + ((f.row / 2) * 100) + '%';
+    }
+
+    var lydiaScripts = {
+      intro: [
+        { text: "Salut ! Moi c'est Lydia. Ici à l'e2c Nanterre, on travaille l'oral et l'écrit avec des débats, des job trottoir, des films et des actions citoyennes !", expr: "excited", mood: "● Prête pour l'atelier" },
+        { text: "Chaque activité nous aide à prendre confiance : argumenter à l'oral, aller vers les pros et écrire clairement.", expr: "happy", mood: "● Groupe 3 Nanterre" }
+      ],
+      piliers: [
+        { text: "Voici les 4 piliers vus en atelier : Débats, Job Trottoir intergénérationnel, Films & Trace Écrite, et Octobre Rose / 25 novembre.", expr: "smileWide", mood: "● 4 axes d'atelier" }
+      ],
+      studio: [
+        { text: "Clique sur un onglet du studio pour revoir notre démarche terrain, nos méthodes de débat ou nos temps de sensibilisation.", expr: "wink", mood: "● Studio interactif" }
+      ],
+      trottoir: [
+        { text: "Sur le Job Trottoir, on est allés interroger des professionnels pour comparer la vision du travail selon les générations !", expr: "excited", mood: "● Enquête générationnelle" }
+      ],
+      debats: [
+        { text: "En débat, on structure nos idées avant de parler et on écoute vraiment les arguments des autres avant de répondre.", expr: "focused", mood: "● Expression orale" }
+      ],
+      films: [
+        { text: "Après avoir regardé un film ensemble, on en discute et on rédige une trace écrite claire pour garder l'essentiel.", expr: "gentle", mood: "● Films & trace écrite" }
+      ],
+      social: [
+        { text: "Octobre Rose et le 25 novembre sont des temps forts pour s'informer, sensibiliser et porter des messages citoyens.", expr: "warm", mood: "● Octobre Rose & 25 Nov" }
+      ]
+    };
+
+    var lTyping = null;
+    var lMouth = null;
+    var lZone = 'intro';
+    var lIdx = 0;
+
+    function lydiaSpeak(zone, idx) {
+      var list = lydiaScripts[zone] || lydiaScripts.intro;
+      lZone = zone;
+      lIdx = (typeof idx === 'number' ? idx : 0) % list.length;
+      var entry = list[lIdx];
+      if (lydiaMoodEl) lydiaMoodEl.textContent = entry.mood;
+      clearInterval(lTyping);
+      clearInterval(lMouth);
+      if (lydiaGuideEl) lydiaGuideEl.classList.add('talking');
+      var i = 0;
+      var open = false;
+      if (lydiaTextEl) lydiaTextEl.textContent = '';
+      lMouth = setInterval(function() {
+        open = !open;
+        renderLydiaFace(entry.expr, open);
+      }, 130);
+      lTyping = setInterval(function() {
+        if (!lydiaTextEl) return;
+        lydiaTextEl.textContent += entry.text.charAt(i);
+        i++;
+        if (i >= entry.text.length) {
+          clearInterval(lTyping);
+          clearInterval(lMouth);
+          renderLydiaFace(entry.expr, false);
+          if (lydiaGuideEl) lydiaGuideEl.classList.remove('talking');
+        }
+      }, 22);
+    }
+
+    setTimeout(function() { renderLydiaFace('excited', false); lydiaSpeak('intro', 0); }, 350);
+    if (lydiaNextBtn) lydiaNextBtn.addEventListener('click', function() { lydiaSpeak(lZone, lIdx + 1); });
+    if (lydiaToggleBtn && lydiaGuideEl) lydiaToggleBtn.addEventListener('click', function() { lydiaGuideEl.classList.toggle('minimized'); });
+    if (lydiaAvatarBtn && lydiaGuideEl) {
+      lydiaAvatarBtn.addEventListener('click', function() {
+        lydiaGuideEl.classList.remove('minimized');
+        lydiaSpeak(lZone, lIdx + 1);
+      });
+    }
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      var lydiaSectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && entry.target.id && lydiaScripts[entry.target.id]) {
+            if (lZone !== entry.target.id) {
+              lydiaSpeak(entry.target.id, 0);
+            }
+          }
+        });
+      }, { threshold: 0.42 });
+      ['intro', 'piliers', 'studio'].forEach(function(id) {
+        var sec = document.getElementById(id);
+        if (sec) lydiaSectionObserver.observe(sec);
+      });
+    }
+
+    function switchCommTab(key, shouldScroll) {
+      document.querySelectorAll('.studio-tab').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.tab === key);
+      });
+      document.querySelectorAll('.studio-panel').forEach(function(panel) {
+        panel.classList.toggle('active', panel.id === 'panel-' + key);
+      });
+      if (lydiaScripts[key]) lydiaSpeak(key, 0);
+      if (shouldScroll) {
+        var studioEl = document.getElementById('studio');
+        if (studioEl) studioEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
 </body>
 </html>

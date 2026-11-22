@@ -7,14 +7,218 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ateliers.css">
-  <style>
+  <link rel="stylesheet" href="projet-pro.css">
+<style>
+    .reveal-up, .reveal-scale, .hero-stagger, .line-inner { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+    body.theme-projet #e2c-constellation-canvas, body.theme-projet #cinema-canvas, body.theme-projet #stars-canvas { display: none !important; }
+    body.theme-projet {
+      --pp-bg: #f6f3ff; --pp-surface: rgba(255, 255, 255, 0.9); --pp-surface-strong: #ffffff;
+      --pp-text: #1e1538; --pp-muted: #55487a; --pp-primary: #6d28d9; --pp-secondary: #4338ca;
+      --pp-border: rgba(109, 40, 217, 0.2); --pp-glow: rgba(109, 40, 217, 0.16);
+      background: radial-gradient(circle at 12% 8%, rgba(139, 92, 246, 0.16), transparent 42%), radial-gradient(circle at 88% 18%, rgba(67, 56, 202, 0.14), transparent 45%), var(--pp-bg) !important;
+      color: var(--pp-text) !important; margin: 0; padding: 0;
+    }
+    body.theme-projet.dark-mode {
+      --pp-bg: #0f0a1f; --pp-surface: rgba(26, 18, 52, 0.88); --pp-surface-strong: #191134;
+      --pp-text: #f3efff; --pp-muted: #bdb2e0; --pp-primary: #8b5cf6; --pp-secondary: #6366f1;
+      --pp-border: rgba(167, 139, 250, 0.25); --pp-glow: rgba(139, 92, 246, 0.24);
+      background: radial-gradient(circle at 12% 8%, rgba(109, 40, 217, 0.28), transparent 45%), radial-gradient(circle at 88% 18%, rgba(67, 56, 202, 0.24), transparent 48%), var(--pp-bg) !important;
+    }
+    body.theme-projet > header.atelier-navbar { position: sticky !important; top: 0 !important; z-index: 100 !important; padding: 0.65rem 0 !important; background: var(--pp-surface) !important; backdrop-filter: blur(14px); border-bottom: 1px solid var(--pp-border) !important; }
+    .pp-hero { position: relative; padding: 2rem 0 2.4rem; overflow: hidden; }
+    .pp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.95fr; gap: 2rem; align-items: center; }
+    @media (max-width: 920px) { .pp-hero-grid { grid-template-columns: 1fr; } }
+    .pp-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1rem; }
+    .pp-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.38rem 0.85rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: rgba(109, 40, 217, 0.12); color: var(--pp-primary); border: 1px solid var(--pp-border); }
+    body.dark-mode .pp-pill { background: rgba(139, 92, 246, 0.18); color: #ddd6fe; }
+    .pp-hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.1rem, 4vw, 3.15rem); line-height: 1.08; margin: 0 0 1rem 0; }
+    .pp-hero-title span { background: linear-gradient(135deg, #6d28d9, #4338ca, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    body.dark-mode .pp-hero-title span { background: linear-gradient(135deg, #c4b5fd, #818cf8, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .pp-hero-lead { font-size: 1.03rem; line-height: 1.62; color: var(--pp-muted); margin: 0 0 1.4rem 0; max-width: 60ch; }
+    .pp-cta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .pp-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.78rem 1.3rem; border-radius: 12px; background: linear-gradient(135deg, #6d28d9, #4338ca); color: #ffffff !important; font-weight: 700; text-decoration: none; box-shadow: 0 10px 24px rgba(109, 40, 217, 0.28); transition: transform 0.2s ease; }
+    .pp-btn-primary:hover { transform: translateY(-2px); }
+    .pp-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.78rem 1.25rem; border-radius: 12px; background: var(--pp-surface); color: var(--pp-text) !important; font-weight: 700; text-decoration: none; border: 1px solid var(--pp-border); transition: transform 0.2s ease; }
+    .pp-btn-ghost:hover { transform: translateY(-2px); border-color: var(--pp-primary); }
+    @keyframes ppFloatCard { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
+    .pp-passport { background: var(--pp-surface-strong); border: 1px solid var(--pp-border); border-radius: 20px; padding: 1.35rem 1.45rem; box-shadow: 0 18px 42px var(--pp-glow); animation: ppFloatCard 6s ease-in-out infinite; }
+    .pp-passport-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.8rem; margin-bottom: 0.9rem; border-bottom: 1px dashed var(--pp-border); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+    .pp-passport-list { display: grid; gap: 0.58rem; }
+    .pp-passport-item { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.58rem 0.8rem; border-radius: 12px; background: rgba(109, 40, 217, 0.06); border: 1px solid rgba(109, 40, 217, 0.12); font-size: 0.86rem; }
+    .pp-passport-item code { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 0.18rem 0.48rem; border-radius: 6px; background: rgba(109, 40, 217, 0.14); color: var(--pp-primary); font-weight: 700; }
+    body.dark-mode .pp-passport-item code { color: #ddd6fe; }
+    @keyframes ppTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .pp-ticker-wrap { overflow: hidden; background: linear-gradient(90deg, #3b0764, #312e81, #4c1d95); color: #ede9fe; padding: 0.65rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.05em; }
+    .pp-ticker-track { display: flex; width: max-content; gap: 2rem; animation: ppTicker 28s linear infinite; }
+    .pp-section { padding: 2.8rem 0; }
+    .pp-sec-head { text-align: center; max-width: 720px; margin: 0 auto 2rem; }
+    .pp-kicker { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--pp-primary); margin-bottom: 0.4rem; }
+    .pp-sec-head h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.25rem); margin: 0 0 0.6rem; }
+    .pp-sec-head p { color: var(--pp-muted); margin: 0; line-height: 1.55; }
+    .pp-pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    @media (max-width: 980px) { .pp-pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .pp-pillars-grid { grid-template-columns: 1fr; } }
+    .pp-pillar-card { background: var(--pp-surface-strong); border: 1px solid var(--pp-border); border-radius: 18px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.85rem; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+    .pp-pillar-card:hover { transform: translateY(-5px); border-color: var(--pp-primary); box-shadow: 0 16px 34px var(--pp-glow); }
+    .pp-pillar-top { display: flex; justify-content: space-between; align-items: center; }
+    .pp-pillar-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--pp-primary); background: rgba(109, 40, 217, 0.1); padding: 0.22rem 0.55rem; border-radius: 8px; }
+    .pp-pillar-card h3 { margin: 0.45rem 0; font-size: 1.1rem; }
+    .pp-pillar-card p { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--pp-muted); }
+    .pp-pillar-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+    .pp-mini-tag { font-size: 0.74rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px; background: rgba(67, 56, 202, 0.09); color: var(--pp-secondary); }
+    body.dark-mode .pp-mini-tag { color: #c7d2fe; background: rgba(99, 102, 241, 0.18); }
+    .pp-studio { background: var(--pp-surface-strong); border: 1px solid var(--pp-border); border-radius: 22px; padding: 1.7rem; box-shadow: 0 18px 44px var(--pp-glow); }
+    .pp-studio-tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.35rem; border-bottom: 1px solid var(--pp-border); padding-bottom: 0.95rem; }
+    .pp-mode-btn { cursor: pointer; border: 1px solid var(--pp-border); background: rgba(109, 40, 217, 0.06); color: var(--pp-text); font-weight: 700; font-size: 0.86rem; padding: 0.58rem 1rem; border-radius: 12px; transition: all 0.2s ease; }
+    .pp-mode-btn.active, .pp-mode-btn:hover { background: linear-gradient(135deg, #6d28d9, #4338ca); color: #ffffff; border-color: transparent; }
+    .pp-studio-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 1.45rem; align-items: start; }
+    @media (max-width: 860px) { .pp-studio-grid { grid-template-columns: 1fr; } }
+    .pp-choice-list { display: grid; gap: 0.6rem; }
+    .pp-choice-btn { cursor: pointer; text-align: left; padding: 0.8rem 0.95rem; border-radius: 14px; border: 1px solid var(--pp-border); background: rgba(109, 40, 217, 0.04); color: var(--pp-text); font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease; }
+    .pp-choice-btn.selected, .pp-choice-btn:hover { border-color: var(--pp-primary); background: rgba(109, 40, 217, 0.13); transform: translateX(4px); }
+    .pp-detail-box { padding: 1.3rem; border-radius: 16px; background: linear-gradient(145deg, rgba(109, 40, 217, 0.09), rgba(67, 56, 202, 0.07)); border: 1px solid var(--pp-border); }
+    .pp-detail-box h4 { margin: 0 0 0.5rem; font-size: 1.1rem; color: var(--pp-primary); }
+    body.dark-mode .pp-detail-box h4 { color: #c4b5fd; }
+    .pp-detail-box p { margin: 0 0 0.75rem; line-height: 1.58; font-size: 0.93rem; }
+    .pp-tip-box { padding: 0.8rem 0.95rem; border-radius: 12px; background: var(--pp-surface-strong); border-left: 4px solid #6d28d9; font-size: 0.87rem; line-height: 1.5; }
     /* Filet de sécurité global pour forcer l'affichage (désactive le blocage opacity:0) */
     .reveal-up, .reveal-scale, .hero-stagger, .line-inner { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+body.theme-projet > header.atelier-navbar { padding: 0.45rem 0 !important; }
+    body.theme-projet #e2c-constellation-canvas, body.theme-projet #cinema-canvas, body.theme-projet #stars-canvas { display: none !important; }
+    body.theme-projet > section.atelier-hero { position: relative !important; margin-top: 44px !important; padding: 0 !important; min-height: 0 !important; height: auto !important; overflow: visible !important; }
+    body.theme-projet > section.atelier-hero > .container.hero-split { position: relative !important; top: 0 !important; margin-top: 0 !important; padding-top: 0 !important; transform: translateY(-410px) !important; margin-bottom: -380px !important; align-items: start !important; gap: 1.2rem !important; }
+    @keyframes ppPulseGlow {
+      0%, 100% { box-shadow: 0 10px 28px rgba(109, 40, 217, 0.14); }
+      50% { box-shadow: 0 14px 36px rgba(79, 70, 229, 0.26); }
+    }
+    @keyframes ppSlideFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    body.theme-projet .module-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important; animation: ppPulseGlow 5s ease-in-out infinite; }
+    body.theme-projet .module-card:hover { transform: translateY(-5px) !important; border-color: rgba(124, 58, 237, 0.55) !important; }
+    .pp-interactive-box { margin-top: 2.2rem; padding: 1.5rem; border-radius: 18px; background: linear-gradient(135deg, rgba(109, 40, 217, 0.08), rgba(67, 56, 202, 0.06)); border: 1px solid rgba(124, 58, 237, 0.25); backdrop-filter: blur(6px); }
+    .pp-tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.15rem; }
+    .pp-tab-btn { cursor: pointer; border: 1px solid rgba(124, 58, 237, 0.35); background: rgba(255, 255, 255, 0.72); color: #3b0764; font-weight: 700; font-size: 0.85rem; padding: 0.55rem 0.95rem; border-radius: 999px; transition: all 0.2s ease; }
+    body.dark-mode .pp-tab-btn { background: rgba(30, 27, 75, 0.75); color: #e9d5ff; border-color: rgba(167, 139, 250, 0.35); }
+    .pp-tab-btn.is-active, .pp-tab-btn:hover { background: linear-gradient(135deg, #6d28d9, #4338ca) !important; color: #ffffff !important; border-color: transparent !important; transform: translateY(-1px); }
+    .pp-panel { animation: ppSlideFade 0.28s ease; display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 1.25rem; align-items: start; }
+    @media (max-width: 820px) { .pp-panel { grid-template-columns: 1fr; } }
+    .pp-outcome-card { padding: 1rem 1.15rem; border-radius: 14px; background: rgba(109, 40, 217, 0.1); border-left: 4px solid #6d28d9; }
+  
+    .pp-btn-primary { background: linear-gradient(135deg, #f97316, #ea580c) !important; box-shadow: 0 10px 24px rgba(249, 115, 22, 0.3) !important; }
+    .pp-pillar-num { background: rgba(249, 115, 22, 0.14) !important; color: #ea580c !important; }
+    body.dark-mode .pp-pillar-num { color: #fdba74 !important; }
+    .pp-mode-btn.active, .pp-mode-btn:hover { background: linear-gradient(135deg, #f97316, #ea580c) !important; }
+    .pp-tip-box { border-left-color: #f97316 !important; }
+    .pp-passport-top strong { color: #ea580c; }
+    body.dark-mode .pp-passport-top strong { color: #fb923c; }
+
+    @keyframes eddyTalk {
+      0%, 100% { transform: translateY(0) scale(1, 1) rotate(0deg); }
+      20% { transform: translateY(-2px) scale(1.03, 0.96) rotate(-1.5deg); }
+      45% { transform: translateY(1px) scale(0.97, 1.04) rotate(1.5deg); }
+      70% { transform: translateY(-2px) scale(1.02, 0.97) rotate(-1deg); }
+      88% { transform: translateY(0) scale(0.99, 1.02) rotate(0.8deg); }
+    }
+    @keyframes eddyIdle {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-3px) scale(1.01); }
+    }
+    .eddy-guide-wrap {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      max-width: min(430px, calc(100vw - 24px));
+      pointer-events: none;
+    }
+    .eddy-guide-wrap * { pointer-events: auto; }
+    .eddy-avatar-box {
+      position: relative;
+      width: 88px;
+      height: 88px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid #f97316;
+      box-shadow: 0 12px 30px rgba(109, 40, 217, 0.3);
+      background: #1e1538;
+      animation: none !important;
+      transform: none !important;
+    }
+    .eddy-sprite-view {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      background-color: #1e1538;
+      background-image: url('eddy.jpeg');
+      background-repeat: no-repeat;
+      background-size: 600% 300%;
+      background-position: 20% 0%;
+      animation: none !important;
+    }
+    .eddy-bubble {
+      background: var(--pp-surface-strong, #ffffff);
+      color: var(--pp-text, #1e1538);
+      border: 1.5px solid rgba(249, 115, 22, 0.45);
+      border-radius: 16px;
+      padding: 0.78rem 0.95rem;
+      box-shadow: 0 14px 34px rgba(30, 21, 56, 0.22);
+      backdrop-filter: blur(12px);
+      font-size: 0.85rem;
+      line-height: 1.48;
+    }
+    body.dark-mode .eddy-bubble {
+      background: rgba(25, 17, 52, 0.95);
+      color: #f3efff;
+    }
+    .eddy-bubble-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.32rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #ea580c;
+      font-weight: 700;
+    }
+    body.dark-mode .eddy-bubble-top { color: #fb923c; }
+    .eddy-controls {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .eddy-mini-btn {
+      cursor: pointer;
+      border: 1px solid rgba(109, 40, 217, 0.25);
+      background: rgba(109, 40, 217, 0.08);
+      color: inherit;
+      border-radius: 8px;
+      padding: 0.15rem 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .eddy-guide-wrap.is-collapsed .eddy-bubble { display: none; }
+    @media (max-width: 640px) {
+      .eddy-guide-wrap { right: 10px; bottom: 10px; }
+      .eddy-avatar-box { width: 72px; height: 72px; border-radius: 16px; }
+    }
   </style>
 </head>
 <body class="theme-projet">
-  <div class="pattern-bg"></div>
+<div class="pattern-bg"></div>
+  <div class="pro-landmarks-layer" aria-hidden="true">
+    <span class="pro-mark pm-1">CAP MÉTIER</span>
+    <span class="pro-mark pm-2">STAGE &amp; IMMERSION</span>
+    <span class="pro-mark pm-3">CV • ENTRETIEN</span>
+    <span class="pro-mark pm-4">ALTERNANCE • EMPLOI</span>
+    <span class="pro-mark pm-5">PROJET PRO 92</span>
+    <span class="pro-mark pm-6">ENTRETIEN &amp; CAP</span>
+  </div>
   <div class="scroll-progress" id="scroll-progress"></div>
 
   <header class="atelier-navbar">
@@ -39,10 +243,6 @@
             <a href="formation.html" class="dropdown-link">Se former à l’E2C 92</a>
             <a href="handicap.html" class="dropdown-link">Handicap & Accessibilité</a>
             <a href="paroles-de-stagiaires.html" class="dropdown-link">Paroles de stagiaires</a>
-            <a href="numerique.html" class="dropdown-link">Atelier Numérique</a>
-            <a href="maths.html" class="dropdown-link">Maths au quotidien</a>
-            <a href="communication.html" class="dropdown-link">Communication</a>
-            <a href="projet-pro.html" class="dropdown-link">Élaboration projet pro</a>
           </div>
         </div>
         <div class="nav-dropdown">
@@ -54,124 +254,329 @@
             <a href="taxe-dapprentissage.html" class="dropdown-link">Taxe d’apprentissage</a>
           </div>
         </div>
+        <div class="nav-dropdown"><a href="numerique.html" class="nav-item">Nos ateliers ▾</a><div class="nav-dropdown-menu"><a href="maths.html" class="dropdown-link">Maths au quotidien</a><a href="numerique.html" class="dropdown-link">Atelier Numérique</a><a href="projet-pro.html" class="dropdown-link" style="color:var(--e2c-orange);">Élaboration projet pro</a><a href="communication.html" class="dropdown-link">Communication</a></div></div>
         <a href="actualites.html" class="nav-item">Actualités</a>
         <button id="theme-toggle" class="theme-toggle-btn" style="padding:0.45rem 0.65rem;" title="Basculer Mode Clair / Mode Sombre">
           <span id="theme-icon">🌙</span>
         </button>
-        <a href="index.html#candidature" class="btn-nav magnetic" style="white-space:nowrap;">S'inscrire →</a>
+        <a href="sinscrire.html" class="btn-nav magnetic" style="white-space:nowrap;">S'inscrire →</a>
       </nav>
     </div>
   </header>
 
-  <section class="atelier-hero">
-    <div class="container hero-split">
+  <section class="pp-hero">
+    <div class="container pp-hero-grid">
       <div>
-        <div class="kicker-pill">🧭 ORIENTATION, MÉTIERS & PASSAGE À L'ACTION</div>
-        <h1 class="hero-title"><span>Élaboration</span> du Projet Professionnel</h1>
-        <p class="hero-desc">
-          Trouver sa voie ne se fait pas au hasard : à l'e2c de Nanterre, chaque stagiaire explore les secteurs qui recrutent, identifie ses forces et valide son projet grâce aux stages en entreprise.
-        </p>
-        <div class="hero-btns">
-          <a href="#programme" class="btn-main">Voir les 4 étapes</a>
-          <a href="index.html" class="btn-ghost">Retour au portail</a>
+        <div class="pp-badges">
+          <span class="pp-pill">🎓 Parcours du groupe 3 de Nanterre</span>
+          
+        </div>
+        <h1 class="pp-hero-title">Élaboration du <span>Projet Pro</span></h1>
+        <p class="pp-hero-lead">À l'e2c Nanterre, on structure son projet de A à Z : les <strong>3 savoirs</strong>, le <strong>fonctionnement et la conception d'un CV</strong>, les <strong>techniques d'entretien</strong>, la <strong>recherche de domaine pro</strong>, les <strong>visites d'entreprises</strong> et la <strong>recherche de stages</strong> vers une sortie positive.</p>
+        <div class="pp-cta-row">
+          <a href="#piliers" class="pp-btn-primary">Explorer les 6 piliers ↓</a>
+          
         </div>
       </div>
-
-      <!-- Feuille de route visuelle en 4 étapes -->
-      <div class="widget-card">
-        <div class="widget-header">
-          <span class="widget-title">🗺️ Feuille de Route du Stagiaire</span>
-          <span style="font-size:0.75rem; font-weight:700; color:#ff4800; background:#fff1eb; padding:3px 9px; border-radius:99px;">Parcours e2c</span>
+      <aside class="pp-passport" aria-label="Repères clés de l'atelier Projet Pro">
+        <div class="pp-passport-top">
+          <strong>CAP_TERRAIN_ACTIF</strong>
+          <span>GROUPE 3 • NANTERRE</span>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.75rem;">
-          <div style="display:flex; align-items:center; gap:0.8rem; background:#f8fafc; padding:0.75rem; border-radius:12px;">
-            <span style="background:#ff4800; color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem;">1</span>
-            <div><strong style="font-size:0.9rem; display:block;">Bilan personnel & centres d'intérêt</strong><span style="font-size:0.78rem; color:#64748b;">Identifier ses compétences et envies</span></div>
-          </div>
-          <div style="display:flex; align-items:center; gap:0.8rem; background:#f8fafc; padding:0.75rem; border-radius:12px;">
-            <span style="background:#ff4800; color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem;">2</span>
-            <div><strong style="font-size:0.9rem; display:block;">Enquêtes métiers & visites d'entreprises</strong><span style="font-size:0.78rem; color:#64748b;">Rencontrer des professionnels du 92</span></div>
-          </div>
-          <div style="display:flex; align-items:center; gap:0.8rem; background:#f8fafc; padding:0.75rem; border-radius:12px;">
-            <span style="background:#ff4800; color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem;">3</span>
-            <div><strong style="font-size:0.9rem; display:block;">Immersion en stage pratique</strong><span style="font-size:0.78rem; color:#64748b;">Tester le métier sur le terrain</span></div>
-          </div>
-          <div style="display:flex; align-items:center; gap:0.8rem; background:#fff1eb; border:1px solid rgba(255,72,0,0.25); padding:0.75rem; border-radius:12px;">
-            <span style="background:#107c41; color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem;">✓</span>
-            <div><strong style="font-size:0.9rem; display:block; color:#0f172a;">Sortie positive : Emploi ou Formation</strong><span style="font-size:0.78rem; color:#334155;">Alternance, CDI/CDD ou formation qualifiante</span></div>
-          </div>
+        <div class="pp-passport-list">
+          <div class="pp-passport-item"><span><strong>Les 3 Savoirs</strong> (Savoir, Savoir-faire, Savoir-être)</span><code>BASE_PRO</code></div>
+          <div class="pp-passport-item"><span><strong>Fonctionnement &amp; Conception CV</strong></span><code>CV_STUDIO</code></div>
+          <div class="pp-passport-item"><span><strong>Fonctionnement &amp; Techniques d'Entretien</strong></span><code>ORAL_PRO</code></div>
+          <div class="pp-passport-item"><span><strong>Domaine Pro &amp; Visites d'Entreprises</strong></span><code>TERRAIN_92</code></div>
+          <div class="pp-passport-item"><span><strong>Recherche de Stages &amp; Sortie Positive</strong></span><code>SORTIE_PRO</code></div>
         </div>
-      </div>
+      </aside>
     </div>
   </section>
 
-  <section id="programme" class="section">
+  <div class="pp-ticker-wrap" aria-hidden="true">
+    <div class="pp-ticker-track">
+      <span>[01] LES 3 SAVOIRS</span><span>//</span><span>[02] FONCTIONNEMENT &amp; CONCEPTION D'UN CV</span><span>//</span><span>[03] TECHNIQUES D'ENTRETIEN</span><span>//</span><span>[04] RECHERCHE DE DOMAINE PRO</span><span>//</span><span>[05] VISITES D'ENTREPRISES</span><span>//</span><span>[06] RECHERCHE DE STAGES &amp; SORTIE POSITIVE</span><span>//</span>
+      <span>[01] LES 3 SAVOIRS</span><span>//</span><span>[02] FONCTIONNEMENT &amp; CONCEPTION D'UN CV</span><span>//</span><span>[03] TECHNIQUES D'ENTRETIEN</span><span>//</span><span>[04] RECHERCHE DE DOMAINE PRO</span><span>//</span><span>[05] VISITES D'ENTREPRISES</span><span>//</span><span>[06] RECHERCHE DE STAGES &amp; SORTIE POSITIVE</span>
+    </div>
+  </div>
+
+  <section id="piliers" class="pp-section">
     <div class="container">
-      <div class="section-header">
-        <span class="sec-kicker">01 // CONSTRUIRE SON AVENIR</span>
-        <h2 class="sec-title">Un accompagnement concret vers l'emploi</h2>
-        <p class="sec-sub">Chaque stagiaire bénéficie d'un suivi individuel avec son formateur référent pour avancer étape par étape.</p>
+      <div class="pp-sec-head">
+        <span class="pp-kicker">// PROGRAMME_COMPLET • GROUPE 3 NANTERRE</span>
+        <h2>Ce qu'on apprend et pratique en Élaboration Projet Pro</h2>
+        <p>Six axes concrets pour passer de l'exploration de soi à l'entreprise et sécuriser une sortie positive.</p>
       </div>
-
-      <div class="cards-grid">
-        <article class="module-card">
-          <div class="mod-icon">🔍</div>
-          <h3>Découverte des Métiers & Secteurs</h3>
-          <p>Explorer les filières qui recrutent dans les Hauts-de-Seine et en Île-de-France sans idées reçues.</p>
-          <ul>
-            <li>Fiches métiers, vidéos et témoignages de professionnels</li>
-            <li>Visites d'entreprises partenaires et forums emploi</li>
-            <li>Identification des diplômes ou formations accessibles</li>
-          </ul>
+      <div class="pp-pillars-grid">
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">01</span><span>🧠</span></div>
+            <h3>Les 3 Savoirs</h3>
+            <p>Distinguer ses connaissances (<strong>Savoir</strong>), ses compétences pratiques (<strong>Savoir-faire</strong>) et son comportement professionnel en équipe (<strong>Savoir-être</strong>).</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Savoir</span><span class="pp-mini-tag">Savoir-faire</span><span class="pp-mini-tag">Savoir-être</span></div>
         </article>
-
-        <article class="module-card">
-          <div class="mod-icon">🎯</div>
-          <h3>Recherche Active de Stages</h3>
-          <p>Apprendre à cibler les bonnes entreprises et décrocher des périodes d'immersion formatrices.</p>
-          <ul>
-            <li>Utiliser les plateformes d'emploi et le réseau e2c</li>
-            <li>Préparer son CV (Word/Canva) et son argumentaire</li>
-            <li>Assurer le suivi de ses candidatures et relances</li>
-          </ul>
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">02</span><span>📄</span></div>
+            <h3>Fonctionnement &amp; Conception d'un CV</h3>
+            <p>Comprendre comment un recruteur lit un CV, organiser les rubriques essentielles et concevoir un CV clair, lisible et adapté à chaque candidature.</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Lecture recruteur</span><span class="pp-mini-tag">Structure</span><span class="pp-mini-tag">Mise en page</span></div>
         </article>
-
-        <article class="module-card">
-          <div class="mod-icon">🏢</div>
-          <h3>Bilan d'Expérience en Entreprise</h3>
-          <p>Analyser chaque stage réalisé pour confirmer son choix ou ajuster son orientation.</p>
-          <ul>
-            <li>Points réguliers avec le tuteur en entreprise et le référent</li>
-            <li>Valorisation des nouvelles compétences sur le CV</li>
-            <li>Présentation orale de son bilan devant le groupe</li>
-          </ul>
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">03</span><span>🎤</span></div>
+            <h3>Fonctionnement &amp; Techniques d'Entretien</h3>
+            <p>Maîtriser le déroulé d'un entretien, structurer sa présentation, répondre aux questions clés et adopter la bonne posture face au recruteur.</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Déroulé entretien</span><span class="pp-mini-tag">Pitch</span><span class="pp-mini-tag">Entraînement</span></div>
         </article>
-
-        <article class="module-card">
-          <div class="mod-icon">🚀</div>
-          <h3>Plan d'Action & Suite de Parcours</h3>
-          <p>Préparer la transition après l'e2c Nanterre vers un contrat d'apprentissage, un emploi ou une formation.</p>
-          <ul>
-            <li>Montage des dossiers d'inscription en centre de formation</li>
-            <li>Préparation aux entretiens d'embauche finaux</li>
-            <li>Suivi post-parcours pour sécuriser l'insertion</li>
-          </ul>
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">04</span><span>🧭</span></div>
+            <h3>Recherche de Domaine Pro</h3>
+            <p>Explorer les secteurs et métiers accessibles, croiser ses envies avec la réalité du marché et cibler des domaines professionnels cohérents.</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Secteurs d'activité</span><span class="pp-mini-tag">Métiers</span><span class="pp-mini-tag">Ciblage</span></div>
+        </article>
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">05</span><span>🏭</span></div>
+            <h3>Visites d'Entreprises</h3>
+            <p>Découvrir les lieux de travail sur place, observer le quotidien des équipes et poser des questions concrètes aux professionnels.</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Sur le terrain</span><span class="pp-mini-tag">Observation</span><span class="pp-mini-tag">Échanges pros</span></div>
+        </article>
+        <article class="pp-pillar-card">
+          <div>
+            <div class="pp-pillar-top"><span class="pp-pillar-num">06</span><span>🚀</span></div>
+            <h3>Recherche de Stages &amp; Sortie Positive</h3>
+            <p>Organiser sa recherche de stage, relancer les entreprises, valider son projet sur le terrain et préparer sa sortie positive (emploi, alternance, formation).</p>
+          </div>
+          <div class="pp-pillar-tags"><span class="pp-mini-tag">Stages</span><span class="pp-mini-tag">Relances</span><span class="pp-mini-tag">Sortie positive</span></div>
         </article>
       </div>
     </div>
   </section>
 
+  
+
+<section id="studio-carriere" class="pp-section" style="padding-top:0.5rem;">
+    <div class="container">
+      <div class="pp-sec-head">
+        <span class="pp-kicker" style="color:#ea580c;">// STUDIO_INTERACTIF • PRATIQUE EN ATELIER</span>
+        <h2>Explorer les méthodes de l'atelier</h2>
+        <p>Sélectionne une thématique puis clique sur un point pour voir comment on la travaille concrètement en atelier.</p>
+      </div>
+      <div class="pp-studio">
+        <div class="pp-studio-tabs" role="tablist">
+          <button type="button" class="pp-mode-btn active" data-mode="savoirs">1. Les 3 Savoirs</button>
+          <button type="button" class="pp-mode-btn" data-mode="cv">2. Fonctionnement &amp; Conception CV</button>
+          <button type="button" class="pp-mode-btn" data-mode="entretien">3. Fonctionnement &amp; Techniques Entretien</button>
+          <button type="button" class="pp-mode-btn" data-mode="terrain">4. Domaine Pro, Visites &amp; Stages</button>
+        </div>
+        <div class="pp-studio-grid">
+          <div id="pp-choice-list" class="pp-choice-list"></div>
+          <div class="pp-detail-box">
+            <h4 id="pp-detail-title"></h4>
+            <p id="pp-detail-body"></p>
+            <div id="pp-detail-tip" class="pp-tip-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function() {
+      const studioData = {
+        savoirs: [
+          { label: "Le Savoir (Connaissances)", title: "Le Savoir — Ce que tu connais et maîtrises théoriquement", body: "Les notions apprises en formation, en atelier ou de façon autonome : règles, vocabulaire professionnel, repères de sécurité ou notions de base.", tip: "Atelier : Repérer ce que tu sais déjà permet de poser des bases solides avant de candidater." },
+          { label: "Le Savoir-faire (Compétences pratiques)", title: "Le Savoir-faire — Ce que tu sais faire concrètement", body: "La capacité à réaliser une action précise : accueillir un public, préparer ou ranger, utiliser un outil numérique ou suivre une méthode étape par étape.", tip: "Atelier : On traduit chaque action en verbes concrets pour montrer ce que tu sais produire." },
+          { label: "Le Savoir-être (Attitude & posture)", title: "Le Savoir-être — Ton comportement au travail", body: "La ponctualité, l'écoute, la politesse, l'implication et la capacité à collaborer avec une équipe ou un tuteur.", tip: "Atelier : S'appuyer sur des situations vécues (stage, groupe, quotidien) rend ton savoir-être crédible." }
+        ],
+        cv: [
+          { label: "1. Comment fonctionne un CV ?", title: "Le rôle d'un CV face au recruteur", body: "Un CV est un document synthétique qui résume ton profil, tes compétences et ton parcours pour donner envie de te rencontrer en entretien.", tip: "Conception CV : Il doit aller à l'essentiel, être clair en quelques secondes et correspondre au poste visé." },
+          { label: "2. Structurer & concevoir son CV", title: "Construire un CV clair et bien organisé", body: "Titre ciblé, coordonnées à jour, rubrique compétences (3 savoirs), expériences/stages et formations : chaque bloc a une utilité précise.", tip: "Conception CV : Soigner la hiérarchie visuelle, l'aération et l'orthographe renforce immédiatement le sérieux du dossier." }
+        ],
+        entretien: [
+          { label: "1. Comment fonctionne un entretien ?", title: "Le déroulé d'un entretien d'embauche ou de stage", body: "Un entretien permet aux deux parties de se découvrir : présentation, questions sur ton parcours et ta motivation, échange sur le poste et tes questions.", tip: "Technique d'entretien : Connaître les étapes de l'échange aide à aborder la rencontre avec plus de calme." },
+          { label: "2. Techniques & préparation orale", title: "Préparer son pitch, sa posture et ses réponses", body: "S'entraîner à présenter son parcours clairement, illustrer ses réponses avec des exemples concrets et préparer des questions pertinentes pour l'employeur.", tip: "Technique d'entretien : Répéter à voix haute en atelier permet de gagner en fluidité et en assurance." }
+        ],
+        terrain: [
+          { label: "1. Recherche de Domaine Pro", title: "Identifier des domaines professionnels adaptés", body: "Explorer les secteurs d'activité, comparer les métiers et repérer les pistes qui correspondent le mieux à tes envies et à ton cadre de vie.", tip: "Terrain : Garder 2 ou 3 pistes ouvertes permet d'avancer sans blocage." },
+          { label: "2. Visites d'Entreprises", title: "Observer le métier en vrai lors des visites", body: "Les visites d'entreprises font découvrir des lieux de travail réels, l'organisation des équipes et les attentes des professionnels sur le terrain.", tip: "Terrain : Préparer 2 ou 3 questions avant la visite aide à tirer un maximum d'informations." },
+          { label: "3. Recherche de Stages & Sortie Positive", title: "Décrocher des stages pour aller vers la sortie positive", body: "Cibler les entreprises, envoyer son CV, faire les relances et transformer l'expérience de stage en sortie positive : emploi, alternance ou formation.", tip: "Terrain : Chaque immersion nourrit le projet et rapproche d'une suite concrète après l'e2c." }
+        ]
+      };
+      let mode = 'savoirs', idx = 0;
+      const modeBtns = document.querySelectorAll('.pp-mode-btn');
+      const listEl = document.getElementById('pp-choice-list');
+      const titleEl = document.getElementById('pp-detail-title');
+      const bodyEl = document.getElementById('pp-detail-body');
+      const tipEl = document.getElementById('pp-detail-tip');
+      function render() {
+        const items = studioData[mode] || [];
+        listEl.innerHTML = '';
+        items.forEach((it, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'pp-choice-btn' + (i === idx ? ' selected' : '');
+          b.textContent = it.label;
+          b.addEventListener('click', () => { idx = i; render(); });
+          listEl.appendChild(b);
+        });
+        const cur = items[idx] || items[0];
+        if (cur) { titleEl.textContent = cur.title; bodyEl.textContent = cur.body; tipEl.textContent = cur.tip; }
+      }
+      modeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          modeBtns.forEach((x) => x.classList.remove('active'));
+          btn.classList.add('active');
+          mode = btn.getAttribute('data-mode'); idx = 0; render();
+        });
+      });
+      render();
+    })();
+  </script>
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
         <strong>e2c HAUTS-DE-SEINE • ATELIER ÉLABORATION PROJET PRO</strong>
-        <span><a href="index.html" style="color:#ff4800; text-decoration:none; font-weight:700;">← Retour à l'accueil de l'e2c Nanterre</a></span>
+        <span><a href="index.html" class="footer-link-violet">← Retour à l'accueil de l'e2c Nanterre</a></span>
       </div>
       <div class="footer-meta" style="text-align:right;">
         <span style="display:block;">Orientation • Stages • Avenir</span>
-        <strong style="color:#ff4800; font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
+        <strong class="footer-author-violet">Site réalisé par le stagiaire Sacha — Groupe 3</strong>
       </div>
     </div>
   </footer>
+  <script src="app.js"></script>
+
+  <aside id="eddy-guide" class="eddy-guide-wrap" aria-live="polite">
+    <div class="eddy-bubble">
+      <div class="eddy-bubble-top">
+        <span id="eddy-stage-label">EDDY • ÉLABORATION PROJET PROFESSIONNEL</span>
+        <div class="eddy-controls">
+          <button type="button" class="eddy-mini-btn" id="eddy-next-btn" title="Message suivant">↻</button>
+          <button type="button" class="eddy-mini-btn" id="eddy-toggle-btn" title="Réduire / Agrandir">—</button>
+        </div>
+      </div>
+      <div id="eddy-speech-text"></div>
+    </div>
+    <div class="eddy-avatar-box">
+      <div id="eddy-sprite-view" class="eddy-sprite-view" role="img" aria-label="Eddy guide Projet Pro"></div>
+    </div>
+  </aside>
+  <script>
+    (function() {
+      const lines = [
+        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "excited", text: "Salut ! Ici Eddy. On a nettoyé la page Projet Pro (zéro doublon, touches d'orange) pour présenter le parcours du Groupe 3 à Nanterre." },
+        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "happy", text: "Dans la page, on détaille l'élaboration du projet professionnel, les 3 savoirs et la conception d'un CV clair et ciblé." },
+        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "focused", text: "Tu retrouves aussi les techniques d'entretien, la recherche de domaine pro, les visites d'entreprises et la recherche de stages vers une sortie positive." },
+        { stage: "EDDY • ÉLABORATION PROJET PROFESSIONNEL", expr: "wink", text: "En descendant dans le Studio interactif, clique sur les onglets pour explorer chaque méthode travaillée en atelier." }
+      ];
+      const wrap = document.getElementById('eddy-guide');
+      const img = document.getElementById('eddy-sprite-view');
+      const labelEl = document.getElementById('eddy-stage-label');
+      const textEl = document.getElementById('eddy-speech-text');
+      const nextBtn = document.getElementById('eddy-next-btn');
+      const toggleBtn = document.getElementById('eddy-toggle-btn');
+
+      const eddyFrames = {
+        neutral:   { col: 0, row: 0 },
+        happy:     { col: 1, row: 0 },
+        talk1:     { col: 2, row: 0 },
+        talk2:     { col: 3, row: 0 },
+        smileWide: { col: 4, row: 0 },
+        smirk:     { col: 5, row: 0 },
+        gentle:    { col: 0, row: 1 },
+        excited:   { col: 1, row: 1 },
+        wow:       { col: 2, row: 1 },
+        laugh:     { col: 3, row: 1 },
+        wink:      { col: 4, row: 1 },
+        focused:   { col: 5, row: 1 },
+        warm:      { col: 0, row: 2 },
+        joy:       { col: 1, row: 2 },
+        cute:      { col: 2, row: 2 },
+        lookLeft:  { col: 3, row: 2 },
+        lookRight: { col: 4, row: 2 },
+        surprised: { col: 5, row: 2 }
+      };
+
+      function renderEddyFace(expression = 'happy', mouthOpen = false) {
+        if (!img) return;
+        const key = mouthOpen
+          ? (Math.random() > 0.5 ? 'talk1' : 'talk2')
+          : (eddyFrames[expression] ? expression : 'happy');
+        const f = eddyFrames[key];
+        img.style.backgroundImage = "url('eddy.jpeg')";
+        img.style.backgroundPosition = `${(f.col / 5) * 100}% ${(f.row / 2) * 100}%`;
+      }
+
+      let activeIdx = -1;
+      let typingTimer = null;
+      let mouthTimer = null;
+      let mouthToggle = false;
+
+      function stopEddyAnimation(finalExpr = 'happy') {
+        clearInterval(typingTimer);
+        clearInterval(mouthTimer);
+        typingTimer = null;
+        mouthTimer = null;
+        mouthToggle = false;
+        renderEddyFace(finalExpr, false);
+      }
+
+      function speakLine(idx) {
+        const safeIdx = ((idx % lines.length) + lines.length) % lines.length;
+        if (safeIdx === activeIdx && textEl.textContent.length > 0) return;
+        activeIdx = safeIdx;
+        const item = lines[activeIdx];
+        const expr = item.expr || 'happy';
+        labelEl.textContent = item.stage;
+        textEl.textContent = '';
+        stopEddyAnimation(expr);
+
+        let i = 0;
+        mouthTimer = setInterval(() => {
+          mouthToggle = !mouthToggle;
+          renderEddyFace(expr, mouthToggle);
+        }, 130);
+
+        typingTimer = setInterval(() => {
+          textEl.textContent += item.text.charAt(i);
+          i++;
+          if (i >= item.text.length) {
+            stopEddyAnimation(expr);
+          }
+        }, 22);
+      }
+
+      function syncWithScroll() {
+        const scrollTop = window.scrollY || window.pageYOffset || 0;
+        const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const ratio = scrollTop / docHeight;
+        if (ratio < 0.22) speakLine(0);
+        else if (ratio < 0.52) speakLine(1);
+        else if (ratio < 0.78) speakLine(2);
+        else speakLine(3);
+      }
+
+      nextBtn.addEventListener('click', () => speakLine(activeIdx + 1));
+      toggleBtn.addEventListener('click', () => {
+        const collapsed = wrap.classList.toggle('is-collapsed');
+        toggleBtn.textContent = collapsed ? '+' : '—';
+      });
+      img.addEventListener('click', () => {
+        const currentExpr = (lines[activeIdx] && lines[activeIdx].expr) || 'happy';
+        renderEddyFace(currentExpr, false);
+      });
+
+      window.addEventListener('scroll', syncWithScroll, { passive: true });
+      syncWithScroll();
+    })();
+  </script>
 </body>
 </html>
