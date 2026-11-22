@@ -629,3 +629,24 @@ body.tech-body {
   .tech-hero-grid, .bento-grid, .console-viewport { grid-template-columns: 1fr; }
   .nav-links, .tech-breadcrumb { display: none; }
 }
+
+/* --- Nadine Bubble Mobile Alignment --- */
+@media (max-width: 768px) {
+  .nadine-guide {
+    right: 0.8rem;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.55rem;
+  }
+  .nadine-bubble {
+    width: 100%;
+    max-width: min(295px, calc(100vw - 1.6rem));
+    box-sizing: border-box;
+  }
+  .nadine-avatar-frame {
+    width: 72px;
+    height: 72px;
+  }
+}
