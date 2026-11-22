@@ -647,3 +647,84 @@ document.querySelectorAll('.tab-btn, .bento-card').forEach(el => {
     }
   });
 });
+
+// 4. Menu Burger Mobile (3 traits) reprenant les liens de navigation
+(function initMobileBurgerMenu() {
+  const navContainer = document.querySelector('header .nav-container');
+  const navLinks = document.querySelector('header .nav-links');
+  if (!navContainer || !navLinks || document.getElementById('mobile-menu-btn')) return;
+
+  const btn = document.createElement('button');
+  btn.id = 'mobile-menu-btn';
+  btn.type = 'button';
+  btn.className = 'mobile-menu-btn';
+  btn.setAttribute('aria-label', 'Ouvrir le menu de navigation');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '&#9776;';
+
+  const drawer = document.createElement('div');
+  drawer.id = 'mobile-nav-drawer';
+  drawer.className = 'mobile-nav-drawer';
+  drawer.setAttribute('role', 'navigation');
+
+  navLinks.querySelectorAll(':scope > a, :scope > .nav-dropdown').forEach(item => {
+    if (item.matches('a')) {
+      const a = document.createElement('a');
+      a.className = 'mobile-nav-link';
+      a.href = item.getAttribute('href') || '#';
+      a.textContent = item.textContent.trim();
+      drawer.appendChild(a);
+    } else if (item.classList.contains('nav-dropdown')) {
+      const topLink = item.querySelector(':scope > a.nav-item');
+      const subLinks = item.querySelectorAll('.nav-dropdown-menu a');
+      if (topLink) {
+        const head = document.createElement('a');
+        head.className = 'mobile-nav-link';
+        head.href = topLink.getAttribute('href') || '#';
+        head.textContent = topLink.textContent.replace('▾', '').trim();
+        drawer.appendChild(head);
+      }
+      if (subLinks.length) {
+        const subWrap = document.createElement('div');
+        subWrap.className = 'mobile-nav-sub';
+        subLinks.forEach(sl => {
+          const subA = document.createElement('a');
+          subA.href = sl.getAttribute('href') || '#';
+          subA.textContent = sl.textContent.trim();
+          subWrap.appendChild(subA);
+        });
+        drawer.appendChild(subWrap);
+      }
+    }
+  });
+
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn && toggleBtn.parentElement === navContainer) {
+    navContainer.insertBefore(btn, toggleBtn);
+  } else {
+    navContainer.appendChild(btn);
+  }
+  document.body.appendChild(drawer);
+
+  function setOpen(open) {
+    drawer.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    setOpen(!drawer.classList.contains('is-open'));
+  });
+
+  drawer.addEventListener('click', e => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('click', e => {
+    if (!drawer.contains(e.target) && e.target !== btn) setOpen(false);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();
