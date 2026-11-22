@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="numerique.css">
+  <style>
+    /* Filet de sécurité global pour forcer l'affichage (désactive le blocage opacity:0) */
+    .reveal-up, .reveal-scale, .hero-stagger, .line-inner { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+  </style>
 </head>
 <body class="tech-body">
   <!-- Fond grille informatique & matrice -->
@@ -29,11 +33,42 @@
         </div>
       </div>
 
-      <nav class="nav-links">
-        <a href="#terminal-intro" class="nav-item">01. Système</a>
-        <a href="#modules" class="nav-item">02. Logiciels</a>
-        <a href="#showcase" class="nav-item">03. Sandbox Live</a>
-        <a href="index.html" class="btn-tech-outline">Portail Nanterre</a>
+            <nav class="nav-links" style="gap:1.35rem; white-space:nowrap;">
+        <div class="nav-dropdown">
+          <a href="qui-sommes-nous.html" class="nav-item">L’E2C92 ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="qui-sommes-nous.html" class="dropdown-link">Qui sommes-nous ?</a>
+            <a href="chiffres-cles.html" class="dropdown-link">Chiffres clés</a>
+            <a href="nous-trouver.html" class="dropdown-link">Nous trouver (Sites 92)</a>
+            <a href="formateurs-referents.html" class="dropdown-link">Formateurs-référents</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="formation.html" class="nav-item">Parcours E2C ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="formation.html" class="dropdown-link">Se former à l’E2C 92</a>
+            <a href="handicap.html" class="dropdown-link">Handicap & Accessibilité</a>
+            <a href="paroles-de-stagiaires.html" class="dropdown-link">Paroles de stagiaires</a>
+            <a href="numerique.html" class="dropdown-link">Atelier Numérique</a>
+            <a href="maths.html" class="dropdown-link">Maths au quotidien</a>
+            <a href="communication.html" class="dropdown-link">Communication</a>
+            <a href="projet-pro.html" class="dropdown-link">Élaboration projet pro</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="nos-partenaires.html" class="nav-item">Entreprises ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="pourquoi-sengager.html" class="dropdown-link">Pourquoi s'engager ?</a>
+            <a href="comment-agir-avec-le2c-92.html" class="dropdown-link">Agir avec l’E2C 92</a>
+            <a href="nos-partenaires.html" class="dropdown-link">Nos partenaires</a>
+            <a href="taxe-dapprentissage.html" class="dropdown-link">Taxe d’apprentissage</a>
+          </div>
+        </div>
+        <a href="actualites.html" class="nav-item">Actualités</a>
+        <button id="theme-toggle" class="theme-toggle-btn" style="padding:0.45rem 0.65rem;" title="Basculer Mode Clair / Mode Sombre">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <a href="index.html#candidature" class="btn-nav magnetic" style="white-space:nowrap;">S'inscrire →</a>
       </nav>
     </div>
   </header>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Se former à l'E2C 92 • E2C92</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>    .nav-dropdown{position:relative;display:inline-flex;align-items:center}.nav-dropdown-menu{position:absolute;top:calc(100% + 12px);left:0;min-width:240px;background:var(--bg-surface);border:1.5px solid var(--border-highlight);border-radius:16px;padding:.55rem;box-shadow:0 20px 45px rgba(15,23,42,.14);opacity:0;visibility:hidden;transform:translateY(8px);transition:all .25s ease;z-index:200;display:flex;flex-direction:column;gap:.25rem}.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}.dropdown-link{padding:.55rem .85rem;border-radius:10px;color:var(--text-main);text-decoration:none;font-size:.86rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;transition:background .2s ease,color .2s ease}.dropdown-link:hover{background:var(--e2c-orange-soft);color:var(--e2c-orange)}
+    .reveal-up,.reveal-scale,.hero-stagger,.line-inner{opacity:1 !important;transform:none !important;visibility:visible !important}
+    .site-card{background:var(--bg-card);border:1.5px solid var(--border-subtle);border-top:5px solid var(--e2c-orange);border-radius:22px;padding:2rem;box-shadow:var(--card-shadow);transition:transform .3s ease}</style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand magnetic">
+        <div class="nav-logo-card"><svg class="e2c-official-logo nav-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg"><path d="M185 60 L195 16 L216 56 L262 49 L228 82 L245 112 L212 97 L166 146 L181 92 L112 72 L185 65 Z" fill="#ff4800"/><polygon points="185,66 218,59 224,78 176,132 188,88" fill="#ffffff"/><text x="28" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">e</text><text x="216" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">c</text><text x="102" y="196" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="164" fill="#ffffff" stroke="#64748b" stroke-width="3.5">2</text><text x="152" y="222" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">HAUTS-</text><text x="122" y="248" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">DE-SEINE</text><line x1="122" y1="256" x2="266" y2="256" stroke="#64748b" stroke-width="2.5"/></svg></div>
+        <div class="brand-text"><span class="brand-title">E2C92</span><span class="brand-sub">HAUTS-DE-SEINE • NANTERRE • CLICHY • BAGNEUX</span></div>
+      </a>
+      <nav class="nav-links" style="gap:1.35rem; white-space:nowrap;">
+        <div class="nav-dropdown"><a href="qui-sommes-nous.html" class="nav-item">L’E2C92 ▾</a><div class="nav-dropdown-menu"><a href="qui-sommes-nous.html" class="dropdown-link">Qui sommes-nous ?</a><a href="chiffres-cles.html" class="dropdown-link">Chiffres clés</a><a href="nous-trouver.html" class="dropdown-link">Nous trouver (Sites 92)</a><a href="formateurs-referents.html" class="dropdown-link">Formateurs-référents</a></div></div>
+        <div class="nav-dropdown"><a href="formation.html" class="nav-item" style="color:var(--e2c-orange);">Parcours E2C ▾</a><div class="nav-dropdown-menu"><a href="formation.html" class="dropdown-link" style="color:var(--e2c-orange);">Se former à l’E2C 92</a><a href="handicap.html" class="dropdown-link">Handicap & Accessibilité</a><a href="paroles-de-stagiaires.html" class="dropdown-link">Paroles de stagiaires</a><a href="numerique.html" class="dropdown-link">Atelier Numérique</a><a href="maths.html" class="dropdown-link">Maths au quotidien</a><a href="communication.html" class="dropdown-link">Communication</a><a href="projet-pro.html" class="dropdown-link">Élaboration projet pro</a></div></div>
+        <div class="nav-dropdown"><a href="nos-partenaires.html" class="nav-item">Entreprises ▾</a><div class="nav-dropdown-menu"><a href="pourquoi-sengager.html" class="dropdown-link">Pourquoi s'engager ?</a><a href="comment-agir-avec-le2c-92.html" class="dropdown-link">Agir avec l’E2C 92</a><a href="nos-partenaires.html" class="dropdown-link">Nos partenaires</a><a href="taxe-dapprentissage.html" class="dropdown-link">Taxe d’apprentissage</a></div></div>
+        <a href="actualites.html" class="nav-item">Actualités</a>
+        <button id="theme-toggle" class="theme-toggle-btn" style="padding:0.45rem 0.65rem;" title="Basculer Mode Clair / Mode Sombre"><span id="theme-icon">🌙</span></button>
+        <a href="index.html#candidature" class="btn-nav magnetic" style="white-space:nowrap;">S'inscrire →</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero" style="min-height:46vh; padding-top:11rem; padding-bottom:3.5rem;">
+    <div class="hero-soft-halo"></div>
+    <div class="hero-content">
+      <div class="official-emblem-pill" style="margin:0 auto 1.4rem;"><span class="star-pulse">★</span><span>LE LABEL E2C</span></div>
+      <h1 class="hero-title" style="font-size:3.8rem;">
+        <span class="line-mask"><span class="line-inner">SE FORMER</span></span>
+        <span class="line-mask"><span class="line-inner gradient-text">À L'E2C</span></span>
+      </h1>
+      <p class="hero-desc">Vous voulez construire votre avenir ? Nous vous donnons les moyens dans un parcours individualisé.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="site-card" style="max-width:960px;margin:0 auto;padding:3rem;">
+        <span class="level-badge" style="margin-bottom:1rem;display:inline-block;">PARCOURS STAGIAIRE</span>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;margin-bottom:1.2rem;color:var(--text-main);">Construire votre avenir professionnel : l’E2C92 vous accompagne dans un parcours individualisé, gratuit et en alternance.</h2>
+        <ul style="color:var(--text-body);font-size:1.08rem;line-height:1.8;padding-left:1.5rem;margin-bottom:2rem;">
+          <li style="margin-bottom:0.8rem;">Le label E2C : gage de qualité.</li>
+          <li style="margin-bottom:0.8rem;">Un réseau d’entreprises partenaires engagées et citoyennes.</li>
+          <li style="margin-bottom:0.8rem;">Des liens privilégiés avec les organismes de formation en lien avec les métiers choisis.</li>
+          <li style="margin-bottom:0.8rem;">L’élaboration d’un projet professionnel et personnel.</li>
+        </ul>
+        <img src="../site_legacy/wp-content/uploads/2026/04/5Y6A1742-scaled-1-1024x683.jpg" alt="Formation E2C" style="width:100%;border-radius:16px;margin-bottom:3rem;">
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;margin-bottom:1rem;color:var(--text-main);">Les 5 grandes étapes du parcours</h3>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;"><strong>1. Intégration :</strong> Accueil, remise en confiance et exploration du monde professionnel (3 semaines en centre, 2 en stage).</p>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;"><strong>2. Émergence de projet :</strong> 8 semaines pour découvrir le monde de l’entreprise, développer les compétences sociales et professionnelles.</p>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;"><strong>3. Construction du projet individuel :</strong> Définir le projet professionnel ou la formation. L’alternance permet de le valider.</p>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;"><strong>4. Validation des acquis :</strong> Se fixer des objectifs personnels, mettre en œuvre son projet et le faire aboutir.</p>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:2rem;"><strong>5. Insertion professionnelle :</strong> Comprendre les attentes de l’entreprise et signer un contrat (CDI, CDD, alternance) ou entrer en formation.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;margin-bottom:1rem;color:var(--text-main);">Les prérequis d'entrée</h3>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;">L’accès au dispositif E2C repose sur des critères d’éligibilité favorisant l’accompagnement des jeunes les plus éloignés de l’emploi :</p>
+        <ul style="color:var(--text-body);font-size:1.08rem;line-height:1.8;padding-left:1.5rem;margin-bottom:2rem;">
+          <li style="margin-bottom:0.8rem;">Être orienté par un prescripteur ou candidater directement.</li>
+          <li style="margin-bottom:0.8rem;">Aucun niveau scolaire n’est exigé : l’entrée se fait sur la base de la motivation.</li>
+          <li style="margin-bottom:0.8rem;">Être âgé(e) de 16 à 25 ans (jusqu’à 30 ans pour les personnes en situation de handicap).</li>
+          <li style="margin-bottom:0.8rem;">Être sorti du système scolaire avec ou sans diplôme et sans qualification.</li>
+        </ul>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;margin-bottom:1rem;color:var(--text-main);">Les modalités d'évaluation</h3>
+        <p style="color:var(--text-body);font-size:1.08rem;line-height:1.8;margin-bottom:1rem;">L’évaluation est continue et basée sur les compétences (Positionnement, PIF, évaluations régulières, portfolio). À l’issue du parcours, une <strong>Attestation de Compétences Acquises</strong> est délivrée au jeune.</p>
+        <img src="../site_legacy/wp-content/uploads/2026/06/DSC08323-1024x683.jpg" alt="Stagiaires" style="width:100%;border-radius:16px;margin-bottom:2rem;">
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="../site_legacy/wp-content/uploads/2026/04/Plaquette-E2C-web2.pdf" class="btn-secondary magnetic">📄 Plaquette de présentation</a>
+          <a href="../site_legacy/wp-content/uploads/2026/09/12_REGLEMENT-INTERIEUR-E2C-92.pdf" class="btn-secondary magnetic">📄 Règlement intérieur</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand"><strong>E2C92 — École de la Deuxième Chance des Hauts-de-Seine. Membre du Réseau E2C France.</strong><span>Nanterre • Clichy • Bagneux • Tél : 01 41 05 92 60</span></div>
+      <div class="footer-meta" style="text-align:right;"><strong style="color:var(--e2c-orange);font-size:0.88rem;">Site réalisé par le stagiaire Sacha — Groupe 3</strong></div>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -23,17 +23,20 @@ if (themeToggleBtn) {
 }
 
 // 3. Toile de particules interactives
-const canvas = document.getElementById('cinema-canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById('cinema-canvas') || document.getElementById('stars-canvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let width, height, particles = [];
 const mouse = { x: -9999, y: -9999 };
 
 function resizeCanvas() {
+  if (!canvas) return;
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+if (canvas && ctx) {
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+}
 
 class Particle {
   constructor() {
@@ -69,9 +72,12 @@ class Particle {
   }
 }
 
-for (let i = 0; i < 60; i++) particles.push(new Particle());
+if (canvas && ctx) {
+  for (let i = 0; i < 60; i++) particles.push(new Particle());
+}
 
 function animateParticles() {
+  if (!canvas || !ctx) return;
   ctx.clearRect(0, 0, width, height);
   for (let i = 0; i < particles.length; i++) {
     particles[i].update();
@@ -92,7 +98,7 @@ function animateParticles() {
   }
   requestAnimationFrame(animateParticles);
 }
-animateParticles();
+if (canvas && ctx) animateParticles();
 
 // 4. Spotlight Curseur, Barre Scroll & Parallaxe géométrique
 const spotlight = document.getElementById('cursor-spotlight');
