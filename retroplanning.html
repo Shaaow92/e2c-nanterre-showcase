@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rétroplanning — Organisation des actions • E2C Nanterre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .retro-hero {
+      padding: 8.5rem 0 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .retro-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      line-height: 1.12;
+      margin-bottom: 0.85rem;
+    }
+    .retro-lead {
+      font-size: 1.04rem;
+      max-width: 760px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+    .retro-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.8rem 0 2.2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .retro-filter-btn {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(234, 88, 12, 0.3);
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .retro-filter-btn.is-active,
+    .retro-filter-btn:hover {
+      background: #ea580c;
+      color: #ffffff;
+      border-color: #ea580c;
+    }
+    body.dark-mode .retro-filter-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border-color: rgba(249, 115, 22, 0.4);
+    }
+    body.dark-mode .retro-filter-btn.is-active,
+    body.dark-mode .retro-filter-btn:hover {
+      background: #ea580c;
+      color: #ffffff;
+    }
+    .retro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+    .retro-card {
+      background: #ffffff;
+      border: 1.5px solid rgba(15, 23, 42, 0.1);
+      border-top: 4px solid #ea580c;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .retro-card.type-partenaire {
+      border-top-color: #7c3aed;
+    }
+    body.dark-mode .retro-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: rgba(148, 163, 184, 0.2);
+    }
+    .retro-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .retro-type {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(234, 88, 12, 0.12);
+      color: #ea580c;
+    }
+    .retro-card.type-partenaire .retro-type {
+      background: rgba(124, 58, 237, 0.14);
+      color: #8b5cf6;
+    }
+    .retro-date-box {
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.05);
+    }
+    body.dark-mode .retro-date-box {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .retro-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      margin: 0.2rem 0 0;
+    }
+    .retro-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .retro-step {
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 14px;
+      padding: 0.85rem 0.95rem;
+      background: rgba(248, 250, 252, 0.85);
+    }
+    body.dark-mode .retro-step {
+      background: #1e293b;
+    }
+    .retro-step-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .retro-j {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #ea580c;
+    }
+    .retro-card.type-partenaire .retro-j {
+      color: #8b5cf6;
+    }
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .status-confirme { background: #dcfce7; color: #166534; }
+    .status-prevu { background: #e0f2fe; color: #075985; }
+    .status-afaire { background: #ffedd5; color: #9a3412; }
+    .retro-step-desc {
+      font-size: 0.94rem;
+      line-height: 1.5;
+      margin-bottom: 0.3rem;
+    }
+    .retro-step-who {
+      font-size: 0.82rem;
+      opacity: 0.78;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="nav-logo-card"><svg class="e2c-official-logo nav-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg"><path d="M185 60 L195 16 L216 56 L262 49 L228 82 L245 112 L212 97 L166 146 L181 92 L112 72 L185 65 Z" fill="#ff4800"/><polygon points="185,66 218,59 224,78 176,132 188,88" fill="#ffffff"/><text x="28" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">e</text><text x="216" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">c</text><text x="102" y="196" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="164" fill="#ffffff" stroke="#64748b" stroke-width="3.5">2</text><text x="152" y="222" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">HAUTS-</text><text x="122" y="248" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">DE-SEINE</text><line x1="122" y1="256" x2="266" y2="256" stroke="#64748b" stroke-width="2.5"/></svg></div>
+        <div class="brand-text"><span class="brand-title">E2C92</span><span class="brand-sub">HAUTS-DE-SEINE • NANTERRE • CLICHY • BAGNEUX</span></div>
+      </a>
+      <nav class="nav-links" style="gap:1.5rem; white-space:nowrap;">
+        <a href="index.html" class="nav-item">Accueil</a>
+        <a href="actualites.html" class="nav-item">Actualités</a>
+        <a href="tu-hesites.html" class="nav-item">Tu hésites ?</a>
+        <a href="retroplanning.html" class="nav-item" style="color:#ea580c; font-weight:700;">Rétroplanning</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème" title="Mode clair / sombre">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="retro-hero">
+      <h1 class="retro-title">Rétroplanning des actions</h1>
+      <p class="retro-lead">On part de la date de l'action et on remonte dans le temps pour voir ce qu'il faut préparer, qui s'en occupe et ce qui est déjà confirmé ou encore à faire.</p>
+
+      <div class="retro-toolbar" role="group" aria-label="Filtrer les actions">
+        <button type="button" class="retro-filter-btn is-active" data-filter="all">Toutes les actions</button>
+        <button type="button" class="retro-filter-btn" data-filter="entreprise">Visites d'entreprise</button>
+        <button type="button" class="retro-filter-btn" data-filter="partenaire">Rencontres &amp; ateliers</button>
+      </div>
+    </section>
+
+    <section class="retro-grid" id="retro-list"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <strong>E2C92 — École de la Deuxième Chance des Hauts-de-Seine</strong>
+        <span>Site de Nanterre • Suivi des actions</span>
+      </div>
+      <div class="footer-meta">Maquette rétroplanning — E2C Nanterre</div>
+    </div>
+  </footer>
+
+  <script>
+    const ACTIONS_RETRO = [
+      {
+        id: 'visite-entreprise-1',
+        type: 'entreprise',
+        typeLabel: 'Visite entreprise',
+        titre: 'Visite d'entreprise — Accueil Groupe 3',
+        dateAction: 'À définir (ex. 15/12/2026)',
+        etapes: [
+          { delai: 'J-15', action: 'Confirmer la date, les horaires et le lieu avec le partenaire', responsable: 'Équipe / Référent', statut: 'Confirmé' },
+          { delai: 'J-7', action: 'Constituer le groupe de stagiaires et vérifier les présences', responsable: 'Formateur référent', statut: 'Prévu' },
+          { delai: 'J-2', action: 'Transmettre aux jeunes l'heure, le lieu de rendez-vous et les consignes', responsable: 'Équipe', statut: 'À faire' }
+        ]
+      },
+      {
+        id: 'rencontre-partenaire-1',
+        type: 'partenaire',
+        typeLabel: 'Rencontre partenaire',
+        titre: 'Rencontre partenaire & présentation métier',
+        dateAction: 'À définir (ex. 22/12/2026)',
+        etapes: [
+          { delai: 'J-14', action: 'Valider l'horaire, le déroulé et les besoins avec le partenaire', responsable: 'Formateur', statut: 'Confirmé' },
+          { delai: 'J-5', action: 'Préparer la salle, le support et informer le groupe', responsable: 'Équipe', statut: 'À faire' },
+          { delai: 'J-1', action: 'Confirmer la présence de l'intervenant et des stagiaires', responsable: 'Formateur', statut: 'Prévu' }
+        ]
+      }
+    ];
+
+    function getStatusClass(statut) {
+      if (statut === 'Confirmé') return 'status-confirme';
+      if (statut === 'Prévu') return 'status-prevu';
+      return 'status-afaire';
+    }
+
+    function renderRetro(filter) {
+      const container = document.getElementById('retro-list');
+      if (!container) return;
+      const items = ACTIONS_RETRO.filter(a => filter === 'all' || a.type === filter);
+      container.innerHTML = items.map(action => {
+        const stepsHtml = action.etapes.map(st => `
+          <li class="retro-step">
+            <div class="retro-step-top">
+              <span class="retro-j">${st.delai}</span>
+              <span class="status-pill ${getStatusClass(st.statut)}">${st.statut}</span>
+            </div>
+            <div class="retro-step-desc">${st.action}</div>
+            <div class="retro-step-who">Qui s'en occupe : <strong>${st.responsable}</strong></div>
+          </li>
+        `).join('');
+        return `
+          <article class="retro-card type-${action.type}">
+            <div>
+              <div class="retro-card-head">
+                <span class="retro-type">${action.typeLabel}</span>
+                <span class="retro-date-box">📅 Action : ${action.dateAction}</span>
+              </div>
+              <h2 class="retro-card-title">${action.titre}</h2>
+            </div>
+            <ul class="retro-steps">${stepsHtml}</ul>
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.querySelectorAll('.retro-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.retro-filter-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        renderRetro(btn.dataset.filter);
+      });
+    });
+
+    renderRetro('all');
+  </script>
+  <script src="app.js" defer></script>
+</body>
+</html>
