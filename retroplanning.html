@@ -3,204 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rétroplanning — Tableau de suivi • E2C Nanterre</title>
+  <title>Rétroplanning — Calendrier &amp; suivi • E2C Nanterre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    .retro-hero {
-      padding: 8.5rem 0 1.8rem;
+    .cal-page {
+      padding: 8.4rem 0 4rem;
       position: relative;
       z-index: 2;
     }
-    .retro-kicker {
+    .cal-header {
+      margin-bottom: 1.8rem;
+    }
+    .cal-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 0.6rem;
+    }
+    .cal-header p {
+      max-width: 780px;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.1rem;
+    }
+    .legend-chip {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.35rem 0.85rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      background: rgba(234, 88, 12, 0.12);
-      color: #ea580c;
-      font-size: 0.8rem;
-      font-weight: 800;
-      margin-bottom: 0.8rem;
-    }
-    .retro-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4.2vw, 3.1rem);
-      line-height: 1.12;
-      margin-bottom: 0.75rem;
-    }
-    .retro-lead {
-      font-size: 1.03rem;
-      max-width: 780px;
-      line-height: 1.7;
-      opacity: 0.9;
-    }
-    .retro-explain {
-      margin-top: 1.35rem;
-      padding: 1.1rem 1.35rem;
-      border-radius: 16px;
-      background: rgba(255, 247, 237, 0.9);
-      border: 1px solid rgba(234, 88, 12, 0.28);
-      border-left: 4px solid #ea580c;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      max-width: 860px;
-    }
-    body.dark-mode .retro-explain {
-      background: rgba(30, 41, 59, 0.9);
-      border-color: rgba(249, 115, 22, 0.35);
-      color: #f1f5f9;
-    }
-
-    /* Compteurs coup d'oeil */
-    .retro-kpis {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      margin: 1.6rem 0;
-      position: relative;
-      z-index: 2;
-    }
-    .kpi-box {
-      background: #ffffff;
-      border: 1.5px solid rgba(15, 23, 42, 0.09);
-      border-radius: 16px;
-      padding: 1rem 1.2rem;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
-    }
-    body.dark-mode .kpi-box {
-      background: #0f172a;
-      border-color: rgba(148, 163, 184, 0.22);
-      color: #f8fafc;
-    }
-    .kpi-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.85rem;
-      font-weight: 800;
-      line-height: 1.1;
-    }
-    .kpi-fait .kpi-num { color: #16a34a; }
-    .kpi-encours .kpi-num { color: #0284c7; }
-    .kpi-afaire .kpi-num { color: #ea580c; }
-    .kpi-label {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      opacity: 0.82;
-      margin-top: 0.25rem;
-    }
-
-    /* Barre de filtres et bascule vue */
-    .retro-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-bottom: 1.8rem;
-      position: relative;
-      z-index: 2;
-    }
-    .retro-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .retro-filter-btn,
-    .view-btn {
-      padding: 0.52rem 0.95rem;
-      border-radius: 999px;
-      border: 1.5px solid rgba(234, 88, 12, 0.3);
       background: #ffffff;
-      color: #0f172a;
-      font-weight: 700;
-      font-size: 0.84rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
+      border: 1px solid rgba(15, 23, 42, 0.12);
     }
-    .retro-filter-btn.is-active,
-    .retro-filter-btn:hover,
-    .view-btn.is-active,
-    .view-btn:hover {
-      background: #ea580c;
-      color: #ffffff;
-      border-color: #ea580c;
-    }
-    body.dark-mode .retro-filter-btn,
-    body.dark-mode .view-btn {
+    body.dark-mode .legend-chip {
       background: #1e293b;
       color: #f8fafc;
-      border-color: rgba(249, 115, 22, 0.4);
+      border-color: rgba(148, 163, 184, 0.25);
     }
-    body.dark-mode .retro-filter-btn.is-active,
-    body.dark-mode .view-btn.is-active {
-      background: #ea580c;
-      color: #ffffff;
+    .dot-visite { width: 10px; height: 10px; border-radius: 50%; background: #ea580c; }
+    .dot-job { width: 10px; height: 10px; border-radius: 50%; background: #7c3aed; }
+    .dot-coaching { width: 10px; height: 10px; border-radius: 50%; background: #0284c7; }
+
+    /* Disposition Calendrier + Panneau à côté */
+    .planner-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+      gap: 1.6rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .planner-layout { grid-template-columns: 1fr; }
     }
 
-    /* Vue Cartes */
-    .retro-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.6rem;
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 2;
-    }
-    .retro-card {
+    .calendar-box {
       background: #ffffff;
       border: 1.5px solid rgba(15, 23, 42, 0.1);
-      border-top: 4px solid #ea580c;
-      border-radius: 20px;
-      padding: 1.5rem;
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
+      border-radius: 22px;
+      padding: 1.4rem;
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.07);
     }
-    .retro-card.type-partenaire { border-top-color: #7c3aed; }
-    body.dark-mode .retro-card {
+    body.dark-mode .calendar-box {
       background: #0f172a;
       color: #f8fafc;
       border-color: rgba(148, 163, 184, 0.22);
     }
-    .retro-card-head {
+    .cal-month-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 0.65rem;
-      flex-wrap: wrap;
+      margin-bottom: 1.1rem;
     }
-    .retro-type {
-      font-size: 0.75rem;
+    .cal-month-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.35rem;
+      text-align: center;
+      font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.28rem 0.65rem;
-      border-radius: 999px;
-      background: rgba(234, 88, 12, 0.12);
-      color: #ea580c;
+      opacity: 0.7;
+      margin-bottom: 0.45rem;
     }
-    .retro-card.type-partenaire .retro-type {
-      background: rgba(124, 58, 237, 0.14);
-      color: #8b5cf6;
+    .cal-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.4rem;
     }
-    .retro-date-box {
+    .cal-day {
+      min-height: 78px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      padding: 0.4rem;
+      background: rgba(248, 250, 252, 0.75);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       font-size: 0.84rem;
+    }
+    .cal-day.is-empty {
+      background: transparent;
+      border-color: transparent;
+    }
+    body.dark-mode .cal-day {
+      background: #1e293b;
+      border-color: rgba(148, 163, 184, 0.18);
+    }
+    body.dark-mode .cal-day.is-empty {
+      background: transparent;
+      border-color: transparent;
+    }
+    .cal-day-num {
       font-weight: 800;
-      padding: 0.3rem 0.75rem;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.06);
     }
-    body.dark-mode .retro-date-box { background: rgba(255, 255, 255, 0.1); }
-    .retro-card-title {
+    .cal-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      line-height: 1.2;
+      padding: 0.22rem 0.35rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      border: none;
+      width: 100%;
+      transition: transform 0.14s ease;
+    }
+    .cal-tag:hover { transform: scale(1.02); }
+    .cal-tag.visite { background: #ffedd5; color: #9a3412; }
+    .cal-tag.job { background: #ede9fe; color: #5b21b6; }
+    .cal-tag.coaching { background: #e0f2fe; color: #075985; }
+    .cal-day.is-focused {
+      outline: 2px solid #ea580c;
+      outline-offset: 1px;
+    }
+
+    /* Panneau latéral de sélection et tâches */
+    .sidebar-panel {
+      background: #ffffff;
+      border: 1.5px solid rgba(15, 23, 42, 0.1);
+      border-radius: 22px;
+      padding: 1.4rem;
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+    body.dark-mode .sidebar-panel {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: rgba(148, 163, 184, 0.22);
+    }
+    .project-picker {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .project-picker-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.78;
+    }
+    .project-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.45rem;
+    }
+    @media (max-width: 520px) {
+      .project-tabs { grid-template-columns: 1fr; }
+    }
+    .proj-btn {
+      padding: 0.6rem 0.7rem;
+      border-radius: 12px;
+      border: 1.5px solid rgba(148, 163, 184, 0.35);
+      background: rgba(248, 250, 252, 0.9);
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    body.dark-mode .proj-btn {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+    .proj-btn.is-selected[data-proj="visite"] { background: #ea580c; color: #fff; border-color: #ea580c; }
+    .proj-btn.is-selected[data-proj="job"] { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+    .proj-btn.is-selected[data-proj="coaching"] { background: #0284c7; color: #fff; border-color: #0284c7; }
+
+    .selected-summary {
+      padding: 0.95rem 1rem;
+      border-radius: 14px;
+      background: rgba(248, 250, 252, 0.95);
+      border-left: 4px solid #ea580c;
+    }
+    .selected-summary.proj-job { border-left-color: #7c3aed; }
+    .selected-summary.proj-coaching { border-left-color: #0284c7; }
+    body.dark-mode .selected-summary { background: #1e293b; }
+    .selected-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.28rem;
-      margin: 0.35rem 0 0;
+      font-size: 1.18rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
     }
-    .retro-steps {
+    .selected-meta {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+    .task-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -208,94 +234,46 @@
       flex-direction: column;
       gap: 0.65rem;
     }
-    .retro-step {
+    .task-item {
       border: 1px solid rgba(148, 163, 184, 0.25);
       border-radius: 14px;
-      padding: 0.8rem 0.95rem;
-      background: rgba(248, 250, 252, 0.9);
+      padding: 0.8rem 0.9rem;
+      background: rgba(248, 250, 252, 0.85);
     }
-    .retro-step.is-target {
-      border-color: rgba(234, 88, 12, 0.45);
-      background: rgba(255, 247, 237, 0.95);
-    }
-    body.dark-mode .retro-step { background: #1e293b; }
-    body.dark-mode .retro-step.is-target { background: rgba(234, 88, 12, 0.16); }
-    .retro-step-top {
+    body.dark-mode .task-item { background: #1e293b; }
+    .task-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.3rem;
-      flex-wrap: wrap;
     }
-    .retro-j {
+    .task-date {
+      font-size: 0.82rem;
       font-weight: 800;
-      font-size: 0.86rem;
       color: #ea580c;
     }
-    .retro-card.type-partenaire .retro-j { color: #8b5cf6; }
-    .status-pill {
-      font-size: 0.76rem;
+    .selected-summary.proj-job ~ .task-list .task-date { color: #8b5cf6; }
+    .selected-summary.proj-coaching ~ .task-list .task-date { color: #0284c7; }
+    .status-badge {
+      font-size: 0.74rem;
       font-weight: 800;
-      padding: 0.22rem 0.65rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 999px;
       border: none;
       cursor: pointer;
     }
-    .status-fait { background: #dcfce7; color: #166534; }
-    .status-encours { background: #e0f2fe; color: #075985; }
-    .status-afaire { background: #ffedd5; color: #9a3412; }
-    .retro-step-desc {
-      font-size: 0.94rem;
-      line-height: 1.48;
-      margin-bottom: 0.28rem;
-    }
-    .retro-step-who {
-      font-size: 0.81rem;
-      opacity: 0.82;
-    }
-
-    /* Vue Tableau de suivi */
-    .retro-table-wrap {
-      display: none;
-      overflow-x: auto;
-      background: #ffffff;
-      border: 1.5px solid rgba(15, 23, 42, 0.1);
-      border-radius: 18px;
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 2;
-    }
-    body.dark-mode .retro-table-wrap {
-      background: #0f172a;
-      border-color: rgba(148, 163, 184, 0.22);
-      color: #f8fafc;
-    }
-    .retro-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 680px;
+    .st-fait { background: #dcfce7; color: #166534; }
+    .st-encours { background: #fef9c3; color: #854d0e; }
+    .st-afaire { background: #ffedd5; color: #9a3412; }
+    .task-text {
       font-size: 0.92rem;
+      line-height: 1.45;
+      margin-bottom: 0.25rem;
     }
-    .retro-table th,
-    .retro-table td {
-      padding: 0.9rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-    }
-    .retro-table th {
+    .task-resp {
       font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: rgba(234, 88, 12, 0.08);
-    }
-    .hint-status {
-      font-size: 0.82rem;
-      opacity: 0.78;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -316,198 +294,201 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="retro-hero">
-      <span class="retro-kicker">📋 Maquette de suivi • E2C Nanterre</span>
-      <h1 class="retro-title">Rétroplanning des actions</h1>
-      <p class="retro-lead">Visualisez d'un coup d'œil les actions à venir, leurs étapes de préparation en remontant depuis la date cible, le responsable et l'avancement.</p>
-      <div class="retro-explain">
-        <strong>Principe :</strong> on part de la date de l'action (par exemple le <strong>15 décembre</strong> pour une visite d'entreprise) et on remonte dans le temps pour lister chaque étape, sa date limite, la personne responsable et son statut (<em>À faire</em>, <em>En cours</em> ou <em>Fait</em>).
-      </div>
-    </section>
-
-    <section class="retro-kpis" id="retro-kpis"></section>
-
-    <div class="retro-controls">
-      <div class="retro-toolbar" role="group" aria-label="Filtrer les actions">
-        <button type="button" class="retro-filter-btn is-active" data-filter="all">Toutes les actions</button>
-        <button type="button" class="retro-filter-btn" data-filter="entreprise">Visites d'entreprise</button>
-        <button type="button" class="retro-filter-btn" data-filter="partenaire">Ateliers &amp; partenaires</button>
-      </div>
-      <div class="retro-toolbar" role="group" aria-label="Changer d'affichage">
-        <button type="button" class="view-btn is-active" data-view="cards">Vue fiches</button>
-        <button type="button" class="view-btn" data-view="table">Vue tableau</button>
+  <main class="container cal-page">
+    <div class="cal-header">
+      <h1>Rétroplanning — Calendrier &amp; actions</h1>
+      <p>Chaque action a sa propre plage de dates sur le calendrier sans chevauchement. Sélectionne un projet à droite (ou clique sur un repère du calendrier) pour voir ses tâches à faire, les responsables et l'avancement.</p>
+      <div class="legend-row">
+        <span class="legend-chip"><span class="dot-visite"></span> 1. Visite entreprise (1–7 déc.)</span>
+        <span class="legend-chip"><span class="dot-job"></span> 2. Job dating (9–15 déc.)</span>
+        <span class="legend-chip"><span class="dot-coaching"></span> 3. Coaching (17–22 déc.)</span>
       </div>
     </div>
 
-    <p class="hint-status">💡 Astuce maquette : cliquez sur une pastille de statut (<strong>Fait</strong>, <strong>En cours</strong>, <strong>À faire</strong>) pour simuler la mise à jour en direct.</p>
+    <div class="planner-layout">
+      <section class="calendar-box" aria-label="Calendrier de décembre 2026">
+        <div class="cal-month-bar">
+          <div class="cal-month-title">📅 Décembre 2026</div>
+          <span style="font-size:0.84rem; opacity:0.78;">3 actions distinctes</span>
+        </div>
+        <div class="cal-weekdays">
+          <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
+        </div>
+        <div class="cal-days" id="cal-days"></div>
+      </section>
 
-    <section class="retro-grid" id="retro-list"></section>
-    <section class="retro-table-wrap" id="retro-table-wrap"></section>
+      <aside class="sidebar-panel" aria-label="Détails du projet sélectionné">
+        <div class="project-picker">
+          <div class="project-picker-label">Choisir un projet</div>
+          <div class="project-tabs">
+            <button type="button" class="proj-btn is-selected" data-proj="visite">Visite entreprise</button>
+            <button type="button" class="proj-btn" data-proj="job">Job dating</button>
+            <button type="button" class="proj-btn" data-proj="coaching">Coaching</button>
+          </div>
+        </div>
+
+        <div id="proj-detail"></div>
+      </aside>
+    </div>
   </main>
 
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
         <strong>E2C92 — École de la Deuxième Chance des Hauts-de-Seine</strong>
-        <span>Site de Nanterre • Maquette Rétroplanning</span>
+        <span>Site de Nanterre • Rétroplanning</span>
       </div>
-      <div class="footer-meta">Suivi des actions — E2C Nanterre</div>
+      <div class="footer-meta">Maquette calendrier — E2C Nanterre</div>
     </div>
   </footer>
 
   <script>
-    // Données simples à modifier pour ajouter ou mettre à jour une action
-    const ACTIONS_RETRO = [
-      {
-        id: 'visite-15-dec',
-        type: 'entreprise',
-        typeLabel: 'Visite d'entreprise',
-        titre: 'Visite d'entreprise — Groupe Nanterre',
-        dateAction: '15 décembre',
-        etapes: [
-          { dateLimite: '15 décembre (Jour J)', action: 'Visite de l'entreprise avec le groupe', responsable: 'Formateur référent & groupe', statut: 'À faire', isTarget: true },
-          { dateLimite: '12 décembre', action: 'Envoyer aux jeunes l'heure, le lieu et les consignes', responsable: 'Équipe E2C', statut: 'À faire' },
-          { dateLimite: '8 décembre', action: 'Constituer la liste des participants', responsable: 'Formateur référent', statut: 'En cours' },
-          { dateLimite: '1er décembre', action: 'Confirmer la date et les modalités avec l'entreprise', responsable: 'Chargé relations entreprises', statut: 'Fait' },
-          { dateLimite: '20 novembre', action: 'Contacter l'entreprise pour proposer la visite', responsable: 'Chargé relations entreprises', statut: 'Fait' }
-        ]
+    const PROJETS = {
+      visite: {
+        id: 'visite',
+        label: 'Visite entreprise',
+        titre: 'Visite d'entreprise — Accueil stagiaires',
+        echeance: '7 décembre 2026',
+        fenetre: '1er au 7 décembre',
+        taches: [
+          { date: '7 déc. (Jour J)', tache: 'Visite de l'entreprise avec le groupe', responsable: 'Formateur référent', statut: 'À faire' },
+          { date: '5 déc.', tache: 'Envoyer l'heure, le lieu de RDV et les consignes aux jeunes', responsable: 'Équipe E2C', statut: 'À faire' },
+          { date: '3 déc.', tache: 'Valider la liste des participants et les présences', responsable: 'Formateur référent', statut: 'En cours' },
+          { date: '1er déc.', tache: 'Confirmer la date et l'accueil avec l'entreprise', responsable: 'Chargé relations entreprises', statut: 'Fait' }
+        ],
+        calEvents: {
+          1: 'Confirmer date visite',
+          3: 'Liste participants',
+          5: 'Infos RDV stagiaires',
+          7: 'Visite entreprise'
+        }
       },
-      {
-        id: 'atelier-partenaire-18-dec',
-        type: 'partenaire',
-        typeLabel: 'Atelier & partenaire',
-        titre: 'Atelier découverte métiers avec partenaire',
-        dateAction: '18 décembre',
-        etapes: [
-          { dateLimite: '18 décembre (Jour J)', action: 'Animation de l'atelier avec le partenaire', responsable: 'Formateur & partenaire', statut: 'À faire', isTarget: true },
-          { dateLimite: '15 décembre', action: 'Préparer la salle, le matériel et rappeler l'horaire aux stagiaires', responsable: 'Équipe E2C', statut: 'À faire' },
-          { dateLimite: '10 décembre', action: 'Valider le déroulé de l'atelier avec l'intervenant', responsable: 'Formateur', statut: 'En cours' },
-          { dateLimite: '2 décembre', action: 'Fixer la date et le thème de l'intervention', responsable: 'Équipe E2C', statut: 'Fait' }
-        ]
+      job: {
+        id: 'job',
+        label: 'Job dating',
+        titre: 'Job dating — Rencontre recruteurs locaux',
+        echeance: '15 décembre 2026',
+        fenetre: '9 au 15 décembre',
+        taches: [
+          { date: '15 déc. (Jour J)', tache: 'Tenue du job dating et entretiens flash', responsable: 'Équipe & recruteurs', statut: 'À faire' },
+          { date: '13 déc.', tache: 'Rappel des horaires et préparation de la pitch-présentation', responsable: 'Formateur', statut: 'À faire' },
+          { date: '11 déc.', tache: 'Vérifier les CV et inscrire les candidats par créneau', responsable: 'Conseiller / Formateur', statut: 'En cours' },
+          { date: '9 déc.', tache: 'Confirmer les postes ouverts et les tables avec les recruteurs', responsable: 'Chargé relations entreprises', statut: 'Fait' }
+        ],
+        calEvents: {
+          9: 'Confirmer recruteurs',
+          11: 'CV & créneaux',
+          13: 'Rappel & pitch',
+          15: 'Job dating'
+        }
+      },
+      coaching: {
+        id: 'coaching',
+        label: 'Coaching',
+        titre: 'Session de coaching — Confiance & projet',
+        echeance: '22 décembre 2026',
+        fenetre: '17 au 22 décembre',
+        taches: [
+          { date: '22 déc. (Jour J)', tache: 'Séance collective et retours individuels', responsable: 'Coach / Formateur', statut: 'À faire' },
+          { date: '20 déc.', tache: 'Envoyer le lieu, l'heure et le thème de la séance', responsable: 'Équipe E2C', statut: 'À faire' },
+          { date: '18 déc.', tache: 'Recueillir les besoins individuels de chaque stagiaire', responsable: 'Formateur référent', statut: 'En cours' },
+          { date: '17 déc.', tache: 'Valider l'ordre du jour et la salle de coaching', responsable: 'Coach / Équipe', statut: 'Fait' }
+        ],
+        calEvents: {
+          17: 'Ordre du jour coaching',
+          18: 'Besoins stagiaires',
+          20: 'Convocation séance',
+          22: 'Session coaching'
+        }
       }
-    ];
+    };
 
-    const STATUTS_CYCLE = ['À faire', 'En cours', 'Fait'];
-    let currentFilter = 'all';
-    let currentView = 'cards';
+    const STATUTS = ['À faire', 'En cours', 'Fait'];
+    let selectedProj = 'visite';
 
-    function getStatusClass(statut) {
-      if (statut === 'Fait') return 'status-fait';
-      if (statut === 'En cours') return 'status-encours';
-      return 'status-afaire';
+    function statusClass(st) {
+      if (st === 'Fait') return 'st-fait';
+      if (st === 'En cours') return 'st-encours';
+      return 'st-afaire';
     }
 
-    function cycleStatus(actionId, stepIndex) {
-      const action = ACTIONS_RETRO.find(a => a.id === actionId);
-      if (!action || !action.etapes[stepIndex]) return;
-      const cur = action.etapes[stepIndex].statut;
-      const next = STATUTS_CYCLE[(STATUTS_CYCLE.indexOf(cur) + 1) % STATUTS_CYCLE.length];
-      action.etapes[stepIndex].statut = next;
-      renderAll();
+    function cycleTaskStatus(projKey, idx) {
+      const t = PROJETS[projKey].taches[idx];
+      t.statut = STATUTS[(STATUTS.indexOf(t.statut) + 1) % STATUTS.length];
+      renderSidebar();
     }
 
-    function renderKpis(items) {
-      const allSteps = items.flatMap(a => a.etapes);
-      const fait = allSteps.filter(s => s.statut === 'Fait').length;
-      const encours = allSteps.filter(s => s.statut === 'En cours').length;
-      const afaire = allSteps.filter(s => s.statut === 'À faire').length;
-      const kpiEl = document.getElementById('retro-kpis');
-      if (!kpiEl) return;
-      kpiEl.innerHTML = `
-        <div class="kpi-box kpi-fait"><div class="kpi-num">${fait}</div><div class="kpi-label">✅ Étapes faites / confirmées</div></div>
-        <div class="kpi-box kpi-encours"><div class="kpi-num">${encours}</div><div class="kpi-label">⏳ Étapes en cours</div></div>
-        <div class="kpi-box kpi-afaire"><div class="kpi-num">${afaire}</div><div class="kpi-label">📌 Étapes à faire</div></div>
+    function selectProject(projKey) {
+      selectedProj = projKey;
+      document.querySelectorAll('.proj-btn').forEach(b => {
+        b.classList.toggle('is-selected', b.dataset.proj === projKey);
+      });
+      renderCalendar();
+      renderSidebar();
+    }
+
+    function renderCalendar() {
+      const grid = document.getElementById('cal-days');
+      if (!grid) return;
+      // 1er décembre 2026 = Mardi -> 1 case vide (Lundi) avant le 1
+      const leadingEmpty = 1;
+      const totalDays = 31;
+      let html = '';
+
+      for (let i = 0; i < leadingEmpty; i++) {
+        html += '<div class="cal-day is-empty"></div>';
+      }
+
+      for (let d = 1; d <= totalDays; d++) {
+        let badgeHtml = '';
+        let activeProjForDay = null;
+
+        for (const key of ['visite', 'job', 'coaching']) {
+          if (PROJETS[key].calEvents[d]) {
+            activeProjForDay = key;
+            badgeHtml = `<button type="button" class="cal-tag ${key}" onclick="selectProject('${key}')">${PROJETS[key].calEvents[d]}</button>`;
+            break;
+          }
+        }
+
+        const focused = activeProjForDay === selectedProj ? 'is-focused' : '';
+        html += `<div class="cal-day ${focused}"><span class="cal-day-num">${d}</span>${badgeHtml}</div>`;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function renderSidebar() {
+      const p = PROJETS[selectedProj];
+      const detail = document.getElementById('proj-detail');
+      if (!p || !detail) return;
+
+      const tasksHtml = p.taches.map((t, idx) => `
+        <li class="task-item">
+          <div class="task-top">
+            <span class="task-date">📅 ${t.date}</span>
+            <button type="button" class="status-badge ${statusClass(t.statut)}" onclick="cycleTaskStatus('${p.id}', ${idx})" title="Cliquer pour changer le statut">${t.statut}</button>
+          </div>
+          <div class="task-text">${t.tache}</div>
+          <div class="task-resp">Responsable : <strong>${t.responsable}</strong></div>
+        </li>
+      `).join('');
+
+      detail.innerHTML = `
+        <div class="selected-summary proj-${p.id}">
+          <div class="selected-title">${p.titre}</div>
+          <div class="selected-meta">Échéance : <strong>${p.echeance}</strong> • Fenêtre : ${p.fenetre}</div>
+        </div>
+        <ul class="task-list" style="margin-top:0.85rem;">${tasksHtml}</ul>
       `;
     }
 
-    function renderCards(items) {
-      const container = document.getElementById('retro-list');
-      if (!container) return;
-      container.style.display = currentView === 'cards' ? 'grid' : 'none';
-      container.innerHTML = items.map(action => {
-        const stepsHtml = action.etapes.map((st, idx) => `
-          <li class="retro-step ${st.isTarget ? 'is-target' : ''}">
-            <div class="retro-step-top">
-              <span class="retro-j">📅 ${st.dateLimite}</span>
-              <button type="button" class="status-pill ${getStatusClass(st.statut)}" onclick="cycleStatus('${action.id}', ${idx})" title="Cliquer pour changer le statut">${st.statut}</button>
-            </div>
-            <div class="retro-step-desc">${st.action}</div>
-            <div class="retro-step-who">Responsable : <strong>${st.responsable}</strong></div>
-          </li>
-        `).join('');
-        return `
-          <article class="retro-card type-${action.type}">
-            <div>
-              <div class="retro-card-head">
-                <span class="retro-type">${action.typeLabel}</span>
-                <span class="retro-date-box">🎯 Échéance : ${action.dateAction}</span>
-              </div>
-              <h2 class="retro-card-title">${action.titre}</h2>
-            </div>
-            <ul class="retro-steps">${stepsHtml}</ul>
-          </article>
-        `;
-      }).join('');
-    }
-
-    function renderTable(items) {
-      const wrap = document.getElementById('retro-table-wrap');
-      if (!wrap) return;
-      wrap.style.display = currentView === 'table' ? 'block' : 'none';
-      const rows = items.flatMap(action =>
-        action.etapes.map((st, idx) => `
-          <tr>
-            <td><strong>${action.titre}</strong><br><small>${action.typeLabel}</small></td>
-            <td><strong>${st.dateLimite}</strong></td>
-            <td>${st.action}</td>
-            <td>${st.responsable}</td>
-            <td><button type="button" class="status-pill ${getStatusClass(st.statut)}" onclick="cycleStatus('${action.id}', ${idx})">${st.statut}</button></td>
-          </tr>
-        `)
-      ).join('');
-      wrap.innerHTML = `
-        <table class="retro-table">
-          <thead>
-            <tr>
-              <th>Action</th>
-              <th>Date limite</th>
-              <th>Étape de préparation</th>
-              <th>Responsable</th>
-              <th>Statut</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-      `;
-    }
-
-    function renderAll() {
-      const items = ACTIONS_RETRO.filter(a => currentFilter === 'all' || a.type === currentFilter);
-      renderKpis(items);
-      renderCards(items);
-      renderTable(items);
-    }
-
-    document.querySelectorAll('.retro-filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.retro-filter-btn').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        currentFilter = btn.dataset.filter;
-        renderAll();
-      });
+    document.querySelectorAll('.proj-btn').forEach(btn => {
+      btn.addEventListener('click', () => selectProject(btn.dataset.proj));
     });
 
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        currentView = btn.dataset.view;
-        renderAll();
-      });
-    });
-
-    renderAll();
+    renderCalendar();
+    renderSidebar();
   </script>
   <script src="app.js" defer></script>
 </body>
