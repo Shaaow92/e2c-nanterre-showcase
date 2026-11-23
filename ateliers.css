@@ -515,3 +515,21 @@ body.theme-projet .pattern-bg {
     margin-left: auto;
   }
 }
+
+/* --- Garde stricte Desktop / Mobile pour le menu burger --- */
+@media (min-width: 901px) {
+  .mobile-menu-btn,
+  .mobile-nav-drawer,
+  .mobile-nav-drawer.is-open {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-nav-drawer:not(.is-open) {
+    display: none !important;
+  }
+  .mobile-nav-drawer.is-open {
+    display: flex !important;
+  }
+}
