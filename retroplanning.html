@@ -3,64 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rétroplanning — Organisation des actions • E2C Nanterre</title>
+  <title>Rétroplanning — Tableau de suivi • E2C Nanterre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
     .retro-hero {
-      padding: 8.5rem 0 2.5rem;
+      padding: 8.5rem 0 1.8rem;
       position: relative;
       z-index: 2;
     }
+    .retro-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(234, 88, 12, 0.12);
+      color: #ea580c;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
     .retro-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
       line-height: 1.12;
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.75rem;
     }
     .retro-lead {
-      font-size: 1.04rem;
-      max-width: 760px;
+      font-size: 1.03rem;
+      max-width: 780px;
       line-height: 1.7;
       opacity: 0.9;
+    }
+    .retro-explain {
+      margin-top: 1.35rem;
+      padding: 1.1rem 1.35rem;
+      border-radius: 16px;
+      background: rgba(255, 247, 237, 0.9);
+      border: 1px solid rgba(234, 88, 12, 0.28);
+      border-left: 4px solid #ea580c;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      max-width: 860px;
+    }
+    body.dark-mode .retro-explain {
+      background: rgba(30, 41, 59, 0.9);
+      border-color: rgba(249, 115, 22, 0.35);
+      color: #f1f5f9;
+    }
+
+    /* Compteurs coup d'oeil */
+    .retro-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+      margin: 1.6rem 0;
+      position: relative;
+      z-index: 2;
+    }
+    .kpi-box {
+      background: #ffffff;
+      border: 1.5px solid rgba(15, 23, 42, 0.09);
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+    }
+    body.dark-mode .kpi-box {
+      background: #0f172a;
+      border-color: rgba(148, 163, 184, 0.22);
+      color: #f8fafc;
+    }
+    .kpi-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .kpi-fait .kpi-num { color: #16a34a; }
+    .kpi-encours .kpi-num { color: #0284c7; }
+    .kpi-afaire .kpi-num { color: #ea580c; }
+    .kpi-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0.82;
+      margin-top: 0.25rem;
+    }
+
+    /* Barre de filtres et bascule vue */
+    .retro-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 2;
     }
     .retro-toolbar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin: 1.8rem 0 2.2rem;
-      position: relative;
-      z-index: 2;
+      gap: 0.5rem;
     }
-    .retro-filter-btn {
-      padding: 0.55rem 1rem;
+    .retro-filter-btn,
+    .view-btn {
+      padding: 0.52rem 0.95rem;
       border-radius: 999px;
       border: 1.5px solid rgba(234, 88, 12, 0.3);
       background: #ffffff;
       color: #0f172a;
       font-weight: 700;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       cursor: pointer;
       transition: all 0.18s ease;
     }
     .retro-filter-btn.is-active,
-    .retro-filter-btn:hover {
+    .retro-filter-btn:hover,
+    .view-btn.is-active,
+    .view-btn:hover {
       background: #ea580c;
       color: #ffffff;
       border-color: #ea580c;
     }
-    body.dark-mode .retro-filter-btn {
+    body.dark-mode .retro-filter-btn,
+    body.dark-mode .view-btn {
       background: #1e293b;
       color: #f8fafc;
       border-color: rgba(249, 115, 22, 0.4);
     }
     body.dark-mode .retro-filter-btn.is-active,
-    body.dark-mode .retro-filter-btn:hover {
+    body.dark-mode .view-btn.is-active {
       background: #ea580c;
       color: #ffffff;
     }
+
+    /* Vue Cartes */
     .retro-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -80,19 +160,17 @@
       flex-direction: column;
       gap: 1.1rem;
     }
-    .retro-card.type-partenaire {
-      border-top-color: #7c3aed;
-    }
+    .retro-card.type-partenaire { border-top-color: #7c3aed; }
     body.dark-mode .retro-card {
       background: #0f172a;
       color: #f8fafc;
-      border-color: rgba(148, 163, 184, 0.2);
+      border-color: rgba(148, 163, 184, 0.22);
     }
     .retro-card-head {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
     .retro-type {
@@ -110,19 +188,17 @@
       color: #8b5cf6;
     }
     .retro-date-box {
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-size: 0.84rem;
+      font-weight: 800;
       padding: 0.3rem 0.75rem;
       border-radius: 10px;
-      background: rgba(15, 23, 42, 0.05);
+      background: rgba(15, 23, 42, 0.06);
     }
-    body.dark-mode .retro-date-box {
-      background: rgba(255, 255, 255, 0.08);
-    }
+    body.dark-mode .retro-date-box { background: rgba(255, 255, 255, 0.1); }
     .retro-card-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.3rem;
-      margin: 0.2rem 0 0;
+      font-size: 1.28rem;
+      margin: 0.35rem 0 0;
     }
     .retro-steps {
       list-style: none;
@@ -130,50 +206,96 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
     .retro-step {
       border: 1px solid rgba(148, 163, 184, 0.25);
       border-radius: 14px;
-      padding: 0.85rem 0.95rem;
-      background: rgba(248, 250, 252, 0.85);
+      padding: 0.8rem 0.95rem;
+      background: rgba(248, 250, 252, 0.9);
     }
-    body.dark-mode .retro-step {
-      background: #1e293b;
+    .retro-step.is-target {
+      border-color: rgba(234, 88, 12, 0.45);
+      background: rgba(255, 247, 237, 0.95);
     }
+    body.dark-mode .retro-step { background: #1e293b; }
+    body.dark-mode .retro-step.is-target { background: rgba(234, 88, 12, 0.16); }
     .retro-step-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.3rem;
       flex-wrap: wrap;
     }
     .retro-j {
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: #ea580c;
     }
-    .retro-card.type-partenaire .retro-j {
-      color: #8b5cf6;
-    }
+    .retro-card.type-partenaire .retro-j { color: #8b5cf6; }
     .status-pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 0.22rem 0.65rem;
       border-radius: 999px;
+      border: none;
+      cursor: pointer;
     }
-    .status-confirme { background: #dcfce7; color: #166534; }
-    .status-prevu { background: #e0f2fe; color: #075985; }
+    .status-fait { background: #dcfce7; color: #166534; }
+    .status-encours { background: #e0f2fe; color: #075985; }
     .status-afaire { background: #ffedd5; color: #9a3412; }
     .retro-step-desc {
       font-size: 0.94rem;
-      line-height: 1.5;
-      margin-bottom: 0.3rem;
+      line-height: 1.48;
+      margin-bottom: 0.28rem;
     }
     .retro-step-who {
+      font-size: 0.81rem;
+      opacity: 0.82;
+    }
+
+    /* Vue Tableau de suivi */
+    .retro-table-wrap {
+      display: none;
+      overflow-x: auto;
+      background: #ffffff;
+      border: 1.5px solid rgba(15, 23, 42, 0.1);
+      border-radius: 18px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+    body.dark-mode .retro-table-wrap {
+      background: #0f172a;
+      border-color: rgba(148, 163, 184, 0.22);
+      color: #f8fafc;
+    }
+    .retro-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      font-size: 0.92rem;
+    }
+    .retro-table th,
+    .retro-table td {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    }
+    .retro-table th {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: rgba(234, 88, 12, 0.08);
+    }
+    .hint-status {
       font-size: 0.82rem;
       opacity: 0.78;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
     }
   </style>
 </head>
@@ -196,76 +318,122 @@
 
   <main class="container">
     <section class="retro-hero">
+      <span class="retro-kicker">📋 Maquette de suivi • E2C Nanterre</span>
       <h1 class="retro-title">Rétroplanning des actions</h1>
-      <p class="retro-lead">On part de la date de l'action et on remonte dans le temps pour voir ce qu'il faut préparer, qui s'en occupe et ce qui est déjà confirmé ou encore à faire.</p>
-
-      <div class="retro-toolbar" role="group" aria-label="Filtrer les actions">
-        <button type="button" class="retro-filter-btn is-active" data-filter="all">Toutes les actions</button>
-        <button type="button" class="retro-filter-btn" data-filter="entreprise">Visites d'entreprise</button>
-        <button type="button" class="retro-filter-btn" data-filter="partenaire">Rencontres &amp; ateliers</button>
+      <p class="retro-lead">Visualisez d'un coup d'œil les actions à venir, leurs étapes de préparation en remontant depuis la date cible, le responsable et l'avancement.</p>
+      <div class="retro-explain">
+        <strong>Principe :</strong> on part de la date de l'action (par exemple le <strong>15 décembre</strong> pour une visite d'entreprise) et on remonte dans le temps pour lister chaque étape, sa date limite, la personne responsable et son statut (<em>À faire</em>, <em>En cours</em> ou <em>Fait</em>).
       </div>
     </section>
 
+    <section class="retro-kpis" id="retro-kpis"></section>
+
+    <div class="retro-controls">
+      <div class="retro-toolbar" role="group" aria-label="Filtrer les actions">
+        <button type="button" class="retro-filter-btn is-active" data-filter="all">Toutes les actions</button>
+        <button type="button" class="retro-filter-btn" data-filter="entreprise">Visites d'entreprise</button>
+        <button type="button" class="retro-filter-btn" data-filter="partenaire">Ateliers &amp; partenaires</button>
+      </div>
+      <div class="retro-toolbar" role="group" aria-label="Changer d'affichage">
+        <button type="button" class="view-btn is-active" data-view="cards">Vue fiches</button>
+        <button type="button" class="view-btn" data-view="table">Vue tableau</button>
+      </div>
+    </div>
+
+    <p class="hint-status">💡 Astuce maquette : cliquez sur une pastille de statut (<strong>Fait</strong>, <strong>En cours</strong>, <strong>À faire</strong>) pour simuler la mise à jour en direct.</p>
+
     <section class="retro-grid" id="retro-list"></section>
+    <section class="retro-table-wrap" id="retro-table-wrap"></section>
   </main>
 
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
         <strong>E2C92 — École de la Deuxième Chance des Hauts-de-Seine</strong>
-        <span>Site de Nanterre • Suivi des actions</span>
+        <span>Site de Nanterre • Maquette Rétroplanning</span>
       </div>
-      <div class="footer-meta">Maquette rétroplanning — E2C Nanterre</div>
+      <div class="footer-meta">Suivi des actions — E2C Nanterre</div>
     </div>
   </footer>
 
   <script>
+    // Données simples à modifier pour ajouter ou mettre à jour une action
     const ACTIONS_RETRO = [
       {
-        id: 'visite-entreprise-1',
+        id: 'visite-15-dec',
         type: 'entreprise',
-        typeLabel: 'Visite entreprise',
-        titre: 'Visite d'entreprise — Accueil Groupe 3',
-        dateAction: 'À définir (ex. 15/12/2026)',
+        typeLabel: 'Visite d'entreprise',
+        titre: 'Visite d'entreprise — Groupe Nanterre',
+        dateAction: '15 décembre',
         etapes: [
-          { delai: 'J-15', action: 'Confirmer la date, les horaires et le lieu avec le partenaire', responsable: 'Équipe / Référent', statut: 'Confirmé' },
-          { delai: 'J-7', action: 'Constituer le groupe de stagiaires et vérifier les présences', responsable: 'Formateur référent', statut: 'Prévu' },
-          { delai: 'J-2', action: 'Transmettre aux jeunes l'heure, le lieu de rendez-vous et les consignes', responsable: 'Équipe', statut: 'À faire' }
+          { dateLimite: '15 décembre (Jour J)', action: 'Visite de l'entreprise avec le groupe', responsable: 'Formateur référent & groupe', statut: 'À faire', isTarget: true },
+          { dateLimite: '12 décembre', action: 'Envoyer aux jeunes l'heure, le lieu et les consignes', responsable: 'Équipe E2C', statut: 'À faire' },
+          { dateLimite: '8 décembre', action: 'Constituer la liste des participants', responsable: 'Formateur référent', statut: 'En cours' },
+          { dateLimite: '1er décembre', action: 'Confirmer la date et les modalités avec l'entreprise', responsable: 'Chargé relations entreprises', statut: 'Fait' },
+          { dateLimite: '20 novembre', action: 'Contacter l'entreprise pour proposer la visite', responsable: 'Chargé relations entreprises', statut: 'Fait' }
         ]
       },
       {
-        id: 'rencontre-partenaire-1',
+        id: 'atelier-partenaire-18-dec',
         type: 'partenaire',
-        typeLabel: 'Rencontre partenaire',
-        titre: 'Rencontre partenaire & présentation métier',
-        dateAction: 'À définir (ex. 22/12/2026)',
+        typeLabel: 'Atelier & partenaire',
+        titre: 'Atelier découverte métiers avec partenaire',
+        dateAction: '18 décembre',
         etapes: [
-          { delai: 'J-14', action: 'Valider l'horaire, le déroulé et les besoins avec le partenaire', responsable: 'Formateur', statut: 'Confirmé' },
-          { delai: 'J-5', action: 'Préparer la salle, le support et informer le groupe', responsable: 'Équipe', statut: 'À faire' },
-          { delai: 'J-1', action: 'Confirmer la présence de l'intervenant et des stagiaires', responsable: 'Formateur', statut: 'Prévu' }
+          { dateLimite: '18 décembre (Jour J)', action: 'Animation de l'atelier avec le partenaire', responsable: 'Formateur & partenaire', statut: 'À faire', isTarget: true },
+          { dateLimite: '15 décembre', action: 'Préparer la salle, le matériel et rappeler l'horaire aux stagiaires', responsable: 'Équipe E2C', statut: 'À faire' },
+          { dateLimite: '10 décembre', action: 'Valider le déroulé de l'atelier avec l'intervenant', responsable: 'Formateur', statut: 'En cours' },
+          { dateLimite: '2 décembre', action: 'Fixer la date et le thème de l'intervention', responsable: 'Équipe E2C', statut: 'Fait' }
         ]
       }
     ];
 
+    const STATUTS_CYCLE = ['À faire', 'En cours', 'Fait'];
+    let currentFilter = 'all';
+    let currentView = 'cards';
+
     function getStatusClass(statut) {
-      if (statut === 'Confirmé') return 'status-confirme';
-      if (statut === 'Prévu') return 'status-prevu';
+      if (statut === 'Fait') return 'status-fait';
+      if (statut === 'En cours') return 'status-encours';
       return 'status-afaire';
     }
 
-    function renderRetro(filter) {
+    function cycleStatus(actionId, stepIndex) {
+      const action = ACTIONS_RETRO.find(a => a.id === actionId);
+      if (!action || !action.etapes[stepIndex]) return;
+      const cur = action.etapes[stepIndex].statut;
+      const next = STATUTS_CYCLE[(STATUTS_CYCLE.indexOf(cur) + 1) % STATUTS_CYCLE.length];
+      action.etapes[stepIndex].statut = next;
+      renderAll();
+    }
+
+    function renderKpis(items) {
+      const allSteps = items.flatMap(a => a.etapes);
+      const fait = allSteps.filter(s => s.statut === 'Fait').length;
+      const encours = allSteps.filter(s => s.statut === 'En cours').length;
+      const afaire = allSteps.filter(s => s.statut === 'À faire').length;
+      const kpiEl = document.getElementById('retro-kpis');
+      if (!kpiEl) return;
+      kpiEl.innerHTML = `
+        <div class="kpi-box kpi-fait"><div class="kpi-num">${fait}</div><div class="kpi-label">✅ Étapes faites / confirmées</div></div>
+        <div class="kpi-box kpi-encours"><div class="kpi-num">${encours}</div><div class="kpi-label">⏳ Étapes en cours</div></div>
+        <div class="kpi-box kpi-afaire"><div class="kpi-num">${afaire}</div><div class="kpi-label">📌 Étapes à faire</div></div>
+      `;
+    }
+
+    function renderCards(items) {
       const container = document.getElementById('retro-list');
       if (!container) return;
-      const items = ACTIONS_RETRO.filter(a => filter === 'all' || a.type === filter);
+      container.style.display = currentView === 'cards' ? 'grid' : 'none';
       container.innerHTML = items.map(action => {
-        const stepsHtml = action.etapes.map(st => `
-          <li class="retro-step">
+        const stepsHtml = action.etapes.map((st, idx) => `
+          <li class="retro-step ${st.isTarget ? 'is-target' : ''}">
             <div class="retro-step-top">
-              <span class="retro-j">${st.delai}</span>
-              <span class="status-pill ${getStatusClass(st.statut)}">${st.statut}</span>
+              <span class="retro-j">📅 ${st.dateLimite}</span>
+              <button type="button" class="status-pill ${getStatusClass(st.statut)}" onclick="cycleStatus('${action.id}', ${idx})" title="Cliquer pour changer le statut">${st.statut}</button>
             </div>
             <div class="retro-step-desc">${st.action}</div>
-            <div class="retro-step-who">Qui s'en occupe : <strong>${st.responsable}</strong></div>
+            <div class="retro-step-who">Responsable : <strong>${st.responsable}</strong></div>
           </li>
         `).join('');
         return `
@@ -273,7 +441,7 @@
             <div>
               <div class="retro-card-head">
                 <span class="retro-type">${action.typeLabel}</span>
-                <span class="retro-date-box">📅 Action : ${action.dateAction}</span>
+                <span class="retro-date-box">🎯 Échéance : ${action.dateAction}</span>
               </div>
               <h2 class="retro-card-title">${action.titre}</h2>
             </div>
@@ -283,15 +451,63 @@
       }).join('');
     }
 
+    function renderTable(items) {
+      const wrap = document.getElementById('retro-table-wrap');
+      if (!wrap) return;
+      wrap.style.display = currentView === 'table' ? 'block' : 'none';
+      const rows = items.flatMap(action =>
+        action.etapes.map((st, idx) => `
+          <tr>
+            <td><strong>${action.titre}</strong><br><small>${action.typeLabel}</small></td>
+            <td><strong>${st.dateLimite}</strong></td>
+            <td>${st.action}</td>
+            <td>${st.responsable}</td>
+            <td><button type="button" class="status-pill ${getStatusClass(st.statut)}" onclick="cycleStatus('${action.id}', ${idx})">${st.statut}</button></td>
+          </tr>
+        `)
+      ).join('');
+      wrap.innerHTML = `
+        <table class="retro-table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Date limite</th>
+              <th>Étape de préparation</th>
+              <th>Responsable</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    function renderAll() {
+      const items = ACTIONS_RETRO.filter(a => currentFilter === 'all' || a.type === currentFilter);
+      renderKpis(items);
+      renderCards(items);
+      renderTable(items);
+    }
+
     document.querySelectorAll('.retro-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.retro-filter-btn').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
-        renderRetro(btn.dataset.filter);
+        currentFilter = btn.dataset.filter;
+        renderAll();
       });
     });
 
-    renderRetro('all');
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        currentView = btn.dataset.view;
+        renderAll();
+      });
+    });
+
+    renderAll();
   </script>
   <script src="app.js" defer></script>
 </body>
