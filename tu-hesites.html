@@ -3,109 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tu hésites ? — Témoignage de Sidali Sacha • E2C Nanterre</title>
+  <title>Tu hésites ? — Parole d'un stagiaire • E2C Nanterre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
     .hesite-hero {
-      padding: 8.5rem 0 3.2rem;
+      padding: 8.5rem 0 2.6rem;
       position: relative;
       z-index: 2;
-    }
-    .hesite-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.42rem 0.95rem;
-      border-radius: 999px;
-      background: #fff7ed;
-      border: 1px solid rgba(234, 88, 12, 0.35);
-      color: #ea580c;
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
     }
     .hesite-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.1rem, 4.4vw, 3.4rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      font-size: clamp(2.1rem, 4.4vw, 3.3rem);
+      line-height: 1.12;
+      margin-bottom: 0.9rem;
     }
     .hesite-lead {
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       max-width: 720px;
-      opacity: 0.88;
       line-height: 1.7;
+      opacity: 0.9;
     }
+
+    /* Bouton thème lune/soleil plus marqué et lisible */
+    #theme-toggle.theme-toggle {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(234, 88, 12, 0.45);
+      background: #fff7ed;
+      color: #c2410c;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+    #theme-toggle.theme-toggle:hover {
+      transform: translateY(-2px);
+      background: #ffedd5;
+      border-color: #ea580c;
+    }
+    body.dark-mode #theme-toggle.theme-toggle {
+      background: #1e293b;
+      color: #fbbf24;
+      border-color: rgba(251, 191, 36, 0.55);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+    body.dark-mode #theme-toggle.theme-toggle:hover {
+      background: #334155;
+      border-color: #fbbf24;
+    }
+
+    /* Carte de témoignage */
     .story-card {
       position: relative;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 247, 237, 0.72) 100%);
-      border: 1px solid rgba(234, 88, 12, 0.22);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 250, 245, 0.92) 100%);
+      border: 1.5px solid rgba(234, 88, 12, 0.24);
       border-left: 5px solid #ea580c;
-      border-radius: 24px;
-      padding: clamp(1.6rem, 3.8vw, 2.9rem);
-      box-shadow: 0 22px 54px rgba(15, 23, 42, 0.08);
+      border-radius: 22px;
+      padding: clamp(1.5rem, 3.6vw, 2.6rem);
+      box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
       margin-bottom: 3rem;
       z-index: 2;
     }
-    body.dark-mode .story-card {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.92) 100%);
-      border-color: rgba(249, 115, 22, 0.25);
-      border-left-color: #f97316;
-    }
-    .quote-mark-top {
+    .story-heading {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 3.4rem;
-      line-height: 0.6;
-      color: rgba(234, 88, 12, 0.28);
-      margin-bottom: 0.8rem;
-      user-select: none;
-    }
-    .story-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.6rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-    }
-    .story-pill {
-      font-size: 0.8rem;
+      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
       font-weight: 700;
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(234, 88, 12, 0.1);
-      color: #ea580c;
+      color: #0f172a;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
     }
-    body.dark-mode .story-pill {
-      background: rgba(249, 115, 22, 0.18);
-      color: #fb923c;
-    }
-    .story-body {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .story-pave {
       font-style: italic;
-      font-size: 1.1rem;
-      line-height: 1.9;
+      font-size: 1.06rem;
+      line-height: 1.88;
+      color: #1e293b;
     }
-    .story-body p::first-line {
-      letter-spacing: 0.005em;
+    .story-pave p {
+      margin-bottom: 1.05rem;
     }
-    .story-highlight {
-      background: rgba(234, 88, 12, 0.09);
-      border-radius: 16px;
-      padding: 1.2rem 1.45rem;
-      font-style: italic;
-      font-weight: 600;
-      border: 1px solid rgba(234, 88, 12, 0.26);
+    .story-pave p:last-child {
+      margin-bottom: 0;
     }
     .story-signature {
-      margin-top: 1.8rem;
-      padding-top: 1.3rem;
-      border-top: 1px dashed rgba(148, 163, 184, 0.38);
+      margin-top: 1.6rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.4);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -115,9 +105,49 @@
     .story-signature strong {
       font-family: 'Space Grotesk', sans-serif;
       font-style: normal;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       color: #ea580c;
     }
+    .story-sub {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    /* Correction mode sombre pour éviter tout texte invisible */
+    body.dark-mode,
+    body.dark-mode main,
+    body.dark-mode section {
+      color: #f1f5f9;
+    }
+    body.dark-mode .story-card {
+      background: #0f172a;
+      border-color: rgba(249, 115, 22, 0.35);
+      border-left-color: #f97316;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+    body.dark-mode .story-heading {
+      color: #ffffff;
+      border-bottom-color: rgba(148, 163, 184, 0.22);
+    }
+    body.dark-mode .story-pave,
+    body.dark-mode .story-pave p,
+    body.dark-mode .story-pave strong {
+      color: #f1f5f9;
+    }
+    body.dark-mode .story-pave strong {
+      color: #fdba74;
+    }
+    body.dark-mode .story-sub,
+    body.dark-mode .ateliers-bridge > p,
+    body.dark-mode .atelier-link-desc {
+      color: #cbd5e1;
+    }
+    body.dark-mode .ateliers-bridge h2,
+    body.dark-mode .atelier-link-title {
+      color: #ffffff;
+    }
+
+    /* Cartes des 4 ateliers */
     .ateliers-bridge {
       position: relative;
       z-index: 2;
@@ -125,13 +155,13 @@
     }
     .ateliers-bridge h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.6rem, 3.2vw, 2.25rem);
-      margin-bottom: 0.55rem;
+      font-size: clamp(1.55rem, 3.1vw, 2.2rem);
+      margin-bottom: 0.5rem;
     }
     .ateliers-bridge > p {
-      opacity: 0.86;
-      margin-bottom: 1.65rem;
+      margin-bottom: 1.6rem;
       font-size: 1.02rem;
+      color: #475569;
     }
     .ateliers-mini-grid {
       display: grid;
@@ -139,101 +169,40 @@
       gap: 1.35rem;
     }
     .atelier-link-card {
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 0.85rem;
+      gap: 0.9rem;
       padding: 1.5rem 1.45rem;
       border-radius: 20px;
       text-decoration: none;
-      color: inherit;
+      color: #0f172a;
       background: linear-gradient(160deg, #ffffff 0%, #fffaf5 100%);
       border: 1.5px solid rgba(234, 88, 12, 0.25);
       border-top: 4px solid #ea580c;
       box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
-      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
     }
-    .atelier-link-card:nth-child(2) {
-      border-top-color: #7c3aed;
-      border-color: rgba(124, 58, 237, 0.24);
-      background: linear-gradient(160deg, #ffffff 0%, #faf5ff 100%);
-    }
-    .atelier-link-card:nth-child(3) {
-      border-top-color: #0284c7;
-      border-color: rgba(2, 132, 199, 0.24);
-      background: linear-gradient(160deg, #ffffff 0%, #f0f9ff 100%);
-    }
-    .atelier-link-card:nth-child(4) {
-      border-top-color: #db2777;
-      border-color: rgba(219, 39, 119, 0.24);
-      background: linear-gradient(160deg, #ffffff 0%, #fdf2f8 100%);
-    }
-    .atelier-link-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 22px 44px rgba(234, 88, 12, 0.16);
-    }
-    body.dark-mode .atelier-link-card {
-      background: linear-gradient(160deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.92) 100%);
-    }
-    .atelier-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-    }
-    .atelier-link-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(234, 88, 12, 0.12);
-      font-size: 1.45rem;
-    }
-    .atelier-link-card:nth-child(2) .atelier-link-icon { background: rgba(124, 58, 237, 0.12); }
-    .atelier-link-card:nth-child(3) .atelier-link-icon { background: rgba(2, 132, 199, 0.12); }
-    .atelier-link-card:nth-child(4) .atelier-link-icon { background: rgba(219, 39, 119, 0.12); }
-    .atelier-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(234, 88, 12, 0.12);
-      color: #ea580c;
-    }
-    .atelier-link-card:nth-child(2) .atelier-tag { background: rgba(124, 58, 237, 0.12); color: #7c3aed; }
-    .atelier-link-card:nth-child(3) .atelier-tag { background: rgba(2, 132, 199, 0.12); color: #0284c7; }
-    .atelier-link-card:nth-child(4) .atelier-tag { background: rgba(219, 39, 119, 0.12); color: #db2777; }
-    .atelier-link-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.16rem;
-      font-weight: 700;
-    }
-    .atelier-link-desc {
-      font-size: 0.92rem;
-      opacity: 0.85;
-      line-height: 1.55;
-    }
-    .atelier-link-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 0.4rem;
-      padding: 0.65rem 0.9rem;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-      color: #ffffff;
-      font-size: 0.86rem;
-      font-weight: 700;
-      box-shadow: 0 8px 18px rgba(234, 88, 12, 0.24);
-    }
-    .atelier-link-card:nth-child(2) .atelier-link-cta { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); box-shadow: 0 8px 18px rgba(124, 58, 237, 0.24); }
-    .atelier-link-card:nth-child(3) .atelier-link-cta { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); box-shadow: 0 8px 18px rgba(2, 132, 199, 0.24); }
-    .atelier-link-card:nth-child(4) .atelier-link-cta { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); box-shadow: 0 8px 18px rgba(219, 39, 119, 0.24); }
+    .atelier-link-card:nth-child(2) { border-top-color: #7c3aed; border-color: rgba(124, 58, 237, 0.25); background: linear-gradient(160deg, #ffffff 0%, #faf5ff 100%); }
+    .atelier-link-card:nth-child(3) { border-top-color: #0284c7; border-color: rgba(2, 132, 199, 0.25); background: linear-gradient(160deg, #ffffff 0%, #f0f9ff 100%); }
+    .atelier-link-card:nth-child(4) { border-top-color: #db2777; border-color: rgba(219, 39, 119, 0.25); background: linear-gradient(160deg, #ffffff 0%, #fdf2f8 100%); }
+    .atelier-link-card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(15, 23, 42, 0.14); }
+    body.dark-mode .atelier-link-card { background: #1e293b; color: #f8fafc; box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35); }
+    .atelier-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .atelier-link-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(234, 88, 12, 0.14); font-size: 1.45rem; }
+    .atelier-link-card:nth-child(2) .atelier-link-icon { background: rgba(124, 58, 237, 0.16); }
+    .atelier-link-card:nth-child(3) .atelier-link-icon { background: rgba(2, 132, 199, 0.16); }
+    .atelier-link-card:nth-child(4) .atelier-link-icon { background: rgba(219, 39, 119, 0.16); }
+    .atelier-tag { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(234, 88, 12, 0.14); color: #ea580c; }
+    .atelier-link-card:nth-child(2) .atelier-tag { background: rgba(124, 58, 237, 0.16); color: #a78bfa; }
+    .atelier-link-card:nth-child(3) .atelier-tag { background: rgba(2, 132, 199, 0.16); color: #38bdf8; }
+    .atelier-link-card:nth-child(4) .atelier-tag { background: rgba(219, 39, 119, 0.16); color: #f472b6; }
+    .atelier-link-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; margin-top: 0.8rem; }
+    .atelier-link-desc { font-size: 0.92rem; color: #475569; line-height: 1.55; margin-top: 0.35rem; }
+    .atelier-link-cta { display: inline-flex; align-items: center; justify-content: space-between; margin-top: 0.4rem; padding: 0.65rem 0.9rem; border-radius: 12px; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: #ffffff; font-size: 0.86rem; font-weight: 700; }
+    .atelier-link-card:nth-child(2) .atelier-link-cta { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+    .atelier-link-card:nth-child(3) .atelier-link-cta { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+    .atelier-link-card:nth-child(4) .atelier-link-cta { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); }
   </style>
 </head>
 <body>
@@ -246,7 +215,7 @@
       <nav class="nav-links" style="gap:1.5rem; white-space:nowrap;">
         <a href="index.html" class="nav-item">Accueil</a>
         <a href="actualites.html" class="nav-item">Actualités</a>
-        <a href="tu-hesites.html" class="nav-item">Tu hésites ?</a>
+        <a href="tu-hesites.html" class="nav-item" style="color:#ea580c; font-weight:700;">Tu hésites ?</a>
       </nav>
       <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème" title="Mode clair / sombre">🌙</button>
     </div>
@@ -255,33 +224,42 @@
   <main>
     <section class="hesite-hero">
       <div class="container">
-        <div class="hesite-badge">💬 Parole de stagiaire • E2C Nanterre</div>
-        <h1 class="hesite-title">Tu hésites à rejoindre l'E2C ?</h1>
-        <p class="hesite-lead">Avant d'entrer à l'École de la Deuxième Chance de Nanterre, j'avais moi aussi beaucoup de doutes. Voici mon témoignage sincère pour t'aider à voir ce que l'E2C peut t'apporter.</p>
+        <h1 class="hesite-title">Tu hésites ?</h1>
+        <p class="hesite-lead">Si tu as des doutes avant de te lancer à l'E2C de Nanterre, lis ce retour d'expérience avant de découvrir les ateliers.</p>
       </div>
     </section>
 
     <section class="container">
       <article class="story-card">
-        <div class="quote-mark-top" aria-hidden="true">«</div>
-        <div class="story-meta">
-          <span class="story-pill">🎓 Rentrée : 31 août 2026</span>
-          <span class="story-pill">📍 Site de Nanterre — Groupe 3</span>
-          <span class="story-pill">✍️ Témoignage de Sidali Sacha</span>
+        <h2 class="story-heading">Parole d'un stagiaire</h2>
+
+        <div class="story-pave">
+          <p>« J'ai eu une scolarité difficile : j'ai dû quitter l'école en <strong>Terminale générale</strong> à cause d'une <strong>phobie scolaire</strong> et de <strong>problèmes de santé</strong>.<br>
+          Quand on s'arrête comme ça, ce n'est pas simple de reprendre confiance ni de savoir vers où se tourner.</p>
+
+          <p>J'ai décidé de tenter ma chance à l'<strong>E2C de Nanterre</strong> : j'ai passé un entretien, j'ai été accepté, et j'ai fait ma rentrée le <strong>31 août 2026</strong>.</p>
+
+          <p>Depuis mon arrivée, l'École de la Deuxième Chance m'a déjà appris à travailler sur ma timidité et mon anxiété sociale.<br>
+          Elle m'a aussi poussé à oser faire des démarches concrètes et à vraiment réfléchir sur mon projet de vie.</p>
+
+          <p>À l'E2C de Nanterre, on fait <strong>4 ateliers</strong> (Maths, Numérique, Élaboration du projet pro et Communication), et ces ateliers m'ont vraiment permis d'évoluer.<br>
+          Je remercie grandement <strong>l'équipe des formateurs</strong>, qui sont vraiment à l'écoute, autant individuellement que pour le groupe.</p>
+
+          <p>Mon parcours à l'E2C n'est pas encore fini, mais je pense être sur la bonne voie. »</p>
         </div>
 
-        <div class="story-body"><p>« J'ai eu une scolarité difficile : j'ai dû quitter l'école en <strong>Terminale générale</strong> à cause d'une <strong>phobie scolaire</strong> et de <strong>problèmes de santé</strong>, et quand on s'arrête comme ça, ce n'est pas simple de reprendre confiance ni de savoir vers où se tourner. J'ai décidé de tenter ma chance à l'<strong>E2C de Nanterre</strong> : j'ai passé un entretien, j'ai été accepté, et j'ai fait ma rentrée le <strong>31 août 2026</strong>. Depuis mon arrivée, l'École de la Deuxième Chance m'a déjà appris à travailler sur ma timidité et mon anxiété sociale, et elle m'a aussi poussé à oser faire des démarches concrètes et à vraiment réfléchir sur mon projet de vie. À l'E2C de Nanterre, on fait <strong>4 ateliers</strong> (Maths, Numérique, Élaboration du projet pro et Communication), et ces ateliers m'ont vraiment permis d'évoluer. Je remercie grandement <strong>l'équipe des formateurs</strong>, qui sont vraiment à l'écoute, autant individuellement que pour le groupe. Mon parcours à l'E2C n'est pas encore fini, mais je pense être sur la bonne voie. »</p></div> <div class="story-signature">
+        <div class="story-signature">
           <div>
-            <strong>— Sidali Sacha</strong>
-            <div style="font-size:0.88rem; opacity:0.8;">Stagiaire à l'E2C de Nanterre • Groupe 3</div>
+            <strong>Sidali Sacha</strong>
+            <div class="story-sub">Stagiaire à l'E2C de Nanterre • Rentrée le 31 août 2026</div>
           </div>
-          <a href="#les-4-ateliers" class="btn-nav" style="text-decoration:none;">Découvrir les 4 ateliers ↓</a>
+          <a href="#les-4-ateliers" class="btn-nav" style="text-decoration:none;">Voir les 4 ateliers ↓</a>
         </div>
       </article>
 
       <div id="les-4-ateliers" class="ateliers-bridge">
-        <h2>Les 4 ateliers qui m'ont permis d'évoluer</h2>
-        <p>Découvre chacun des 4 ateliers de l'E2C de Nanterre qui m'ont aidé à avancer :</p>
+        <h2>Les 4 ateliers de l'E2C Nanterre</h2>
+        <p>Clique sur un atelier pour découvrir son contenu :</p>
         <div class="ateliers-mini-grid">
           <a href="maths.html" class="atelier-link-card">
             <div>
@@ -289,10 +267,10 @@
                 <span class="atelier-link-icon">📐</span>
                 <span class="atelier-tag">Atelier 01</span>
               </div>
-              <div class="atelier-link-title" style="margin-top:0.85rem;">Maths au quotidien</div>
-              <div class="atelier-link-desc" style="margin-top:0.4rem;">Reprendre confiance avec les chiffres à travers des situations concrètes de la vie courante et professionnelle.</div>
+              <div class="atelier-link-title">Maths au quotidien</div>
+              <div class="atelier-link-desc">Reprendre confiance avec les chiffres à travers des situations concrètes.</div>
             </div>
-            <span class="atelier-link-cta"><span>Ouvrir l'atelier Maths</span><span>→</span></span>
+            <span class="atelier-link-cta"><span>Maths au quotidien</span><span>→</span></span>
           </a>
 
           <a href="numerique.html" class="atelier-link-card">
@@ -301,10 +279,10 @@
                 <span class="atelier-link-icon">💻</span>
                 <span class="atelier-tag">Atelier 02</span>
               </div>
-              <div class="atelier-link-title" style="margin-top:0.85rem;">Atelier Numérique</div>
-              <div class="atelier-link-desc" style="margin-top:0.4rem;">Apprivoiser l'ordinateur, les outils bureautiques et le web pas à pas, dans l'entraide.</div>
+              <div class="atelier-link-title">Atelier Numérique</div>
+              <div class="atelier-link-desc">Apprivoiser l'ordinateur, la bureautique et les outils numériques pas à pas.</div>
             </div>
-            <span class="atelier-link-cta"><span>Ouvrir l'atelier Numérique</span><span>→</span></span>
+            <span class="atelier-link-cta"><span>Atelier Numérique</span><span>→</span></span>
           </a>
 
           <a href="projet-pro.html" class="atelier-link-card">
@@ -313,10 +291,10 @@
                 <span class="atelier-link-icon">🧭</span>
                 <span class="atelier-tag">Atelier 03</span>
               </div>
-              <div class="atelier-link-title" style="margin-top:0.85rem;">Élaboration projet pro</div>
-              <div class="atelier-link-desc" style="margin-top:0.4rem;">Réfléchir à son projet de vie, préparer ses démarches, son CV et ses stages en entreprise.</div>
+              <div class="atelier-link-title">Élaboration projet pro</div>
+              <div class="atelier-link-desc">Construire son projet de vie, préparer ses démarches et ses stages.</div>
             </div>
-            <span class="atelier-link-cta"><span>Ouvrir l'atelier Projet Pro</span><span>→</span></span>
+            <span class="atelier-link-cta"><span>Élaboration projet pro</span><span>→</span></span>
           </a>
 
           <a href="communication.html" class="atelier-link-card">
@@ -325,10 +303,10 @@
                 <span class="atelier-link-icon">🎙️</span>
                 <span class="atelier-tag">Atelier 04</span>
               </div>
-              <div class="atelier-link-title" style="margin-top:0.85rem;">Communication</div>
-              <div class="atelier-link-desc" style="margin-top:0.4rem;">Travailler l'aisance à l'oral et à l'écrit grâce aux débats, au job trottoir et aux actions collectives.</div>
+              <div class="atelier-link-title">Communication</div>
+              <div class="atelier-link-desc">Gagner en aisance à l'oral et à l'écrit (débats, job trottoir, projets).</div>
             </div>
-            <span class="atelier-link-cta"><span>Ouvrir l'atelier Communication</span><span>→</span></span>
+            <span class="atelier-link-cta"><span>Communication</span><span>→</span></span>
           </a>
         </div>
       </div>
@@ -339,9 +317,9 @@
     <div class="container footer-content">
       <div class="footer-brand">
         <strong>E2C92 — École de la Deuxième Chance des Hauts-de-Seine</strong>
-        <span>Site de Nanterre • Témoignage stagiaire</span>
+        <span>Site de Nanterre</span>
       </div>
-      <div class="footer-meta">Site réalisé par le stagiaire Sidali Sacha — Groupe 3</div>
+      <div class="footer-meta">Site réalisé par le stagiaire Sidali Sacha</div>
     </div>
   </footer>
 
