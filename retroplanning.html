@@ -1,101 +1,130 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Retroplanning - E2C Nanterre</title>
+<title>Retroplanning - Decembre 2026 - E2C Nanterre</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-.wrap{padding:8rem 0 3rem;position:relative;z-index:2}
-.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:1.4rem;align-items:start}
-@media(max-width:900px){.grid2{grid-template-columns:1fr}}
-.box{background:#fff;border:1px solid #cbd5e1;border-radius:16px;padding:1.2rem;color:#0f172a}
-body.dark-mode .box{background:#0f172a;color:#f8fafc;border-color:#334155}
-table.cal{width:100%;border-collapse:collapse;table-layout:fixed}
-table.cal th{padding:.5rem;border-bottom:2px solid #cbd5e1;font-size:.8rem}
-table.cal td{height:82px;vertical-align:top;border:1px solid #e2e8f0;padding:.35rem}
-body.dark-mode table.cal td{border-color:#1e293b}
-.ev{display:block;width:100%;margin-top:.25rem;padding:.22rem .35rem;border:0;border-radius:6px;font-size:.7rem;font-weight:700;text-align:left;cursor:pointer}
+.wrap{padding:8.2rem 0 3.5rem;position:relative;z-index:2}
+.grid2{display:grid;grid-template-columns:1.45fr 1fr;gap:1.4rem;align-items:start}
+@media(max-width:960px){.grid2{grid-template-columns:1fr}}
+.box{background:#fff;border:1.5px solid rgba(15,23,42,0.12);border-radius:18px;padding:1.25rem;color:#0f172a;box-shadow:0 12px 30px rgba(15,23,42,0.06)}
+body.dark-mode .box{background:#0f172a;color:#f8fafc;border-color:rgba(148,163,184,0.25)}
+table.cal{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:.75rem}
+table.cal th{padding:.5rem .2rem;border-bottom:2px solid rgba(148,163,184,0.35);font-size:.78rem;font-weight:800;text-transform:uppercase}
+table.cal td{height:84px;vertical-align:top;border:1px solid rgba(148,163,184,0.25);padding:.35rem;background:rgba(248,250,252,0.75)}
+body.dark-mode table.cal td{background:#1e293b;border-color:rgba(148,163,184,0.2)}
+table.cal td.blank{background:transparent;border-color:transparent}
+table.cal td.hi{box-shadow:inset 0 0 0 2px #ea580c;background:rgba(255,247,237,0.95)}
+body.dark-mode table.cal td.hi{background:rgba(234,88,12,0.18)}
+.dn{font-weight:800;font-size:.86rem;display:block;margin-bottom:.22rem}
+.ev{display:block;width:100%;padding:.2rem .34rem;border:0;border-radius:6px;font-size:.68rem;font-weight:700;text-align:left;cursor:pointer;line-height:1.2}
 .ev.visite{background:#ffedd5;color:#9a3412}
 .ev.job{background:#ede9fe;color:#5b21b6}
 .ev.coaching{background:#e0f2fe;color:#075985}
 .pbtns{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
-.pbtn{padding:.55rem .8rem;border-radius:10px;border:1px solid #94a3b8;background:#f8fafc;color:#0f172a;font-weight:700;cursor:pointer}
+.pbtn{padding:.55rem .85rem;border-radius:10px;border:1.5px solid rgba(148,163,184,0.4);background:#f8fafc;color:#0f172a;font-weight:700;font-size:.84rem;cursor:pointer}
+body.dark-mode .pbtn{background:#1e293b;color:#f8fafc}
 .pbtn.on[data-k="visite"]{background:#ea580c;color:#fff;border-color:#ea580c}
 .pbtn.on[data-k="job"]{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .pbtn.on[data-k="coaching"]{background:#0284c7;color:#fff;border-color:#0284c7}
-.task{border:1px solid #e2e8f0;border-radius:10px;padding:.7rem;margin-top:.6rem}
-body.dark-mode .task{border-color:#334155}
-.st{float:right;border:0;border-radius:999px;padding:.18rem .55rem;font-size:.72rem;font-weight:800;cursor:pointer}
+.phead{padding:.8rem .95rem;border-radius:12px;background:#f8fafc;border-left:4px solid #ea580c;margin-bottom:.75rem}
+body.dark-mode .phead{background:#1e293b}
+.phead.k-job{border-left-color:#7c3aed}
+.phead.k-coaching{border-left-color:#0284c7}
+.task{border:1px solid rgba(148,163,184,0.28);border-radius:11px;padding:.68rem .8rem;margin-top:.55rem;background:#f8fafc}
+body.dark-mode .task{background:#1e293b}
+.st{float:right;border:0;border-radius:999px;padding:.18rem .58rem;font-size:.72rem;font-weight:800;cursor:pointer}
 .s-todo{background:#ffedd5;color:#9a3412}
 .s-wip{background:#fef9c3;color:#854d0e}
 .s-done{background:#dcfce7;color:#166534}
 </style></head><body>
 <header class="navbar" id="navbar"><div class="container nav-container">
-<a href="index.html" class="brand"><strong>E2C92</strong> <small>Nanterre</small></a>
-<nav class="nav-links">
+<a href="index.html" class="brand">
+        <div class="nav-logo-card"><svg class="e2c-official-logo nav-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg"><path d="M185 60 L195 16 L216 56 L262 49 L228 82 L245 112 L212 97 L166 146 L181 92 L112 72 L185 65 Z" fill="#ff4800"/><polygon points="185,66 218,59 224,78 176,132 188,88" fill="#ffffff"/><text x="28" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">e</text><text x="216" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="108" fill="#111827" letter-spacing="-4">c</text><text x="102" y="196" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="164" fill="#ffffff" stroke="#64748b" stroke-width="3.5">2</text><text x="152" y="222" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">HAUTS-</text><text x="122" y="248" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ff4800" letter-spacing="0.5">DE-SEINE</text><line x1="122" y1="256" x2="266" y2="256" stroke="#64748b" stroke-width="2.5"/></svg></div>
+        <div class="brand-text"><span class="brand-title">E2C92</span><span class="brand-sub">HAUTS-DE-SEINE • NANTERRE • CLICHY • BAGNEUX</span></div>
+      </a>
+<nav class="nav-links" style="gap:1.5rem;white-space:nowrap">
 <a href="index.html" class="nav-item">Accueil</a>
 <a href="actualites.html" class="nav-item">Actualites</a>
 <a href="tu-hesites.html" class="nav-item">Tu hesites ?</a>
 <a href="retroplanning.html" class="nav-item" style="color:#ea580c;font-weight:700">Retroplanning</a>
 </nav>
-<button class="theme-toggle" id="theme-toggle" aria-label="Theme">Lune/Soleil</button>
+<button class="theme-toggle" id="theme-toggle" aria-label="Changer le theme" title="Mode clair / sombre">&#127769;</button>
 </div></header>
 <main class="container wrap">
-<h1>Retroplanning - Decembre 2026</h1>
+<h1>Retroplanning - Calendrier (1 au 31 decembre 2026)</h1>
 <p>3 projets sans chevauchement de dates : Visite entreprise (1-7 dec.), Job dating (9-15 dec.), Coaching (17-22 dec.).</p>
 <div class="grid2">
-<div class="box"><h2>Calendrier Decembre 2026</h2><table class="cal"><thead><tr><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th></tr></thead><tbody id="cbody"></tbody></table></div>
+<div class="box"><h2>Calendrier du 1 au 31 decembre 2026</h2><table class="cal"><thead><tr><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th></tr></thead><tbody id="cbody"></tbody></table></div>
 <div class="box"><div class="pbtns" id="pbtns">
 <button type="button" class="pbtn on" data-k="visite">Visite entreprise</button>
 <button type="button" class="pbtn" data-k="job">Job dating</button>
 <button type="button" class="pbtn" data-k="coaching">Coaching</button>
-</div><div id="pinfo"></div><div id="ptasks"></div></div>
+</div><div id="pinfo"></div><div id="ptasks"></div><p id="psum" style="margin-top:.8rem;font-size:.8rem;opacity:.8"></p></div>
 </div></main>
 <script>
 var PROJ = {
-  visite: { titre: "Visite entreprise", date: "7 decembre", plage: "1er au 7 decembre", days: {1:"Confirmer date",3:"Liste groupe",5:"Infos RDV",7:"Visite entreprise"}, taches: [
-    {d:"7 dec.",t:"Visite de l entreprise",r:"Formateur",s:"A faire"},
-    {d:"5 dec.",t:"Envoyer heure, lieu et consignes",r:"Equipe",s:"A faire"},
-    {d:"3 dec.",t:"Constituer le groupe",r:"Formateur",s:"En cours"},
-    {d:"1er dec.",t:"Confirmer la date avec l entreprise",r:"Partenaires",s:"Fait"}
+  visite: { titre: "Visite entreprise", date: "7 decembre 2026", plage: "1er au 7 decembre", days: {1:"Confirmer date",3:"Liste groupe",5:"Infos RDV",7:"Visite entreprise"}, taches: [
+    {d:"7 dec.",t:"Visite de l entreprise avec le groupe",r:"Formateur referent",s:"A faire"},
+    {d:"5 dec.",t:"Envoyer heure, lieu et consignes aux jeunes",r:"Equipe E2C",s:"A faire"},
+    {d:"3 dec.",t:"Constituer la liste des participants",r:"Formateur referent",s:"En cours"},
+    {d:"1er dec.",t:"Confirmer la date avec l entreprise",r:"Charge entreprises",s:"Fait"}
   ]},
-  job: { titre: "Job dating", date: "15 decembre", plage: "9 au 15 decembre", days: {9:"Valider postes",11:"CV et groupe",13:"Rappel jeunes",15:"Job dating"}, taches: [
-    {d:"15 dec.",t:"Job dating et entretiens",r:"Equipe",s:"A faire"},
-    {d:"13 dec.",t:"Transmettre horaires et consignes",r:"Formateur",s:"A faire"},
+  job: { titre: "Job dating", date: "15 decembre 2026", plage: "9 au 15 decembre", days: {9:"Valider postes",11:"CV et groupe",13:"Rappel jeunes",15:"Job dating"}, taches: [
+    {d:"15 dec.",t:"Tenue du job dating et entretiens",r:"Equipe et recruteurs",s:"A faire"},
+    {d:"13 dec.",t:"Transmettre horaires et consignes aux jeunes",r:"Formateur",s:"A faire"},
     {d:"11 dec.",t:"Verifier CV et constituer le groupe",r:"Conseiller",s:"En cours"},
-    {d:"9 dec.",t:"Confirmer date avec recruteurs",r:"Partenaires",s:"Fait"}
+    {d:"9 dec.",t:"Confirmer date et postes avec partenaires",r:"Charge entreprises",s:"Fait"}
   ]},
-  coaching: { titre: "Coaching", date: "22 decembre", plage: "17 au 22 decembre", days: {17:"Cadre seance",18:"Besoins jeunes",20:"Convocation",22:"Coaching"}, taches: [
-    {d:"22 dec.",t:"Seance de coaching",r:"Coach",s:"A faire"},
-    {d:"20 dec.",t:"Envoyer heure et lieu aux jeunes",r:"Equipe",s:"A faire"},
-    {d:"18 dec.",t:"Lister les participants et besoins",r:"Formateur",s:"En cours"},
-    {d:"17 dec.",t:"Valider la date et la salle",r:"Coach",s:"Fait"}
+  coaching: { titre: "Coaching", date: "22 decembre 2026", plage: "17 au 22 decembre", days: {17:"Cadre seance",18:"Besoins jeunes",20:"Convocation",22:"Coaching"}, taches: [
+    {d:"22 dec.",t:"Seance de coaching collective et individuelle",r:"Coach / Formateur",s:"A faire"},
+    {d:"20 dec.",t:"Envoyer heure, lieu et consignes aux jeunes",r:"Equipe E2C",s:"A faire"},
+    {d:"18 dec.",t:"Lister les participants et leurs besoins",r:"Formateur referent",s:"En cours"},
+    {d:"17 dec.",t:"Valider la date et la salle",r:"Coach / Equipe",s:"Fait"}
   ]}
 };
 var cur = "visite"; var ord = ["A faire","En cours","Fait"];
-function cls(s){return s==="Fait"?"s-done":(s==="En cours"?"s-wip":"s-todo");}
+function stCls(s){return s==="Fait"?"s-done":(s==="En cours"?"s-wip":"s-todo");}
 function drawCal(){
-  var tb=document.getElementById("cbody"); var d=1, out="";
+  var tb=document.getElementById("cbody"); if(!tb) return; var d=1, out="";
   for(var r=0;r<6;r++){ var tr="";
     for(var c=0;c<7;c++){
-      if((r===0 && c<1) || d>31){tr+="<td></td>";}else{
-        var ev=""; ["visite","job","coaching"].forEach(function(k){if(PROJ[k].days[d]) ev+="<button type=button class='ev "+k+"' onclick='pick(""+k+"")'>"+PROJ[k].days[d]+"</button>";});
-        tr+="<td><strong>"+d+"</strong>"+ev+"</td>"; d++;
+      if((r===0 && c<1) || d>31){ tr+="<td class=blank></td>"; }
+      else{
+        var dayNum=d, ev="", hit=null;
+        var ks=["visite","job","coaching"];
+        for(var i=0;i<ks.length;i++){ var k=ks[i]; if(PROJ[k].days[dayNum]){ hit=k; ev+="<button type=button class='ev "+k+"' data-pick='"+k+"'>"+PROJ[k].days[dayNum]+"</button>"; } }
+        var hiCls=(hit===cur)?" class=hi":"";
+        tr+="<td"+hiCls+"><span class=dn>"+dayNum+"</span>"+ev+"</td>"; d++;
       }
     }
     out+="<tr>"+tr+"</tr>"; if(d>31) break;
   }
   tb.innerHTML=out;
+  var pks=tb.querySelectorAll("[data-pick]");
+  for(var j=0;j<pks.length;j++){ pks[j].addEventListener("click",function(){ setProj(this.getAttribute("data-pick")); }); }
 }
 function drawSide(){
-  var p=PROJ[cur];
-  document.getElementById("pinfo").innerHTML="<h3>"+p.titre+"</h3><p>Echeance : <strong>"+p.date+"</strong> ("+p.plage+")</p>";
-  var h="";
-  p.taches.forEach(function(x,i){
-    h+="<div class='task'><button type=button class='st "+cls(x.s)+"' onclick='toggleSt("+i+")'>"+x.s+"</button><strong>"+x.d+"</strong><div>"+x.t+"</div><small>Responsable : "+x.r+"</small></div>";
-  });
-  document.getElementById("ptasks").innerHTML=h;
+  var p=PROJ[cur]; var inf=document.getElementById("pinfo"); var tsk=document.getElementById("ptasks"); var sum=document.getElementById("psum");
+  if(!p||!inf||!tsk) return;
+  var hc=(cur==="job")?"phead k-job":((cur==="coaching")?"phead k-coaching":"phead");
+  inf.innerHTML="<div class='"+hc+"'><h3>"+p.titre+"</h3><p>Echeance : <strong>"+p.date+"</strong> • "+p.plage+"</p></div>";
+  var h="", done=0;
+  for(var i=0;i<p.taches.length;i++){
+    var x=p.taches[i]; if(x.s==="Fait") done++;
+    h+="<div class=task><button type=button class='st "+stCls(x.s)+"' data-idx='"+i+"'>"+x.s+"</button><strong>"+x.d+"</strong><div>"+x.t+"</div><small>Responsable : <strong>"+x.r+"</strong></small></div>";
+  }
+  tsk.innerHTML=h;
+  var bts=tsk.querySelectorAll("[data-idx]");
+  for(var m=0;m<bts.length;m++){ bts[m].addEventListener("click",function(){ var idx=Number(this.getAttribute("data-idx")); var t=PROJ[cur].taches[idx]; t.s=ord[(ord.indexOf(t.s)+1)%3]; drawSide(); }); }
+  if(sum) sum.textContent="Projet actif : "+p.titre+" — "+done+"/"+p.taches.length+" etape(s) Fait (clique sur un statut pour changer).";
 }
-window.pick=function(k){cur=k; document.querySelectorAll(".pbtn").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-k")===k);}); drawSide();};
-window.toggleSt=function(i){var t=PROJ[cur].taches[i]; t.s=ord[(ord.indexOf(t.s)+1)%3]; drawSide();};
-document.querySelectorAll(".pbtn").forEach(function(b){b.addEventListener("click",function(){pick(this.getAttribute("data-k"));});});
+function setProj(k){
+  if(!PROJ[k]) return; cur=k;
+  var btns=document.querySelectorAll("#pbtns .pbtn");
+  for(var i=0;i<btns.length;i++){ btns[i].classList.toggle("on",btns[i].getAttribute("data-k")===k); }
+  drawCal(); drawSide();
+}
+var topBtns=document.querySelectorAll("#pbtns .pbtn");
+for(var n=0;n<topBtns.length;n++){ topBtns[n].addEventListener("click",function(){ setProj(this.getAttribute("data-k")); }); }
 drawCal(); drawSide();
 </script><script src="app.js" defer></script></body></html>
